@@ -37,6 +37,7 @@
         <module>foodie-follow</module>
         <module>foodie-points</module>
         <module>foodie-feeds</module>
+        <module>foodie-restaurants</module>
     </modules>
 
     <dependencyManagement>

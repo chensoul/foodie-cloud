@@ -1,6 +1,6 @@
 package com.imooc.diners.service;
 
-import cn.hutool.core.bean.BeanUtil;
+import com.baomidou.mybatisplus.core.toolkit.BeanUtils;
 import com.imooc.commons.constant.ApiConstant;
 import com.imooc.commons.model.domain.ResultInfo;
 import com.imooc.commons.utils.AssertUtil;
@@ -53,7 +53,7 @@ public class DinersService {
 		final MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
 		body.add("username", account);
 		body.add("password", password);
-		body.setAll(BeanUtil.beanToMap(this.oAuth2ClientConfiguration));
+		body.setAll(BeanUtils.beanToMap(this.oAuth2ClientConfiguration));
 		final HttpEntity<MultiValueMap<String, Object>> entity = new HttpEntity<>(body, headers);
 		// 设置 Authorization
 		this.restTemplate.getInterceptors().add(new BasicAuthenticationInterceptor(this.oAuth2ClientConfiguration.getClientId(),
@@ -64,14 +64,11 @@ public class DinersService {
 		AssertUtil.isTrue(result.getStatusCode() != HttpStatus.OK, "登录失败");
 		final ResultInfo resultInfo = result.getBody();
 		if (resultInfo.getCode() != ApiConstant.SUCCESS_CODE) {
-			// 登录失败
 			resultInfo.setData(resultInfo.getMessage());
 			return resultInfo;
 		}
-		// 这里的 Data 是一个 LinkedHashMap 转成了域对象 OAuthDinerInfo
-		final OAuthDinerInfo dinerInfo = BeanUtil.fillBeanWithMap((LinkedHashMap) resultInfo.getData(),
-			new OAuthDinerInfo(), false);
-		// 根据业务需求返回视图对象
+		final OAuthDinerInfo dinerInfo = BeanUtils.mapToBean((LinkedHashMap) resultInfo.getData(), OAuthDinerInfo.class);
+
 		final LoginDinerInfo loginDinerInfo = new LoginDinerInfo();
 		loginDinerInfo.setToken(dinerInfo.getAccessToken());
 		loginDinerInfo.setAvatarUrl(dinerInfo.getAvatarUrl());

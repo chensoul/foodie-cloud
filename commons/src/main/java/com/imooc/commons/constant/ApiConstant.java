@@ -4,8 +4,9 @@ package com.imooc.commons.constant;
  * 全局常量类
  */
 public class ApiConstant {
+	
 	// 成功
-	public static final int SUCCESS_CODE = 0;
+	public static final int SUCCESS_CODE = 1;
 	// 成功提示信息
 	public static final String SUCCESS_MESSAGE = "Successful.";
 	// 错误

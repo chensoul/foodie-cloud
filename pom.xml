@@ -35,6 +35,7 @@
         <module>foodie-oauth2-server</module>
         <module>foodie-seckill</module>
         <module>foodie-follow</module>
+        <module>foodie-feeds</module>
         <module>foodie-points</module>
         <module>foodie-feeds</module>
     </modules>

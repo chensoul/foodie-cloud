@@ -28,9 +28,11 @@
     </properties>
 
     <modules>
+        <module>commons</module>
         <module>foodie-registry</module>
         <module>foodie-gateway</module>
         <module>foodie-diners</module>
+        <module>foodie-oauth2-server</module>
     </modules>
 
     <dependencyManagement>
@@ -56,6 +58,16 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-oauth2</artifactId>
+                <version>2.2.5.RELEASE</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-security</artifactId>
+                <version>2.2.5.RELEASE</version>
+            </dependency>
 
             <dependency>
                 <groupId>org.springdoc</groupId>
@@ -79,6 +91,11 @@
                 <version>${mybatis.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.mysql</groupId>
+                <artifactId>mysql-connector-j</artifactId>
+                <version>8.0.33</version>
+            </dependency>
 
             <dependency>
                 <groupId>org.apache.commons</groupId>

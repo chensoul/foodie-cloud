@@ -8,15 +8,30 @@ spring:
     gateway:
       discovery:
         locator:
-          enabled: true # 开启配置注册中心进行路由功能
-          lower-case-service-id: true # 将服务名称转小写
+          enabled: true
+          lower-case-service-id: true
       routes:
         - id: foodie-diners
           uri: lb://foodie-diners
           predicates:
-            - Path=/hello/**
+            - Path=/diners/**
+          filters:
+            - StripPrefix=1
 
-# 配置 Eureka Server 注册中心
+        - id: foodie-oauth2-server
+          uri: lb://foodie-oauth2-server
+          predicates:
+            - Path=/auth/**
+          filters:
+            - StripPrefix=1
+
+secure:
+  ignore:
+    urls:
+      - /actuator/**
+      - /auth/oauth/**
+      - /diners/signin
+
 eureka:
   instance:
     prefer-ip-address: true
@@ -24,14 +39,3 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8080/eureka/
-
-management:
-  security:
-    enabled: false
-  endpoints:
-    web:
-      exposure:
-        include: "*"
-  endpoint:
-    health:
-      show-details: always

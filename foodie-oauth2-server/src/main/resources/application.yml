@@ -1,9 +1,9 @@
 server:
-  port: 8081
+  port: 8082
 
 spring:
   application:
-    name: foodie-diners
+    name: foodie-oauth2-server
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
@@ -15,16 +15,18 @@ spring:
     timeout: 3000
     password: 123456
 
-oauth2:
-  client:
+client:
+  oauth2:
     client-id: appId
     secret: 123456
-    grant_type: password
-    scope: api
-
-service:
-  name:
-    foodie-oauth-server: http://foodie-oauth2-server/
+    grant_types:
+      - password
+      - refresh_token
+    token-validity-time: 3600
+    refresh-token-validity-time: 3600
+    scopes:
+      - api
+      - all
 
 eureka:
   instance:
@@ -33,4 +35,14 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8080/eureka/
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true # 开启驼峰映射
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*" # 暴露的端点
 debug: on

@@ -5,6 +5,7 @@ import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.date.LocalDateTimeUtil;
 import cn.hutool.core.util.StrUtil;
 import com.imooc.commons.constant.ApiConstant;
+import com.imooc.commons.constant.PointTypesConstant;
 import com.imooc.commons.exception.ParameterException;
 import com.imooc.commons.model.domain.ResultInfo;
 import com.imooc.commons.model.vo.SignInDinerInfo;
@@ -20,7 +21,14 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.connection.BitFieldSubCommands;
 import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 /**
@@ -31,6 +39,8 @@ public class SignService {
 
 	@Value("${service.name.foodie-oauth-server}")
 	private String oauthServerName;
+	@Value("${service.name.foodie-points-server}")
+	private String pointsServerName;
 	@Resource
 	private RestTemplate restTemplate;
 	@Resource
@@ -54,7 +64,7 @@ public class SignService {
 		final Map<String, Boolean> signInfo = new TreeMap<>();
 		// 获取某月的总天数（考虑闰年）
 		final int dayOfMonth = DateUtil.lengthOfMonth(DateUtil.month(date) + 1,
-			DateUtil.isLeapYear(DateUtil.year(date)));
+			DateUtil.isLeapYear(DateUtil.dayOfYear(date)));
 		// bitfield user:sign:5:202011 u30 0
 		final BitFieldSubCommands bitFieldSubCommands = BitFieldSubCommands.create()
 			.get(BitFieldSubCommands.BitFieldType.unsigned(dayOfMonth))
@@ -121,7 +131,9 @@ public class SignService {
 		this.redisTemplate.opsForValue().setBit(signKey, offset, true);
 		// 统计连续签到的次数
 		final int count = this.getContinuousSignCount(dinerInfo.getId(), date);
-		return count;
+		// 添加签到积分并返回
+		final int points = this.addPoints(count, dinerInfo.getId());
+		return points;
 	}
 
 	/**
@@ -209,6 +221,45 @@ public class SignService {
 			throw new ParameterException(ApiConstant.NO_LOGIN_CODE, ApiConstant.NO_LOGIN_MESSAGE);
 		}
 		return dinerInfo;
+	}
+
+	/**
+	 * 添加用户积分
+	 *
+	 * @param count         连续签到次数
+	 * @param signInDinerId 登录用户id
+	 * @return 获取的积分
+	 */
+	private int addPoints(final int count, final Integer signInDinerId) {
+		// 签到1天送10积分，连续签到2天送20积分，3天送30积分，4天以上均送50积分
+		int points = 10;
+		if (count == 2) {
+			points = 20;
+		} else if (count == 3) {
+			points = 30;
+		} else if (count >= 4) {
+			points = 50;
+		}
+		// 调用积分接口添加积分
+		// 构建请求头
+		final HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+		// 构建请求体（请求参数）
+		final MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
+		body.add("dinerId", signInDinerId);
+		body.add("points", points);
+		body.add("types", PointTypesConstant.sign.getType());
+		final HttpEntity<MultiValueMap<String, Object>> entity = new HttpEntity<>(body, headers);
+		// 发送请求
+		final ResponseEntity<ResultInfo> result = this.restTemplate.postForEntity(this.pointsServerName,
+			entity, ResultInfo.class);
+		AssertUtil.isTrue(result.getStatusCode() != HttpStatus.OK, "登录失败！");
+		final ResultInfo resultInfo = result.getBody();
+		if (resultInfo.getCode() != ApiConstant.SUCCESS_CODE) {
+			// 失败了, 事物要进行回滚
+			throw new ParameterException(resultInfo.getCode(), resultInfo.getMessage());
+		}
+		return points;
 	}
 
 }

@@ -25,6 +25,7 @@ oauth2:
 service:
   name:
     foodie-oauth-server: http://foodie-oauth2-server/
+    foodie-points-server: http://foodie-points/
 
 eureka:
   instance:

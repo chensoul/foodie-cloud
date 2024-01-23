@@ -2,8 +2,10 @@ package com.imooc.diners.controller;
 
 import com.imooc.commons.model.domain.ResultInfo;
 import com.imooc.commons.model.dto.DinersDTO;
+import com.imooc.commons.model.vo.ShortDinerInfo;
 import com.imooc.commons.utils.ResultInfoUtil;
 import com.imooc.diners.service.DinersService;
+import java.util.List;
 import javax.annotation.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +20,18 @@ public class DinersController {
 
 	@Resource
 	private DinersService dinersService;
+
+	/**
+	 * 根据 ids 查询食客信息
+	 *
+	 * @param ids
+	 * @return
+	 */
+	@GetMapping("findByIds")
+	public ResultInfo<List<ShortDinerInfo>> findByIds(final String ids) {
+		final List<ShortDinerInfo> dinerInfos = this.dinersService.findByIds(ids);
+		return ResultInfoUtil.buildSuccess(dinerInfos);
+	}
 
 	/**
 	 * 注册

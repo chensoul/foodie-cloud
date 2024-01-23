@@ -62,6 +62,7 @@ public class DinersService {
 	 * 用户注册
 	 *
 	 * @param dinersDTO
+	 * @param path
 	 * @return
 	 */
 	public ResultInfo register(final DinersDTO dinersDTO) {

@@ -1,4 +1,4 @@
-package com.imooc.diners.handler;
+package com.imooc.feeds.handler;
 
 import com.imooc.commons.exception.ParameterException;
 import com.imooc.commons.model.domain.ResultInfo;

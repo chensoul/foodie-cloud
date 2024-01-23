@@ -33,6 +33,7 @@
         <module>foodie-gateway</module>
         <module>foodie-diners</module>
         <module>foodie-oauth2-server</module>
+        <module>foodie-seckill</module>
     </modules>
 
     <dependencyManagement>

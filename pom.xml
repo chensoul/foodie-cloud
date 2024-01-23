@@ -36,6 +36,7 @@
         <module>foodie-seckill</module>
         <module>foodie-follow</module>
         <module>foodie-points</module>
+        <module>foodie-feeds</module>
     </modules>
 
     <dependencyManagement>

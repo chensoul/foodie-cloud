@@ -1,10 +1,10 @@
 server:
-  port: 8084
+  port: 8085
 
 spring:
   application:
-    name: foodie-follow
-  datasource:
+    name: foodie-feeds
+    datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: 123456
@@ -27,7 +27,7 @@ service:
   name:
     foodie-oauth-server: http://foodie-oauth2-server/
     foodie-diners-server: http://foodie-diners/
-    foodie-feeds-server: http://foodie-feeds/
+    foodie-follow-server: http://foodie-follow/
 
 mybatis:
   configuration:

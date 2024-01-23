@@ -6,6 +6,7 @@ import com.imooc.commons.constant.ApiConstant;
 import com.imooc.commons.model.domain.ResultInfo;
 import com.imooc.commons.model.dto.DinersDTO;
 import com.imooc.commons.model.pojo.Diners;
+import com.imooc.commons.model.vo.ShortDinerInfo;
 import com.imooc.commons.utils.AssertUtil;
 import com.imooc.commons.utils.ResultInfoUtil;
 import com.imooc.diners.config.OAuth2ClientConfiguration;
@@ -13,6 +14,7 @@ import com.imooc.diners.domain.OAuthDinerInfo;
 import com.imooc.diners.mapper.DinersMapper;
 import com.imooc.diners.vo.LoginDinerInfo;
 import java.util.LinkedHashMap;
+import java.util.List;
 import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -34,7 +36,7 @@ public class DinersService {
 
 	@Resource
 	private RestTemplate restTemplate;
-	@Value("${service.name.foodie-oauth-server}")
+	@Value("${service.name.ms-oauth-server}")
 	private String oauthServerName;
 	@Resource
 	private OAuth2ClientConfiguration oAuth2ClientConfiguration;
@@ -42,6 +44,19 @@ public class DinersService {
 	private DinersMapper dinersMapper;
 	@Resource
 	private SendVerifyCodeService sendVerifyCodeService;
+
+	/**
+	 * 根据 ids 查询食客信息
+	 *
+	 * @param ids 主键 id，多个以逗号分隔，逗号之间不用空格
+	 * @return
+	 */
+	public List<ShortDinerInfo> findByIds(final String ids) {
+		AssertUtil.isNotEmpty(ids);
+		final String[] idArr = ids.split(",");
+		final List<ShortDinerInfo> dinerInfos = this.dinersMapper.findByIds(idArr);
+		return dinerInfos;
+	}
 
 	/**
 	 * 用户注册

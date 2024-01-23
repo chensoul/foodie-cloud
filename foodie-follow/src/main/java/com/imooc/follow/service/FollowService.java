@@ -20,8 +20,13 @@ import java.util.stream.Collectors;
 import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 /**
@@ -34,12 +39,27 @@ public class FollowService {
 	private String oauthServerName;
 	@Value("${service.name.foodie-diners-server}")
 	private String dinersServerName;
+	@Value("${service.name.foodie-feeds-server}")
+	private String feedsServerName;
 	@Resource
 	private RestTemplate restTemplate;
 	@Resource
 	private FollowMapper followMapper;
 	@Resource
 	private RedisTemplate redisTemplate;
+
+	/**
+	 * 获取粉丝列表
+	 *
+	 * @param dinerId
+	 * @return
+	 */
+	public Set<Integer> findFollowers(final Integer dinerId) {
+		AssertUtil.isNotNull(dinerId, "请选择要查看的用户");
+		final Set<Integer> followers = this.redisTemplate.opsForSet()
+			.members(RedisKeyConstant.followers.getKey() + dinerId);
+		return followers;
+	}
 
 	/**
 	 * 共同关注列表
@@ -86,10 +106,11 @@ public class FollowService {
 	 * @param followDinerId 关注的食客ID
 	 * @param isFoolowed    是否关注 1=关注 0=取关
 	 * @param accessToken   登录用户token
+	 * @param path          访问地址
 	 * @return
 	 */
 	public ResultInfo follow(final Integer followDinerId, final int isFoolowed,
-							 final String accessToken) {
+							 final String accessToken, final String path) {
 		// 是否选择了关注对象
 		AssertUtil.isTrue(followDinerId == null || followDinerId < 1,
 			"请选择要关注的人");
@@ -105,6 +126,8 @@ public class FollowService {
 			// 添加关注列表到 Redis
 			if (count == 1) {
 				this.addToRedisSet(dinerInfo.getId(), followDinerId);
+				// 保存 Feed
+				this.sendSaveOrRemoveFeed(followDinerId, accessToken, 1);
 			}
 			return ResultInfoUtil.build(ApiConstant.SUCCESS_CODE,
 				"关注成功", "关注成功");
@@ -117,6 +140,8 @@ public class FollowService {
 			// 移除 Redis 关注列表
 			if (count == 1) {
 				this.removeFromRedisSet(dinerInfo.getId(), followDinerId);
+				// 移除 Feed
+				this.sendSaveOrRemoveFeed(followDinerId, accessToken, 0);
 			}
 			return ResultInfoUtil.build(ApiConstant.SUCCESS_CODE,
 				"成功取关", "成功取关");
@@ -129,12 +154,34 @@ public class FollowService {
 			// 添加关注列表到 Redis
 			if (count == 1) {
 				this.addToRedisSet(dinerInfo.getId(), followDinerId);
+				// 添加 Feed
+				this.sendSaveOrRemoveFeed(followDinerId, accessToken, 1);
 			}
 			return ResultInfoUtil.build(ApiConstant.SUCCESS_CODE,
 				"关注成功", "关注成功");
 		}
 
 		return ResultInfoUtil.buildSuccess("操作成功");
+	}
+
+	/**
+	 * 发送请求添加或者移除关注人的Feed列表
+	 *
+	 * @param followDinerId 关注好友的ID
+	 * @param accessToken   当前登录用户token
+	 * @param type          0=取关 1=关注
+	 */
+	private void sendSaveOrRemoveFeed(final Integer followDinerId, final String accessToken, final int type) {
+		final String feedsUpdateUrl = this.feedsServerName + "updateFollowingFeeds/"
+									  + followDinerId + "?access_token=" + accessToken;
+		// 构建请求头
+		final HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+		// 构建请求体（请求参数）
+		final MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
+		body.add("type", type);
+		final HttpEntity<MultiValueMap<String, Object>> entity = new HttpEntity<>(body, headers);
+		this.restTemplate.postForEntity(feedsUpdateUrl, entity, ResultInfo.class);
 	}
 
 	/**
@@ -171,7 +218,7 @@ public class FollowService {
 		final String url = this.oauthServerName + "user/me?access_token={accessToken}";
 		final ResultInfo resultInfo = this.restTemplate.getForObject(url, ResultInfo.class, accessToken);
 		if (resultInfo.getCode() != ApiConstant.SUCCESS_CODE) {
-			throw new ParameterException(resultInfo.getMessage());
+			throw new ParameterException(resultInfo.getCode(), resultInfo.getMessage());
 		}
 		final SignInDinerInfo dinerInfo = BeanUtil.fillBeanWithMap((LinkedHashMap) resultInfo.getData(),
 			new SignInDinerInfo(), false);

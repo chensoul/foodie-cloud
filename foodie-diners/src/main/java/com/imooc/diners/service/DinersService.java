@@ -1,12 +1,16 @@
 package com.imooc.diners.service;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.crypto.digest.DigestUtil;
 import com.imooc.commons.constant.ApiConstant;
 import com.imooc.commons.model.domain.ResultInfo;
+import com.imooc.commons.model.dto.DinersDTO;
+import com.imooc.commons.model.pojo.Diners;
 import com.imooc.commons.utils.AssertUtil;
 import com.imooc.commons.utils.ResultInfoUtil;
 import com.imooc.diners.config.OAuth2ClientConfiguration;
 import com.imooc.diners.domain.OAuthDinerInfo;
+import com.imooc.diners.mapper.DinersMapper;
 import com.imooc.diners.vo.LoginDinerInfo;
 import java.util.LinkedHashMap;
 import javax.annotation.Resource;
@@ -34,6 +38,53 @@ public class DinersService {
 	private String oauthServerName;
 	@Resource
 	private OAuth2ClientConfiguration oAuth2ClientConfiguration;
+	@Resource
+	private DinersMapper dinersMapper;
+	@Resource
+	private SendVerifyCodeService sendVerifyCodeService;
+
+	/**
+	 * 用户注册
+	 *
+	 * @param dinersDTO
+	 * @return
+	 */
+	public ResultInfo register(final DinersDTO dinersDTO) {
+		// 参数非空校验
+		final String username = dinersDTO.getUsername();
+		AssertUtil.isNotEmpty(username, "请输入用户名");
+		final String password = dinersDTO.getPassword();
+		AssertUtil.isNotEmpty(password, "请输入密码");
+		final String phone = dinersDTO.getPhone();
+		AssertUtil.isNotEmpty(phone, "请输入手机号");
+		final String verifyCode = dinersDTO.getVerifyCode();
+		AssertUtil.isNotEmpty(verifyCode, "请输入验证码");
+		// 获取验证码
+		final String code = this.sendVerifyCodeService.getCodeByPhone(phone);
+		// 验证是否过期
+		AssertUtil.isNotEmpty(code, "验证码已过期，请重新发送");
+		// 验证码一致性校验
+		AssertUtil.isTrue(!dinersDTO.getVerifyCode().equals(code), "验证码不一致，请重新输入");
+		// 验证用户名是否已注册
+		final Diners diners = this.dinersMapper.selectByUsername(username.trim());
+		AssertUtil.isTrue(diners != null, "用户名已存在，请重新输入");
+		// 注册
+		// 密码加密
+		dinersDTO.setPassword(DigestUtil.md5Hex(password.trim()));
+		this.dinersMapper.save(dinersDTO);
+		// 自动登录
+		return this.signIn(username.trim(), password.trim());
+	}
+
+	/**
+	 * 校验手机号是否已注册
+	 */
+	public void checkPhoneIsRegistered(final String phone) {
+		AssertUtil.isNotEmpty(phone, "手机号不能为空");
+		final Diners diners = this.dinersMapper.selectByPhone(phone);
+		AssertUtil.isTrue(diners == null, "该手机号未注册");
+		AssertUtil.isTrue(diners.getIsValid() == 0, "该用户已锁定，请先解锁");
+	}
 
 	/**
 	 * 登录

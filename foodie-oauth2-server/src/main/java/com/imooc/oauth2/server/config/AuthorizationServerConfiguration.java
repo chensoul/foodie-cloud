@@ -1,9 +1,11 @@
 package com.imooc.oauth2.server.config;
 
-import com.imooc.commons.model.domain.DinerUserDetails;
+import com.imooc.oauth2.server.component.CustomWebResponseExceptionTranslator;
+import com.imooc.oauth2.server.model.DinerUserDetails;
 import com.imooc.oauth2.server.service.UserService;
 import java.util.LinkedHashMap;
-import javax.annotation.Resource;
+import lombok.AllArgsConstructor;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -18,19 +20,15 @@ import org.springframework.security.oauth2.provider.token.store.redis.RedisToken
 /**
  * 授权服务
  */
+@AllArgsConstructor
 @Configuration
 @EnableAuthorizationServer
+@EnableConfigurationProperties(ClientOAuth2Properties.class)
 public class AuthorizationServerConfiguration extends AuthorizationServerConfigurerAdapter {
-
-	@Resource
 	private RedisTokenStore redisTokenStore;
-	@Resource
 	private AuthenticationManager authenticationManager;
-	@Resource
 	private PasswordEncoder passwordEncoder;
-	@Resource
-	private ClientOAuth2DataConfiguration clientOAuth2DataConfiguration;
-	@Resource
+	private ClientOAuth2Properties clientOAuth2Properties;
 	private UserService userService;
 
 	/**
@@ -41,9 +39,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 	 */
 	@Override
 	public void configure(final AuthorizationServerSecurityConfigurer security) throws Exception {
-		// 允许访问 token 的公钥，默认 /oauth/token_key 是受保护的
 		security.tokenKeyAccess("permitAll()")
-			// 允许检查 token 的状态，默认 /oauth/check_token 是受保护的
 			.checkTokenAccess("permitAll()");
 	}
 
@@ -55,12 +51,12 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 	 */
 	@Override
 	public void configure(final ClientDetailsServiceConfigurer clients) throws Exception {
-		clients.inMemory().withClient(this.clientOAuth2DataConfiguration.getClientId()) // 客户端标识 ID
-			.secret(this.passwordEncoder.encode(this.clientOAuth2DataConfiguration.getSecret())) // 客户端安全码
-			.authorizedGrantTypes(this.clientOAuth2DataConfiguration.getGrantTypes()) // 授权类型
-			.accessTokenValiditySeconds(this.clientOAuth2DataConfiguration.getTokenValidityTime()) // token 有效期
-			.refreshTokenValiditySeconds(this.clientOAuth2DataConfiguration.getRefreshTokenValidityTime()) // 刷新 token 的有效期
-			.scopes(this.clientOAuth2DataConfiguration.getScopes()); // 客户端访问范围
+		clients.inMemory().withClient(this.clientOAuth2Properties.getClientId()) // 客户端标识 ID
+			.secret(this.passwordEncoder.encode(this.clientOAuth2Properties.getSecret())) // 客户端安全码
+			.authorizedGrantTypes(this.clientOAuth2Properties.getGrantTypes()) // 授权类型
+			.accessTokenValiditySeconds(this.clientOAuth2Properties.getTokenValidityTime()) // token 有效期
+			.refreshTokenValiditySeconds(this.clientOAuth2Properties.getRefreshTokenValidityTime()) // 刷新 token 的有效期
+			.scopes(this.clientOAuth2Properties.getScopes()); // 客户端访问范围
 	}
 
 	/**
@@ -72,13 +68,9 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 	@Override
 	public void configure(final AuthorizationServerEndpointsConfigurer endpoint) throws Exception {
 		endpoint.authenticationManager(this.authenticationManager)
-			// 具体登录的方法
 			.userDetailsService(this.userService)
-			// token 存储的方式：Redis
 			.tokenStore(this.redisTokenStore)
-			// 令牌增强对象，增强返回的结果
 			.tokenEnhancer((accessToken, authentication) -> {
-				// 获取登录用户的信息，然后设置
 				final DinerUserDetails dinerUserDetails = (DinerUserDetails) authentication.getPrincipal();
 				final LinkedHashMap<String, Object> map = new LinkedHashMap<>();
 				map.put("nickname", dinerUserDetails.getNickname());
@@ -86,7 +78,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 				final DefaultOAuth2AccessToken token = (DefaultOAuth2AccessToken) accessToken;
 				token.setAdditionalInformation(map);
 				return token;
-			});
+			}).exceptionTranslator(new CustomWebResponseExceptionTranslator());
 	}
 
 }

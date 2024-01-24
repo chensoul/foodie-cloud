@@ -1,9 +1,9 @@
 package com.imooc.oauth2.server.controller;
 
-import com.imooc.commons.model.domain.DinerUserDetails;
 import com.imooc.commons.model.domain.R;
 import com.imooc.commons.model.entity.Diner;
-import javax.annotation.Resource;
+import com.imooc.oauth2.server.model.DinerUserDetails;
+import lombok.AllArgsConstructor;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.security.core.Authentication;
@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
  * 用户中心
  */
 @RestController
+@AllArgsConstructor
 public class UserController {
-	@Resource
 	private RedisTokenStore redisTokenStore;
 
 	@GetMapping("user/me")

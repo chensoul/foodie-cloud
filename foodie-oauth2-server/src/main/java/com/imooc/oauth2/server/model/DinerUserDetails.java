@@ -1,4 +1,4 @@
-package com.imooc.commons.model.domain;
+package com.imooc.oauth2.server.model;
 
 import com.imooc.commons.model.entity.BaseEntity;
 import java.util.Collection;
@@ -30,7 +30,6 @@ public class DinerUserDetails extends BaseEntity implements UserDetails {
 	private String roles;
 	private List<GrantedAuthority> authorities;
 
-	// 获取角色信息
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		if (StringUtils.isNotBlank(this.roles)) {

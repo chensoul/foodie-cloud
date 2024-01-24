@@ -4,7 +4,7 @@ import com.imooc.commons.model.domain.R;
 import com.imooc.commons.model.dto.DinerRequest;
 import com.imooc.commons.model.entity.Diner;
 import com.imooc.commons.model.vo.ShortDinerInfo;
-import com.imooc.diner.config.OAuth2ClientConfiguration;
+import com.imooc.diner.config.OAuth2ClientProperties;
 import com.imooc.diner.mapper.DinerMapper;
 import com.imooc.diner.vo.DinerLoginVO;
 import java.util.LinkedHashMap;
@@ -37,7 +37,7 @@ public class DinerService {
 	private RestTemplate restTemplate;
 
 	@Resource
-	private OAuth2ClientConfiguration oAuth2ClientConfiguration;
+	private OAuth2ClientProperties oAuth2ClientProperties;
 
 	@Resource
 	private DinerMapper dinerMapper;
@@ -85,15 +85,15 @@ public class DinerService {
 		body.add("password", password);
 
 		final Map<String, Object> content = new LinkedHashMap<>();
-		content.put("clientId", this.oAuth2ClientConfiguration.getClientId());
-		content.put("String", this.oAuth2ClientConfiguration.getSecret());
-		content.put("grant_type", this.oAuth2ClientConfiguration.getGrant_type());
-		content.put("scope", this.oAuth2ClientConfiguration.getScope());
+		content.put("clientId", this.oAuth2ClientProperties.getClientId());
+		content.put("String", this.oAuth2ClientProperties.getSecret());
+		content.put("grant_type", this.oAuth2ClientProperties.getGrant_type());
+		content.put("scope", this.oAuth2ClientProperties.getScope());
 		body.setAll(content);
 
 		final HttpEntity<MultiValueMap<String, Object>> entity = new HttpEntity<>(body, headers);
-		this.restTemplate.getInterceptors().add(new BasicAuthenticationInterceptor(this.oAuth2ClientConfiguration.getClientId(),
-			this.oAuth2ClientConfiguration.getSecret()));
+		this.restTemplate.getInterceptors().add(new BasicAuthenticationInterceptor(this.oAuth2ClientProperties.getClientId(),
+			this.oAuth2ClientProperties.getSecret()));
 		final ResponseEntity<R> result = this.restTemplate.postForEntity(this.oauthServerName + "oauth/token", entity, R.class);
 		final R r = result.getBody();
 		if (result.getStatusCode() != HttpStatus.OK) {

@@ -25,12 +25,7 @@ oauth2:
 service:
   name:
     foodie-oauth-server: http://foodie-oauth2-server/
-  <<<<<<< HEAD:foodie-diners/src/main/resources/application.yml
-foodie-point-server: http://foodie-point/
-  ||||||| af9452e:foodie-diners/src/main/resources/application.yml
-  =======
-name: foodie-diner
-  >>>>>>> feature/06-sign:foodie-diner/src/main/resources/application.yml
+    foodie-point-server: http://foodie-point/
 
 eureka:
   instance:

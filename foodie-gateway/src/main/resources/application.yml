@@ -14,7 +14,7 @@ spring:
         - id: foodie-diner
           uri: lb://foodie-diner
           predicates:
-            - Path=/diners/**
+            - Path=/diner/**
           filters:
             - StripPrefix=1
 
@@ -25,12 +25,52 @@ spring:
           filters:
             - StripPrefix=1
 
+        - id: foodie-order
+          uri: lb://foodie-order
+          predicates:
+            - Path=/order/**
+          filters:
+            - StripPrefix=1
+
+        - id: foodie-follow
+          uri: lb://foodie-follow
+          predicates:
+            - Path=/follow/**
+          filters:
+            - StripPrefix=1
+
+        - id: foodie-feed
+          uri: lb://foodie-feed
+          predicates:
+            - Path=/feed/**
+          filters:
+            - StripPrefix=1
+
+        - id: foodie-point
+          uri: lb://foodie-point
+          predicates:
+            - Path=/point/**
+          filters:
+            - StripPrefix=1
+
+        - id: foodie-restaurant
+          uri: lb://foodie-restaurant
+          predicates:
+            - Path=/restaurant/**
+          filters:
+            - StripPrefix=1
+
 secure:
   ignore:
     urls:
       - /actuator/**
       - /auth/oauth/**
-      - /diners/signin
+      - /diner/signin
+      - /diner/send
+      - /diner/checkPhone
+      - /diner/register
+      - /seckill/add
+      - /restaurant/**
 
 eureka:
   instance:

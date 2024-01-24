@@ -9,7 +9,7 @@ food-social-contact-parent 项目的重构版本。
 | 组件          | 用途  	  |              版本号              | 
 |:------------|:------:|:-----------------------------:| 
 | Java        | 编译运行项目 | 1.8以上（推荐8u161以后的版本，否则要装JCE插件） |
-| Maven       |  依赖管理  |            3.0.4以上            |
+| Maven       |  依赖管理  |            3.8.0以上            |
 | MySQL       |  数据库   |              8.x              | 
 | Redis     	 | 缓存组件 	 |              7.x              | 
 | RabbitMQ    | 消息中间件  |            3.7.15             | 
@@ -34,14 +34,14 @@ Spring Cloud每个业务领域都有多个可供选择的组件，这里也列�
 
 ### 依赖版本
 
-| 依赖                                                                         | 本项目版本         | 新版                                                                                                                                                                                                                                 | 说明                 |
-|----------------------------------------------------------------------------|---------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------|
-| [spring-boot](https://github.com/spring-projects/spring-boot)              | 2.7.18        | <img src="https://img.shields.io/maven-metadata/v?label=&color=blue&versionPrefix=2.&metadataUrl=https://oss.sonatype.org/content/repositories/releases/org/springframework/boot/spring-boot-dependencies/maven-metadata.xml">     | 限制 Spring Boot 2.x |
-| [spring-cloud](https://github.com/spring-cloud)                            | 2021.0.9      | <img src="https://img.shields.io/maven-metadata/v?label=&color=blue&versionPrefix=2021&metadataUrl=https://oss.sonatype.org/content/repositories/releases/org/springframework/cloud/spring-cloud-dependencies/maven-metadata.xml"> | 限制 Spring Boot 2.x |
-| [spring-boot-admin](https://github.com/codecentric/spring-boot-admin)      | 2.7.15        | <img src="https://img.shields.io/maven-metadata/v?label=&color=blue&versionPrefix=2.&metadataUrl=https://oss.sonatype.org/content/repositories/releases/de/codecentric/spring-boot-admin-dependencies/maven-metadata.xml">         | 限制 Spring Boot 2.x |
-| [spring-cloud-security](https://spring.io/projects/spring-cloud-security/) | 2.2.5.RELEASE | <img src="https://img.shields.io/maven-metadata/v?label=&color=blue&metadataUrl=https://repo1.maven.org/maven2/org/springframework/cloud/spring-cloud-starter-security/maven-metadata.xml">                                        |                    |
-| [mybatis-plus](https://github.com/baomidou/mybatis-plus)                   | 3.5.5         | <img src="https://img.shields.io/maven-metadata/v?label=&color=blue&metadataUrl=https://oss.sonatype.org/content/repositories/releases/com/baomidou/mybatis-plus-boot-starter/maven-metadata.xml">                                 |                    |
-| [springdoc](https://github.com/springdoc)                                  | 1.7.0         | <img src="https://img.shields.io/maven-metadata/v?label=&color=blue&metadataUrl=https://oss.sonatype.org/content/repositories/releases/org/springdoc/springdoc-openapi-ui/maven-metadata.xml">                                     |                    |
+| 依赖                                                                         | 本项目版本         | 新版                                                                                                                                                                                                                                 | 说明      |
+|----------------------------------------------------------------------------|---------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|
+| [spring-boot](https://github.com/spring-projects/spring-boot)              | 2.7.18        | <img src="https://img.shields.io/maven-metadata/v?label=&color=blue&versionPrefix=2.&metadataUrl=https://oss.sonatype.org/content/repositories/releases/org/springframework/boot/spring-boot-dependencies/maven-metadata.xml">     | 限制 JDK8 |
+| [spring-cloud](https://github.com/spring-cloud)                            | 2021.0.9      | <img src="https://img.shields.io/maven-metadata/v?label=&color=blue&versionPrefix=2021&metadataUrl=https://oss.sonatype.org/content/repositories/releases/org/springframework/cloud/spring-cloud-dependencies/maven-metadata.xml"> | 限制 JDK8 |
+| [spring-boot-admin](https://github.com/codecentric/spring-boot-admin)      | 2.7.15        | <img src="https://img.shields.io/maven-metadata/v?label=&color=blue&versionPrefix=2.&metadataUrl=https://oss.sonatype.org/content/repositories/releases/de/codecentric/spring-boot-admin-dependencies/maven-metadata.xml">         | 限制 JDK8 |
+| [spring-cloud-security](https://spring.io/projects/spring-cloud-security/) | 2.2.5.RELEASE | <img src="https://img.shields.io/maven-metadata/v?label=&color=blue&metadataUrl=https://repo1.maven.org/maven2/org/springframework/cloud/spring-cloud-starter-security/maven-metadata.xml">                                        |         |
+| [mybatis-plus](https://github.com/baomidou/mybatis-plus)                   | 3.5.5         | <img src="https://img.shields.io/maven-metadata/v?label=&color=blue&metadataUrl=https://oss.sonatype.org/content/repositories/releases/com/baomidou/mybatis-plus-boot-starter/maven-metadata.xml">                                 |         |
+| [springdoc](https://github.com/springdoc)                                  | 1.7.0         | <img src="https://img.shields.io/maven-metadata/v?label=&color=blue&metadataUrl=https://oss.sonatype.org/content/repositories/releases/org/springdoc/springdoc-openapi-ui/maven-metadata.xml">                                     | 限制 JDK8 |
 
 ## 默认端口
 

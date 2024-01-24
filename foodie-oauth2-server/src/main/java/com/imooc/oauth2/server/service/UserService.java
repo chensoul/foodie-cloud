@@ -1,16 +1,15 @@
 package com.imooc.oauth2.server.service;
 
-import com.imooc.commons.model.domain.SignInIdentity;
-import com.imooc.commons.model.pojo.Diners;
-import com.imooc.commons.utils.AssertUtil;
-import com.imooc.oauth2.server.mapper.DinersMapper;
+import com.imooc.commons.model.domain.DinerUserDetails;
+import com.imooc.commons.model.entity.Diner;
+import com.imooc.oauth2.server.mapper.DinerMapper;
+import javax.annotation.Resource;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
 
 /**
  * 登录校验
@@ -18,21 +17,22 @@ import javax.annotation.Resource;
 @Service
 public class UserService implements UserDetailsService {
 
-    @Resource
-    private DinersMapper dinersMapper;
+	@Resource
+	private DinerMapper dinerMapper;
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        AssertUtil.isNotEmpty(username, "请输入用户名");
-        Diners diners = dinersMapper.selectByAccountInfo(username);
-        if (diners == null) {
-            throw new UsernameNotFoundException("用户名或密码错误，请重新输入");
-        }
-        // 初始化登录认证对象
-        SignInIdentity signInIdentity = new SignInIdentity();
-        // 拷贝属性
-        BeanUtils.copyProperties(diners, signInIdentity);
-        return signInIdentity;
-    }
+	@Override
+	public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
+		if (StringUtils.isBlank(username)) {
+			throw new UsernameNotFoundException("请输入用户名");
+		}
+
+		final Diner diner = this.dinerMapper.getByAccount(username);
+		if (diner == null) {
+			throw new UsernameNotFoundException("用户名或密码错误，请重新输入");
+		}
+		final DinerUserDetails dinerUserDetails = new DinerUserDetails();
+		BeanUtils.copyProperties(diner, dinerUserDetails);
+		return dinerUserDetails;
+	}
 
 }

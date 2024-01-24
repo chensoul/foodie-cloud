@@ -1,7 +1,6 @@
 package com.imooc.oauth2.server.controller;
 
-import com.imooc.commons.model.domain.ResultInfo;
-import com.imooc.commons.utils.ResultInfoUtil;
+import com.imooc.commons.model.domain.R;
 import java.security.Principal;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -26,7 +25,7 @@ public class OAuthController {
 	private TokenEndpoint tokenEndpoint;
 
 	@PostMapping("token")
-	public ResultInfo postAccessToken(final Principal principal, @RequestParam final Map<String, String> parameters)
+	public R postAccessToken(final Principal principal, @RequestParam final Map<String, String> parameters)
 		throws HttpRequestMethodNotSupportedException {
 		return OAuthController.custom(this.tokenEndpoint.postAccessToken(principal, parameters).getBody());
 	}
@@ -37,14 +36,17 @@ public class OAuthController {
 	 * @param accessToken
 	 * @return
 	 */
-	private static ResultInfo custom(final OAuth2AccessToken accessToken) {
+	private static R custom(final OAuth2AccessToken accessToken) {
 		final DefaultOAuth2AccessToken token = (DefaultOAuth2AccessToken) accessToken;
 		final Map<String, Object> data = new LinkedHashMap(token.getAdditionalInformation());
 		data.put("accessToken", token.getValue());
 		data.put("expireIn", token.getExpiresIn());
 		data.put("scopes", token.getScope());
-		if (token.getRefreshToken() != null) data.put("refreshToken", token.getRefreshToken().getValue());
-		return ResultInfoUtil.buildSuccess(data);
+		
+		if (token.getRefreshToken() != null) {
+			data.put("refreshToken", token.getRefreshToken().getValue());
+		}
+		return R.ok(data);
 	}
 
 }

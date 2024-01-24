@@ -1,6 +1,6 @@
 package com.imooc.follow.mapper;
 
-import com.imooc.commons.model.pojo.Follow;
+import com.imooc.commons.model.entity.Follow;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -11,18 +11,18 @@ import org.apache.ibatis.annotations.Update;
  */
 public interface FollowMapper {
 
-    // 查询关注信息
-    @Select("select id, diner_id, follow_diner_id, is_valid from t_follow " +
-            "where diner_id = #{dinerId} and follow_diner_id = #{followDinerId}")
-    Follow selectFollow(@Param("dinerId") Integer dinerId, @Param("followDinerId") Integer followDinerId);
+	// 查询关注信息
+	@Select("select id, diner_id, follow_diner_id from t_follow " +
+			"where diner_id = #{dinerId} and follow_diner_id = #{followDinerId}")
+	Follow selectFollow(@Param("dinerId") Long dinerId, @Param("followDinerId") Long followDinerId);
 
-    // 添加关注信息
-    @Insert("insert into t_follow (diner_id, follow_diner_id, is_valid, create_date, update_date)" +
-            " values(#{dinerId}, #{followDinerId}, 1, now(), now())")
-    int save(@Param("dinerId") Integer dinerId, @Param("followDinerId") Integer followDinerId);
+	// 添加关注信息
+	@Insert("insert into t_follow (diner_id, follow_diner_id,  create_time, update_time)" +
+			" values(#{dinerId}, #{followDinerId},  now(), now())")
+	int save(@Param("dinerId") Long dinerId, @Param("followDinerId") Long followDinerId);
 
-    // 修改关注信息
-    @Update("update t_follow set is_valid = #{isFollowed}, update_date = now() where id = #{id}")
-    int update(@Param("id") Integer id, @Param("isFollowed") int isFollowed);
+	// 修改关注信息
+	@Update("update t_follow set update_time = now() where id = #{id}")
+	int update(@Param("id") Long id, @Param("isFollowed") int isFollowed);
 
 }

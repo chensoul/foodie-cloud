@@ -199,7 +199,7 @@
           <stringProp name="HTTPSampler.port"></stringProp>
           <stringProp name="HTTPSampler.protocol">http</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">/points?access_token=340f6c72-3da9-4c31-9f31-38deddaaffa6</stringProp>
+          <stringProp name="HTTPSampler.path">/point?access_token=340f6c72-3da9-4c31-9f31-38deddaaffa6</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -381,7 +381,7 @@
           <stringProp name="HTTPSampler.port"></stringProp>
           <stringProp name="HTTPSampler.protocol">http</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">/points/redis?access_token=340f6c72-3da9-4c31-9f31-38deddaaffa6</stringProp>
+          <stringProp name="HTTPSampler.path">/point/redis?access_token=340f6c72-3da9-4c31-9f31-38deddaaffa6</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>

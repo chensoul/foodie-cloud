@@ -1,9 +1,8 @@
 package com.imooc.oauth2.server.controller;
 
-import com.imooc.commons.model.domain.ResultInfo;
-import com.imooc.commons.model.domain.SignInIdentity;
-import com.imooc.commons.model.vo.SignInDinerInfo;
-import com.imooc.commons.utils.ResultInfoUtil;
+import com.imooc.commons.model.domain.DinerUserDetails;
+import com.imooc.commons.model.domain.R;
+import com.imooc.commons.model.entity.Diner;
 import javax.annotation.Resource;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
@@ -23,13 +22,11 @@ public class UserController {
 	private RedisTokenStore redisTokenStore;
 
 	@GetMapping("user/me")
-	public static ResultInfo getCurrentUser(final Authentication authentication) {
-		// 获取登录用户的信息，然后设置
-		final SignInIdentity signInIdentity = (SignInIdentity) authentication.getPrincipal();
-		// 转为前端可用的视图对象
-		final SignInDinerInfo dinerInfo = new SignInDinerInfo();
-		BeanUtils.copyProperties(signInIdentity, dinerInfo);
-		return ResultInfoUtil.buildSuccess(dinerInfo);
+	public static R<Diner> getCurrentUser(final Authentication authentication) {
+		final DinerUserDetails dinerUserDetails = (DinerUserDetails) authentication.getPrincipal();
+		final Diner diner = new Diner();
+		BeanUtils.copyProperties(dinerUserDetails, diner);
+		return R.ok(diner);
 	}
 
 	/**
@@ -40,22 +37,23 @@ public class UserController {
 	 * @return
 	 */
 	@GetMapping("user/logout")
-	public ResultInfo logout(String access_token, final String authorization) {
-		// 判断 access_token 是否为空，为空将 authorization 赋值给 access_token
-		if (StringUtils.isBlank(access_token)) access_token = authorization;
-		// 判断 authorization 是否为空
-		if (StringUtils.isBlank(access_token)) return ResultInfoUtil.buildSuccess("退出成功");
-		// 判断 bearer token 是否为空
-		if (access_token.toLowerCase().contains("bearer ".toLowerCase()))
-            access_token = access_token.toLowerCase().replace("bearer ", "");
-		// 清除 redis token 信息
+	public R logout(String access_token, final String authorization) {
+		if (StringUtils.isBlank(access_token)) {
+			access_token = authorization;
+		}
+		if (StringUtils.isBlank(access_token)) {
+			return R.ok();
+		}
+		if (access_token.toLowerCase().contains("bearer ".toLowerCase())) {
+			access_token = access_token.toLowerCase().replace("bearer ", "");
+		}
 		final OAuth2AccessToken oAuth2AccessToken = this.redisTokenStore.readAccessToken(access_token);
 		if (oAuth2AccessToken != null) {
 			this.redisTokenStore.removeAccessToken(oAuth2AccessToken);
 			final OAuth2RefreshToken refreshToken = oAuth2AccessToken.getRefreshToken();
 			this.redisTokenStore.removeRefreshToken(refreshToken);
 		}
-		return ResultInfoUtil.buildSuccess("退出成功");
+		return R.ok();
 	}
 
 }

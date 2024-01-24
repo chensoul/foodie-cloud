@@ -8,7 +8,7 @@ import lombok.Setter;
 @Setter
 public class ShortDinerInfo implements Serializable {
 	private static final long serialVersionUID = 6594806670302600745L;
-	public Integer id;
+	public Long id;
 	private String nickname;
 	private String avatarUrl;
 

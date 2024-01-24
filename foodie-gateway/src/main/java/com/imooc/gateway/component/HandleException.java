@@ -3,8 +3,7 @@ package com.imooc.gateway.component;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.imooc.commons.constant.ApiConstant;
-import com.imooc.commons.model.domain.ResultInfo;
-import com.imooc.commons.utils.ResultInfoUtil;
+import com.imooc.commons.model.domain.R;
 import java.nio.charset.Charset;
 import javax.annotation.Resource;
 import org.springframework.core.io.buffer.DataBuffer;
@@ -27,10 +26,10 @@ public class HandleException {
 		response.setStatusCode(HttpStatus.OK);
 		response.getHeaders().add(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
 
-		final ResultInfo resultInfo = ResultInfoUtil.buildError(ApiConstant.NO_LOGIN_CODE, ApiConstant.NO_LOGIN_MESSAGE);
+		final R r = R.error(ApiConstant.NO_LOGIN_CODE, ApiConstant.NO_LOGIN_MESSAGE);
 		DataBuffer buffer = null;
 		try {
-			final String resultInfoJson = this.objectMapper.writeValueAsString(resultInfo);
+			final String resultInfoJson = this.objectMapper.writeValueAsString(r);
 			buffer = response.bufferFactory().wrap(resultInfoJson.getBytes(Charset.forName("UTF-8")));
 		} catch (final JsonProcessingException ex) {
 			ex.printStackTrace();

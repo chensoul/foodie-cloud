@@ -1,6 +1,6 @@
 package com.imooc.oauth2.server.config;
 
-import com.imooc.commons.model.domain.SignInIdentity;
+import com.imooc.commons.model.domain.DinerUserDetails;
 import com.imooc.oauth2.server.service.UserService;
 import java.util.LinkedHashMap;
 import javax.annotation.Resource;
@@ -66,12 +66,12 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 	/**
 	 * 配置授权以及令牌的访问端点和令牌服务
 	 *
-	 * @param endpoints
+	 * @param endpoint
 	 * @throws Exception
 	 */
 	@Override
-	public void configure(final AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-		endpoints.authenticationManager(this.authenticationManager)
+	public void configure(final AuthorizationServerEndpointsConfigurer endpoint) throws Exception {
+		endpoint.authenticationManager(this.authenticationManager)
 			// 具体登录的方法
 			.userDetailsService(this.userService)
 			// token 存储的方式：Redis
@@ -79,10 +79,10 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 			// 令牌增强对象，增强返回的结果
 			.tokenEnhancer((accessToken, authentication) -> {
 				// 获取登录用户的信息，然后设置
-				final SignInIdentity signInIdentity = (SignInIdentity) authentication.getPrincipal();
+				final DinerUserDetails dinerUserDetails = (DinerUserDetails) authentication.getPrincipal();
 				final LinkedHashMap<String, Object> map = new LinkedHashMap<>();
-				map.put("nickname", signInIdentity.getNickname());
-				map.put("avatarUrl", signInIdentity.getAvatarUrl());
+				map.put("nickname", dinerUserDetails.getNickname());
+				map.put("avatarUrl", dinerUserDetails.getAvatarUrl());
 				final DefaultOAuth2AccessToken token = (DefaultOAuth2AccessToken) accessToken;
 				token.setAdditionalInformation(map);
 				return token;

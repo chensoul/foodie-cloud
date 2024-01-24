@@ -27,12 +27,12 @@
         <module>commons</module>
         <module>foodie-registry</module>
         <module>foodie-gateway</module>
-        <module>foodie-diners</module>
         <module>foodie-oauth2-server</module>
-        <module>foodie-seckill</module>
+        <module>foodie-diner</module>
+        <module>foodie-order</module>
         <module>foodie-follow</module>
-        <module>foodie-feeds</module>
-        <module>foodie-points</module>
+        <module>foodie-feed</module>
+        <module>foodie-point</module>
     </modules>
 
     <dependencyManagement>

@@ -15,7 +15,7 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 @Configuration
 @EnableResourceServer
 @AllArgsConstructor
-public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
+public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
 	private AuthenticationEntryPoint authenticationEntryPoint;
 	private AccessDeniedHandler accessDeniedHandler;
 

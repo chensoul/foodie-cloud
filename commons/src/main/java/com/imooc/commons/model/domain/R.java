@@ -4,12 +4,14 @@ import com.imooc.commons.constant.ApiConstant;
 import java.io.Serializable;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
  * 公共返回对象
  */
 @Getter
 @Setter
+@ToString
 public class R<T> implements Serializable {
 
 	private static final long serialVersionUID = 2031964589881765148L;

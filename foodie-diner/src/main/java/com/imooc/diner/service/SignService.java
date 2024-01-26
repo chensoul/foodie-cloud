@@ -3,7 +3,7 @@ package com.imooc.diner.service;
 import com.imooc.commons.constant.ApiConstant;
 import com.imooc.commons.constant.PointType;
 import com.imooc.commons.model.domain.R;
-import com.imooc.commons.model.entity.Diner;
+import com.imooc.commons.model.entity.User;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -49,9 +49,9 @@ public class SignService {
 	 */
 	public Map<String, Boolean> getSignInfo(final String accessToken, final LocalDateTime date) {
 		// 获取登录用户信息
-		final Diner dinerInfo = this.loadSignInDinerInfo(accessToken);
+		final User userInfo = this.loadSignInDinerInfo(accessToken);
 		// 构建 Key
-		final String signKey = SignService.buildSignKey(dinerInfo.getId(), date);
+		final String signKey = SignService.buildSignKey(userInfo.getId(), date);
 		// 构建一个自动排序的 Map
 		final Map<String, Boolean> signInfo = new TreeMap<>();
 		// 获取某月的总天数（考虑闰年）
@@ -87,8 +87,8 @@ public class SignService {
 	 */
 	public long getSignCount(final String accessToken, final LocalDateTime date) {
 		// 获取登录用户信息
-		final Diner dinerInfo = this.loadSignInDinerInfo(accessToken);
-		final String signKey = SignService.buildSignKey(dinerInfo.getId(), date);
+		final User userInfo = this.loadSignInDinerInfo(accessToken);
+		final String signKey = SignService.buildSignKey(userInfo.getId(), date);
 		return (Long) this.redisTemplate.execute(
 			(RedisCallback<Long>) con -> con.bitCount(signKey.getBytes())
 		);
@@ -103,20 +103,20 @@ public class SignService {
 	 */
 	public int doSign(final String accessToken, final LocalDateTime date) {
 		// 获取登录用户信息
-		final Diner dinerInfo = this.loadSignInDinerInfo(accessToken);
+		final User userInfo = this.loadSignInDinerInfo(accessToken);
 		// 获取日期
 		final int offset = date.getDayOfMonth(); // 从 0 开始
 		// 构建 Key user:sign:5:yyyyMM
-		final String signKey = SignService.buildSignKey(dinerInfo.getId(), date);
+		final String signKey = SignService.buildSignKey(userInfo.getId(), date);
 		// 查看是否已签到
 		final boolean isSigned = this.redisTemplate.opsForValue().getBit(signKey, offset);
 		Assert.isTrue(isSigned, "当前日期已完成签到，无需再签");
 		// 签到
 		this.redisTemplate.opsForValue().setBit(signKey, offset, true);
 		// 统计连续签到的次数
-		final int count = this.getContinuousSignCount(dinerInfo.getId(), date);
+		final int count = this.getContinuousSignCount(userInfo.getId(), date);
 		// 添加签到积分并返回
-		final int point = this.addpoint(count, dinerInfo.getId());
+		final int point = this.addpoint(count, userInfo.getId());
 		return point;
 	}
 
@@ -146,7 +146,9 @@ public class SignService {
 			// 右移再左移，如果等于自己说明最低位是 0，表示未签到
 			if (v >> 1 << 1 == v) {
 				// 低位 0 且非当天说明连续签到中断了
-				if (i != dayOfMonth) break;
+				if (i != dayOfMonth) {
+                    break;
+                }
 			} else {
 				signCount++;
 			}
@@ -174,7 +176,7 @@ public class SignService {
 	 * @param accessToken
 	 * @return
 	 */
-	private Diner loadSignInDinerInfo(final String accessToken) {
+	private User loadSignInDinerInfo(final String accessToken) {
 		final String url = this.oauthServerName + "user/me?access_token={accessToken}";
 		final R resultInfo = this.restTemplate.getForObject(url, R.class, accessToken);
 		if (resultInfo.getCode() != ApiConstant.SUCCESS_CODE) {

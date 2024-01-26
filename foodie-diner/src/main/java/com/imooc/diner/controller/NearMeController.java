@@ -1,7 +1,7 @@
 package com.imooc.diner.controller;
 
 import com.imooc.commons.model.domain.R;
-import com.imooc.commons.model.vo.NearMeDinerVO;
+import com.imooc.commons.model.vo.NearMeUserVO;
 import com.imooc.diner.service.NearMeService;
 import java.util.List;
 import javax.annotation.Resource;
@@ -47,7 +47,7 @@ public class NearMeController {
 	public R nearMe(final String access_token,
 					final Integer radius,
 					final Float lon, final Float lat) {
-		final List<NearMeDinerVO> nearMe = this.nearMeService.findNearMe(access_token, radius, lon, lat);
+		final List<NearMeUserVO> nearMe = this.nearMeService.findNearMe(access_token, radius, lon, lat);
 		return R.ok(nearMe);
 	}
 

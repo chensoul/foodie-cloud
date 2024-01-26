@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.imooc.commons.constant.ApiConstant;
 import com.imooc.commons.constant.RedisKeyConstant;
 import com.imooc.commons.model.domain.R;
-import com.imooc.commons.model.entity.Diner;
+import com.imooc.commons.model.entity.User;
 import com.imooc.commons.model.entity.SeckillVoucher;
 import com.imooc.commons.model.entity.VoucherOrder;
 import com.imooc.order.mapper.VoucherOrderMapper;
@@ -74,12 +74,12 @@ public class SeckillService {
 		if (resultInfo.getCode() != ApiConstant.SUCCESS_CODE) {
 			throw new IllegalArgumentException("获取用户信息失败");
 		}
-		final Diner dinerInfo = null;
-		final VoucherOrder order = this.voucherOrderMapper.findDinerOrder(dinerInfo.getId(), seckillVoucher.getVoucherId());
+		final User userInfo = null;
+		final VoucherOrder order = this.voucherOrderMapper.findDinerOrder(userInfo.getId(), seckillVoucher.getVoucherId());
 		Assert.isTrue(order != null, "该用户已抢到该代金券，无需再抢");
 
 		// 使用 Redis 锁一个账号只能购买一次
-		final String lockName = RedisKeyConstant.lock_key.getKey() + dinerInfo.getId() + ":" + voucherId;
+		final String lockName = RedisKeyConstant.lock_key.getKey() + userInfo.getId() + ":" + voucherId;
 		final long expireTime = seckillVoucher.getEndTime().getTime() - now.getTime();
 
 		// 自定义 Redis 分布式锁
@@ -94,7 +94,7 @@ public class SeckillService {
 			if (isLocked) {
 				// 下单
 				final VoucherOrder voucherOrder = new VoucherOrder();
-				voucherOrder.setDinerId(dinerInfo.getId());
+				voucherOrder.setDinerId(userInfo.getId());
 				// Redis 中不需要维护外键信息
 				// voucherOrders.setseckillId(seckillVouchers.getId());
 				voucherOrder.setVoucherId(seckillVoucher.getVoucherId());

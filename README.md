@@ -52,7 +52,7 @@ Spring Cloud每个业务领域都有多个可供选择的组件，这里也列�
 | rabbitmq（单机模式）     	       | 5672 	 |
 | gateway     	              |   80   |
 | eureka  	                  | 8080 	 |
-| foodie-diner     	         |  8081  |
+| foodie-user     	          |  8081  |
 | foodie-oauth2-server     	 |  8082  |
 | foodie-order     	         |  8083  |
 | foodie-follow     	        |  8084  |

@@ -29,7 +29,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Bean
 	public RedisTokenStore redisTokenStore() {
 		final RedisTokenStore redisTokenStore = new RedisTokenStore(this.redisConnectionFactory);
-		redisTokenStore.setPrefix("TOKEN:"); // 设置key的层级前缀，方便查询
+		redisTokenStore.setPrefix("FOODIE:"); // 设置key的层级前缀，方便查询
 		return redisTokenStore;
 	}
 

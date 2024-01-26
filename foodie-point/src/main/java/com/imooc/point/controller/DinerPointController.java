@@ -1,7 +1,7 @@
 package com.imooc.point.controller;
 
 import com.imooc.commons.model.domain.R;
-import com.imooc.commons.model.vo.DinerPointRankVO;
+import com.imooc.commons.model.vo.UserPointRankVO;
 import com.imooc.point.service.DinerPointService;
 import java.util.List;
 import javax.annotation.Resource;
@@ -43,7 +43,7 @@ public class DinerPointController {
 	 */
 	@GetMapping("redis")
 	public R findDinerPointRankFromRedis(final String access_token) {
-		final List<DinerPointRankVO> ranks = this.dinerPointService.findDinerPointRankFromRedis(access_token);
+		final List<UserPointRankVO> ranks = this.dinerPointService.findDinerPointRankFromRedis(access_token);
 		return R.ok(ranks);
 	}
 
@@ -55,7 +55,7 @@ public class DinerPointController {
 	 */
 	@GetMapping
 	public R findDinerPointRank(final String access_token) {
-		final List<DinerPointRankVO> ranks = this.dinerPointService.findDinerPointRank(access_token);
+		final List<UserPointRankVO> ranks = this.dinerPointService.findDinerPointRank(access_token);
 		return R.ok(ranks);
 	}
 

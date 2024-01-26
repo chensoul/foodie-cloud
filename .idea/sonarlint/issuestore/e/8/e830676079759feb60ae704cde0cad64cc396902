@@ -1,0 +1,10 @@
+
+E
+java:S3740$"/Provide the parametrized type for this generic.(Ç¹Ö°
+f	java:S117$"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ç¹Ö°
+R
+java:S1874"7Remove this use of "RedisTokenStore"; it is deprecated.(Ü¼ùÿÿÿÿ
+T
+java:S1874."9Remove this use of "OAuth2AccessToken"; it is deprecated.(¡ËÒÎıÿÿÿÿ
+P
+java:S18741":Remove this use of "OAuth2RefreshToken"; it is deprecated.(‰ÓÄ

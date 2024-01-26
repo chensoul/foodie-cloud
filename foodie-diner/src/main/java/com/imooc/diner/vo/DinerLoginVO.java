@@ -11,6 +11,6 @@ public class DinerLoginVO implements Serializable {
 	private static final long serialVersionUID = 1064585367837864481L;
 	private String nickname;
 	private String token;
-	private String avatarUrl;
+	private String avatar;
 
 }

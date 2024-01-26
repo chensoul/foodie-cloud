@@ -1,9 +1,9 @@
 package com.imooc.oauth2.server.service;
 
-import com.imooc.commons.model.entity.Diner;
-import com.imooc.oauth2.server.mapper.AccountMapper;
-import com.imooc.oauth2.server.model.DinerUserDetails;
-import javax.annotation.Resource;
+import com.imooc.commons.model.entity.User;
+import com.imooc.oauth2.server.mapper.UserMapper;
+import com.imooc.oauth2.server.model.LoggedUserDetails;
+import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,10 +15,9 @@ import org.springframework.stereotype.Service;
  * 登录校验
  */
 @Service
+@AllArgsConstructor
 public class UserService implements UserDetailsService {
-
-	@Resource
-	private AccountMapper accountMapper;
+	private UserMapper userMapper;
 
 	@Override
 	public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
@@ -26,13 +25,13 @@ public class UserService implements UserDetailsService {
 			throw new UsernameNotFoundException("请输入用户名");
 		}
 
-		final Diner diner = this.accountMapper.getByAccount(username);
-		if (diner == null) {
+		final User user = this.userMapper.getByUsername(username);
+		if (user == null) {
 			throw new UsernameNotFoundException("用户名或密码错误，请重新输入");
 		}
-		final DinerUserDetails dinerUserDetails = new DinerUserDetails();
-		BeanUtils.copyProperties(diner, dinerUserDetails);
-		return dinerUserDetails;
+		final LoggedUserDetails loggedUserDetails = new LoggedUserDetails();
+		BeanUtils.copyProperties(user, loggedUserDetails);
+		return loggedUserDetails;
 	}
 
 }

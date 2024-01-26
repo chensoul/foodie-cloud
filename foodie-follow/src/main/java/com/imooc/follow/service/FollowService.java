@@ -3,7 +3,7 @@ package com.imooc.follow.service;
 import com.imooc.commons.constant.ApiConstant;
 import com.imooc.commons.constant.RedisKeyConstant;
 import com.imooc.commons.model.domain.R;
-import com.imooc.commons.model.entity.Diner;
+import com.imooc.commons.model.entity.User;
 import com.imooc.commons.model.entity.Follow;
 import com.imooc.commons.model.vo.ShortDinerInfo;
 import com.imooc.follow.mapper.FollowMapper;
@@ -72,9 +72,9 @@ public class FollowService {
 		Assert.isTrue(dinerId == null || dinerId < 1,
 			"请选择要查看的人");
 		// 获取登录用户信息
-		final Diner dinerInfo = this.loadSignInDinerInfo(accessToken);
+		final User userInfo = this.loadSignInDinerInfo(accessToken);
 		// 获取登录用户的关注信息
-		final String loginDinerKey = RedisKeyConstant.following.getKey() + dinerInfo.getId();
+		final String loginDinerKey = RedisKeyConstant.following.getKey() + userInfo.getId();
 		// 获取登录用户查看对象的关注信息
 		final String dinerKey = RedisKeyConstant.following.getKey() + dinerId;
 		// 计算交集
@@ -107,17 +107,17 @@ public class FollowService {
 		Assert.isTrue(followDinerId == null || followDinerId < 1,
 			"请选择要关注的人");
 		// 获取登录用户信息 (封装方法)
-		final Diner dinerInfo = this.loadSignInDinerInfo(accessToken);
+		final User userInfo = this.loadSignInDinerInfo(accessToken);
 		// 获取当前登录用户与需要关注用户的关注信息
-		final Follow follow = this.followMapper.selectFollow(dinerInfo.getId(), followDinerId);
+		final Follow follow = this.followMapper.selectFollow(userInfo.getId(), followDinerId);
 
 		// 如果没有关注信息，且要进行关注操作 -- 添加关注
 		if (follow == null && isFoolowed == 1) {
 			// 添加关注信息
-			final int count = this.followMapper.save(dinerInfo.getId(), followDinerId);
+			final int count = this.followMapper.save(userInfo.getId(), followDinerId);
 			// 添加关注列表到 Redis
 			if (count == 1) {
-				this.addToRedisSet(dinerInfo.getId(), followDinerId);
+				this.addToRedisSet(userInfo.getId(), followDinerId);
 				// 保存 Feed
 				this.sendSaveOrRemoveFeed(followDinerId, accessToken, 1);
 			}
@@ -129,7 +129,7 @@ public class FollowService {
 			final int count = this.followMapper.update(follow.getId(), isFoolowed);
 			// 移除 Redis 关注列表
 			if (count == 1) {
-				this.removeFromRedisSet(dinerInfo.getId(), followDinerId);
+				this.removeFromRedisSet(userInfo.getId(), followDinerId);
 				// 移除 Feed
 				this.sendSaveOrRemoveFeed(followDinerId, accessToken, 0);
 			}
@@ -140,7 +140,7 @@ public class FollowService {
 			final int count = this.followMapper.update(follow.getId(), isFoolowed);
 			// 添加关注列表到 Redis
 			if (count == 1) {
-				this.addToRedisSet(dinerInfo.getId(), followDinerId);
+				this.addToRedisSet(userInfo.getId(), followDinerId);
 				// 添加 Feed
 				this.sendSaveOrRemoveFeed(followDinerId, accessToken, 1);
 			}
@@ -195,7 +195,7 @@ public class FollowService {
 	 * @param accessToken
 	 * @return
 	 */
-	private Diner loadSignInDinerInfo(final String accessToken) {
+	private User loadSignInDinerInfo(final String accessToken) {
 		final String url = this.oauthServerName + "user/me?access_token={accessToken}";
 		final R resultInfo = this.restTemplate.getForObject(url, R.class, accessToken);
 		if (resultInfo.getCode() != ApiConstant.SUCCESS_CODE) {

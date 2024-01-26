@@ -1,11 +1,12 @@
 package com.imooc.oauth2.server.config;
 
 import com.imooc.oauth2.server.component.CustomWebResponseExceptionTranslator;
-import com.imooc.oauth2.server.model.DinerUserDetails;
+import com.imooc.oauth2.server.model.LoggedUserDetails;
 import com.imooc.oauth2.server.service.UserService;
 import java.util.LinkedHashMap;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -71,14 +72,19 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 			.userDetailsService(this.userService)
 			.tokenStore(this.redisTokenStore)
 			.tokenEnhancer((accessToken, authentication) -> {
-				final DinerUserDetails dinerUserDetails = (DinerUserDetails) authentication.getPrincipal();
+				final LoggedUserDetails loggedUserDetails = (LoggedUserDetails) authentication.getPrincipal();
 				final LinkedHashMap<String, Object> map = new LinkedHashMap<>();
-				map.put("nickname", dinerUserDetails.getNickname());
-				map.put("avatarUrl", dinerUserDetails.getAvatarUrl());
+				map.put("nickname", loggedUserDetails.getNickname());
+				map.put("avatar", loggedUserDetails.getAvatar());
 				final DefaultOAuth2AccessToken token = (DefaultOAuth2AccessToken) accessToken;
 				token.setAdditionalInformation(map);
 				return token;
-			}).exceptionTranslator(new CustomWebResponseExceptionTranslator());
+			}).exceptionTranslator(this.customWebResponseExceptionTranslator());
+	}
+
+	@Bean
+	public CustomWebResponseExceptionTranslator customWebResponseExceptionTranslator() {
+		return new CustomWebResponseExceptionTranslator();
 	}
 
 }

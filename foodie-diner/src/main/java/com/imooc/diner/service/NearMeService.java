@@ -5,8 +5,8 @@ import com.google.common.collect.Maps;
 import com.imooc.commons.constant.ApiConstant;
 import com.imooc.commons.constant.RedisKeyConstant;
 import com.imooc.commons.model.domain.R;
-import com.imooc.commons.model.entity.Diner;
-import com.imooc.commons.model.vo.NearMeDinerVO;
+import com.imooc.commons.model.entity.User;
+import com.imooc.commons.model.vo.NearMeUserVO;
 import com.imooc.commons.model.vo.ShortDinerInfo;
 import java.util.List;
 import java.util.Map;
@@ -27,7 +27,7 @@ import org.springframework.web.client.RestTemplate;
 public class NearMeService {
 
 	@Resource
-	private DinerService dinerService;
+	private UserService userService;
 	@Value("${service.name.foodie-oauth-server}")
 	private String oauthServerName;
 	@Resource
@@ -47,12 +47,12 @@ public class NearMeService {
 		Assert.isTrue(lon != null, "获取经度失败");
 		Assert.isTrue(lat != null, "获取纬度失败");
 		// 获取登录用户信息
-		final Diner signInDinerInfo = this.loadSignInDinerInfo(accessToken);
+		final User signInUserInfo = this.loadSignInDinerInfo(accessToken);
 		// 获取 key diner:location
 		final String key = RedisKeyConstant.diner_location.getKey();
 		// 将用户地理位置信息存入 Redis
 		final RedisGeoCommands.GeoLocation geoLocation = new RedisGeoCommands
-			.GeoLocation(signInDinerInfo.getId(), new Point(lon, lat));
+			.GeoLocation(signInUserInfo.getId(), new Point(lon, lat));
 		this.redisTemplate.opsForGeo().add(key, geoLocation);
 	}
 
@@ -65,13 +65,13 @@ public class NearMeService {
 	 * @param lat         纬度
 	 * @return
 	 */
-	public List<NearMeDinerVO> findNearMe(final String accessToken,
-										  Integer radius,
-										  final Float lon, final Float lat) {
+	public List<NearMeUserVO> findNearMe(final String accessToken,
+										 Integer radius,
+										 final Float lon, final Float lat) {
 		// 获取登录用户信息
-		final Diner signInDinerInfo = this.loadSignInDinerInfo(accessToken);
+		final User signInUserInfo = this.loadSignInDinerInfo(accessToken);
 		// 食客 ID
-		final Long dinerId = signInDinerInfo.getId();
+		final Long dinerId = signInUserInfo.getId();
 		// 处理半径，默认 1000m
 		if (radius == null) {
 			radius = 1000;
@@ -103,28 +103,28 @@ public class NearMeService {
 		final GeoResults<RedisGeoCommands.GeoLocation> geoResult =
 			this.redisTemplate.opsForGeo().radius(key, circle, args);
 		// 构建有序 Map
-		final Map<Long, NearMeDinerVO> nearMeDinerVOMap = Maps.newLinkedHashMap();
+		final Map<Long, NearMeUserVO> nearMeDinerVOMap = Maps.newLinkedHashMap();
 		// 完善用户头像昵称信息
 		geoResult.forEach(result -> {
 			final RedisGeoCommands.GeoLocation<Long> geoLocation = result.getContent();
 			// 初始化 Vo 对象
-			final NearMeDinerVO nearMeDinerVO = new NearMeDinerVO();
-			nearMeDinerVO.setId(geoLocation.getName());
+			final NearMeUserVO nearMeUserVO = new NearMeUserVO();
+			nearMeUserVO.setId(geoLocation.getName());
 			// 获取距离
 			final Double dist = result.getDistance().getValue();
 			// 四舍五入精确到小数点后 1 位，方便客户端显示
 			final String distanceStr = dist.toString() + "m";
-			nearMeDinerVO.setDistance(distanceStr);
-			nearMeDinerVOMap.put(geoLocation.getName(), nearMeDinerVO);
+			nearMeUserVO.setDistance(distanceStr);
+			nearMeDinerVOMap.put(geoLocation.getName(), nearMeUserVO);
 		});
 		// 获取附近的人的信息（根据 Diner 服务接口获取）
 		final Integer[] dinerIds = nearMeDinerVOMap.keySet().toArray(new Integer[]{});
-		final List<ShortDinerInfo> shortDinerInfos = this.dinerService.findByIds(StringUtils.join(",", dinerIds));
+		final List<ShortDinerInfo> shortDinerInfos = this.userService.findByIds(StringUtils.join(",", dinerIds));
 		// 完善昵称头像信息
 		shortDinerInfos.forEach(shortDinerInfo -> {
-			final NearMeDinerVO nearMeDinerVO = nearMeDinerVOMap.get(shortDinerInfo.getId());
-			nearMeDinerVO.setNickname(shortDinerInfo.getNickname());
-			nearMeDinerVO.setAvatarUrl(shortDinerInfo.getAvatarUrl());
+			final NearMeUserVO nearMeUserVO = nearMeDinerVOMap.get(shortDinerInfo.getId());
+			nearMeUserVO.setNickname(shortDinerInfo.getNickname());
+			nearMeUserVO.setAvatar(shortDinerInfo.getAvatar());
 		});
 		return Lists.newArrayList(nearMeDinerVOMap.values());
 	}
@@ -135,7 +135,7 @@ public class NearMeService {
 	 * @param accessToken
 	 * @return
 	 */
-	private Diner loadSignInDinerInfo(final String accessToken) {
+	private User loadSignInDinerInfo(final String accessToken) {
 		// 必须登录
 		final String url = this.oauthServerName + "user/me?access_token={accessToken}";
 		final R resultInfo = this.restTemplate.getForObject(url, R.class, accessToken);

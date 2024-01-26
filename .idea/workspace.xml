@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="278cd47f-fc71-454c-b820-4fb7129f5715" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/src/main/java/com/imooc/commons/model/domain/R.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons/src/main/java/com/imooc/commons/model/domain/R.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/src/main/java/com/imooc/commons/model/dto/DinerRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons/src/main/java/com/imooc/commons/model/dto/UserAddRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/src/main/java/com/imooc/commons/model/entity/Diner.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons/src/main/java/com/imooc/commons/model/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/src/main/java/com/imooc/commons/model/entity/DinerPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons/src/main/java/com/imooc/commons/model/entity/UserPoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/src/main/java/com/imooc/commons/model/vo/DinerPointRankVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons/src/main/java/com/imooc/commons/model/vo/UserPointRankVO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/src/main/java/com/imooc/commons/model/vo/NearMeDinerVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons/src/main/java/com/imooc/commons/model/vo/NearMeUserVO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/src/main/java/com/imooc/commons/model/vo/ShortDinerInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons/src/main/java/com/imooc/commons/model/vo/ShortDinerInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/account.sql" beforeDir="false" afterPath="$PROJECT_DIR$/db/account.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/t_diner.sql" beforeDir="false" afterPath="$PROJECT_DIR$/db/t_diner.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/t_restaurant.sql" beforeDir="false" afterPath="$PROJECT_DIR$/db/t_restaurant.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-diner/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-diner/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-diner/src/main/java/com/imooc/diner/DinerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-diner/src/main/java/com/imooc/diner/DinerApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-diner/src/main/java/com/imooc/diner/config/OAuth2ClientProperties.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-diner/src/main/java/com/imooc/diner/config/RedisTemplateConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-diner/src/main/java/com/imooc/diner/config/RedisTemplateConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-diner/src/main/java/com/imooc/diner/controller/DinerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-diner/src/main/java/com/imooc/diner/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-diner/src/main/java/com/imooc/diner/controller/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-diner/src/main/java/com/imooc/diner/controller/HelloController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-diner/src/main/java/com/imooc/diner/controller/NearMeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-diner/src/main/java/com/imooc/diner/controller/NearMeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-diner/src/main/java/com/imooc/diner/domain/OAuthDinerInfo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-diner/src/main/java/com/imooc/diner/mapper/DinerMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-diner/src/main/java/com/imooc/diner/mapper/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-diner/src/main/java/com/imooc/diner/service/DinerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-diner/src/main/java/com/imooc/diner/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-diner/src/main/java/com/imooc/diner/service/NearMeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-diner/src/main/java/com/imooc/diner/service/NearMeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-diner/src/main/java/com/imooc/diner/service/SignService.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-diner/src/main/java/com/imooc/diner/service/SignService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-diner/src/main/java/com/imooc/diner/vo/DinerLoginVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-diner/src/main/java/com/imooc/diner/vo/DinerLoginVO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-diner/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-diner/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-feed/src/main/java/com/imooc/feed/service/FeedService.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-feed/src/main/java/com/imooc/feed/service/FeedService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-follow/src/main/java/com/imooc/follow/service/FollowService.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-follow/src/main/java/com/imooc/follow/service/FollowService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-oauth2-server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-oauth2-server/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-oauth2-server/src/main/java/com/imooc/oauth2/server/Oauth2ServerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-oauth2-server/src/main/java/com/imooc/oauth2/server/Oauth2ServerApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-oauth2-server/src/main/java/com/imooc/oauth2/server/config/AuthorizationServerConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-oauth2-server/src/main/java/com/imooc/oauth2/server/config/AuthorizationServerConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-oauth2-server/src/main/java/com/imooc/oauth2/server/config/WebSecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-oauth2-server/src/main/java/com/imooc/oauth2/server/config/WebSecurityConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-oauth2-server/src/main/java/com/imooc/oauth2/server/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-oauth2-server/src/main/java/com/imooc/oauth2/server/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-oauth2-server/src/main/java/com/imooc/oauth2/server/mapper/AccountMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-oauth2-server/src/main/java/com/imooc/oauth2/server/mapper/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-oauth2-server/src/main/java/com/imooc/oauth2/server/model/DinerUserDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-oauth2-server/src/main/java/com/imooc/oauth2/server/model/LoggedUserDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-oauth2-server/src/main/java/com/imooc/oauth2/server/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-oauth2-server/src/main/java/com/imooc/oauth2/server/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-oauth2-server/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-oauth2-server/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-order/src/main/java/com/imooc/order/service/SeckillService.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-order/src/main/java/com/imooc/order/service/SeckillService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-point/src/main/java/com/imooc/point/controller/DinerPointController.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-point/src/main/java/com/imooc/point/controller/DinerPointController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-point/src/main/java/com/imooc/point/mapper/DinerPointMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-point/src/main/java/com/imooc/point/mapper/DinerPointMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-point/src/main/java/com/imooc/point/service/DinerPointService.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-point/src/main/java/com/imooc/point/service/DinerPointService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-point/src/test/java/com/imooc/point/controller/DinerPointControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-point/src/test/java/com/imooc/point/controller/UserPointControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-restaurant/src/main/java/com/imooc/restaurant/service/ReviewService.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-restaurant/src/main/java/com/imooc/restaurant/service/ReviewService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 4
+}]]></component>
+  <component name="ProjectId" id="2bTR1l0yMYKsnTh4J6axb4oEk5M" />
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="autoscrollToSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="openDirectoriesWithSingleClick" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+    <option name="showVisibilityIcons" value="true" />
+    <option name="sortKey" value="BY_TIME_DESCENDING" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.DinerApplication.executor": "Debug",
+    "Spring Boot.Oauth2ServerApplication.executor": "Debug",
+    "Spring Boot.RegistryApplication.executor": "Debug",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/chensoul/workspace/IdeaProjects/foodie-cloud",
+    "settings.editor.selected.configurable": "settings.saveactions"
+  }
+}]]></component>
+  <component name="RunManager" selected="Spring Boot.DinerApplication">
+    <configuration name="DinerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="foodie-diner" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.imooc.diner.DinerApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.imooc.diner.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Oauth2ServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="foodie-oauth2-server" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.imooc.oauth2.server.Oauth2ServerApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.imooc.oauth2.server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RegistryApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="foodie-registry" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.imooc.registry.RegistryApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.imooc.registry.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.DinerApplication" />
+        <item itemvalue="Spring Boot.Oauth2ServerApplication" />
+        <item itemvalue="Spring Boot.RegistryApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-1.8.0_392-corretto-1.8.0_392-f644763e9732-9fbf141a" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+</project>

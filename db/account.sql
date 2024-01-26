@@ -6,7 +6,7 @@ CREATE TABLE `account` (
   `phone` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
-  `avatar_url` varchar(255) DEFAULT NULL COMMENT '头像',
+  `avatar` varchar(255) DEFAULT NULL COMMENT '头像',
   `roles` varchar(255) DEFAULT '' COMMENT '角色',
   `create_time` datetime DEFAULT NULL,
   `update_time` datetime DEFAULT NULL,

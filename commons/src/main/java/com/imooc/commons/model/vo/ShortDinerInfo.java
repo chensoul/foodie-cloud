@@ -10,6 +10,6 @@ public class ShortDinerInfo implements Serializable {
 	private static final long serialVersionUID = 6594806670302600745L;
 	public Long id;
 	private String nickname;
-	private String avatarUrl;
+	private String avatar;
 
 }

@@ -15,12 +15,14 @@ spring:
     timeout: 3000
     password: 123456
 
-oauth2:
-  client:
-    client-id: appId
-    secret: 123456
-    grant_type: password
-    scope: api
+security:
+  oauth2:
+    client:
+      client-id: appId
+      client-secret: 123456
+    resource:
+      token-info-uri: http://localhost:8082/oauth/check_token
+      prefer-token-info: true
 
 service:
   name:

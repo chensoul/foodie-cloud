@@ -4,7 +4,7 @@ import com.google.common.collect.Lists;
 import com.imooc.commons.constant.ApiConstant;
 import com.imooc.commons.constant.RedisKeyConstant;
 import com.imooc.commons.model.domain.R;
-import com.imooc.commons.model.entity.Diner;
+import com.imooc.commons.model.entity.User;
 import com.imooc.commons.model.entity.Restaurant;
 import com.imooc.commons.model.entity.Review;
 import com.imooc.commons.model.vo.ReviewVO;
@@ -54,11 +54,11 @@ public class ReviewService {
 		final Restaurant restaurant = this.restaurantService.findById(restaurantId);
 		Assert.isTrue(restaurant == null, "该餐厅不存在");
 		// 获取登录用户信息
-		final Diner signInDinerInfo = this.loadSignInDinerInfo(accessToken);
+		final User signInUserInfo = this.loadSignInDinerInfo(accessToken);
 		// 插入数据库
 		final Review reviews = new Review();
 		reviews.setContent(content);
-		reviews.setDinerId(signInDinerInfo.getId());
+		reviews.setDinerId(signInUserInfo.getId());
 		reviews.setRestaurantId(restaurantId);
 		// 这里需要后台操作处理餐厅数据(喜欢/不喜欢餐厅)做自增处理
 		reviews.setLikeIt(likeIt);
@@ -113,7 +113,7 @@ public class ReviewService {
 	 * @param accessToken
 	 * @return
 	 */
-	private Diner loadSignInDinerInfo(final String accessToken) {
+	private User loadSignInDinerInfo(final String accessToken) {
 		// 获取登录用户信息
 		final String url = this.oauthServerName + "user/me?access_token={accessToken}";
 		final R resultInfo = this.restTemplate.getForObject(url, R.class, accessToken);

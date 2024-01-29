@@ -4,9 +4,9 @@ import com.google.common.collect.Lists;
 import com.imooc.commons.constant.ApiConstant;
 import com.imooc.commons.constant.RedisKeyConstant;
 import com.imooc.commons.model.domain.R;
-import com.imooc.commons.model.entity.User;
 import com.imooc.commons.model.entity.Restaurant;
 import com.imooc.commons.model.entity.Review;
+import com.imooc.commons.model.entity.User;
 import com.imooc.commons.model.vo.ReviewVO;
 import com.imooc.restaurant.mapper.ReviewMapper;
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class ReviewService {
 
-	@Value("${service.name.ms-oauth-server}")
+	@Value("${service.name.foodie-oauth}")
 	private String oauthServerName;
 	@Resource
 	private RestTemplate restTemplate;
@@ -54,11 +54,11 @@ public class ReviewService {
 		final Restaurant restaurant = this.restaurantService.findById(restaurantId);
 		Assert.isTrue(restaurant == null, "该餐厅不存在");
 		// 获取登录用户信息
-		final User signInUserInfo = this.loadSignInDinerInfo(accessToken);
+		final User signInUserInfo = this.loadSignInUserInfo(accessToken);
 		// 插入数据库
 		final Review reviews = new Review();
 		reviews.setContent(content);
-		reviews.setDinerId(signInUserInfo.getId());
+		reviews.setUserId(signInUserInfo.getId());
 		reviews.setRestaurantId(restaurantId);
 		// 这里需要后台操作处理餐厅数据(喜欢/不喜欢餐厅)做自增处理
 		reviews.setLikeIt(likeIt);
@@ -72,8 +72,8 @@ public class ReviewService {
 		// 保证队列中只需要十条 作业
 	}
 
-	@Value("${service.name.ms-diners-server}")
-	private String dinersServerName;
+	@Value("${service.name.foodie-user}")
+	private String usersServerName;
 	private static final int NINE = 9;
 
 	/**
@@ -93,16 +93,16 @@ public class ReviewService {
 		// 初始化 VO 集合
 		final List<ReviewVO> reviewsVOS = Lists.newArrayList();
 		// 初始化用户 ID 集合
-		final List<Integer> dinerIds = Lists.newArrayList();
+		final List<Integer> userIds = Lists.newArrayList();
 		// 循环处理评论集合
 		// 查询评论用户信息
-		final R resultInfo = this.restTemplate.getForObject(this.dinersServerName +
+		final R resultInfo = this.restTemplate.getForObject(this.usersServerName +
 															"findByIds?access_token=${accessToken}&ids={ids}",
-			R.class, accessToken, StringUtils.join(",", dinerIds));
+			R.class, accessToken, StringUtils.join(",", userIds));
 		if (resultInfo.getCode() != ApiConstant.SUCCESS_CODE) {
 			throw new IllegalArgumentException(resultInfo.getMessage());
 		}
-		final List<LinkedHashMap> dinerInfoMaps = (ArrayList) resultInfo.getData();
+		final List<LinkedHashMap> userInfoMaps = (ArrayList) resultInfo.getData();
 
 		return reviewsVOS;
 	}
@@ -113,7 +113,7 @@ public class ReviewService {
 	 * @param accessToken
 	 * @return
 	 */
-	private User loadSignInDinerInfo(final String accessToken) {
+	private User loadSignInUserInfo(final String accessToken) {
 		// 获取登录用户信息
 		final String url = this.oauthServerName + "user/me?access_token={accessToken}";
 		final R resultInfo = this.restTemplate.getForObject(url, R.class, accessToken);

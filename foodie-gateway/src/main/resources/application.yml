@@ -11,15 +11,15 @@ spring:
           enabled: true
           lower-case-service-id: true
       routes:
-        - id: foodie-diner
-          uri: lb://foodie-diner
+        - id: foodie-user
+          uri: lb://foodie-user
           predicates:
-            - Path=/diner/**
+            - Path=/user/**
           filters:
             - StripPrefix=1
 
-        - id: foodie-oauth2-server
-          uri: lb://foodie-oauth2-server
+        - id: foodie-auth
+          uri: lb://foodie-auth
           predicates:
             - Path=/auth/**
           filters:
@@ -65,10 +65,10 @@ secure:
     urls:
       - /actuator/**
       - /auth/oauth/**
-      - /diner/signin
-      - /diner/send
-      - /diner/checkPhone
-      - /diner/register
+      - /user/signin
+      - /user/send
+      - /user/checkPhone
+      - /user/register
       - /seckill/add
       - /restaurant/**
 

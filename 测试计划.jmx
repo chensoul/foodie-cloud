@@ -42,7 +42,7 @@
           <stringProp name="HTTPSampler.port"></stringProp>
           <stringProp name="HTTPSampler.protocol">http</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">/diners/sign?access_token=340f6c72-3da9-4c31-9f31-38deddaaffa6</stringProp>
+          <stringProp name="HTTPSampler.path">/users/sign?access_token=340f6c72-3da9-4c31-9f31-38deddaaffa6</stringProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -578,7 +578,7 @@
           <stringProp name="HTTPSampler.port"></stringProp>
           <stringProp name="HTTPSampler.protocol">http</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">/diners/nearme?access_token=${token}</stringProp>
+          <stringProp name="HTTPSampler.path">/users/nearme?access_token=${token}</stringProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -590,7 +590,7 @@
         </HTTPSamplerProxy>
         <hashTree/>
         <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="用户地理位置信息" enabled="true">
-          <stringProp name="filename">C:/ImoocProjects/food-social-contact-parent/db/diner_locations.txt</stringProp>
+          <stringProp name="filename">C:/ImoocProjects/food-social-contact-parent/db/user_locations.txt</stringProp>
           <stringProp name="fileEncoding"></stringProp>
           <stringProp name="variableNames">id,token,lat,lon,location</stringProp>
           <boolProp name="ignoreFirstLine">false</boolProp>

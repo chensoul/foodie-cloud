@@ -12,14 +12,14 @@ import org.apache.ibatis.annotations.Update;
 public interface FollowMapper {
 
 	// 查询关注信息
-	@Select("select id, diner_id, follow_diner_id from t_follow " +
-			"where diner_id = #{dinerId} and follow_diner_id = #{followDinerId}")
-	Follow selectFollow(@Param("dinerId") Long dinerId, @Param("followDinerId") Long followDinerId);
+	@Select("select id, user_id, follow_user_id from t_follow " +
+			"where user_id = #{userId} and follow_user_id = #{followUserId}")
+	Follow selectFollow(@Param("userId") Long userId, @Param("followUserId") Long followUserId);
 
 	// 添加关注信息
-	@Insert("insert into t_follow (diner_id, follow_diner_id,  create_time, update_time)" +
-			" values(#{dinerId}, #{followDinerId},  now(), now())")
-	int save(@Param("dinerId") Long dinerId, @Param("followDinerId") Long followDinerId);
+	@Insert("insert into t_follow (user_id, follow_user_id,  create_time, update_time)" +
+			" values(#{userId}, #{followUserId},  now(), now())")
+	int save(@Param("userId") Long userId, @Param("followUserId") Long followUserId);
 
 	// 修改关注信息
 	@Update("update t_follow set update_time = now() where id = #{id}")

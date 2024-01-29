@@ -24,11 +24,11 @@
     </properties>
 
     <modules>
-        <module>commons</module>
+        <module>common</module>
         <module>foodie-registry</module>
         <module>foodie-gateway</module>
-        <module>foodie-oauth2-server</module>
-        <module>foodie-diner</module>
+        <module>foodie-auth</module>
+        <module>foodie-user</module>
         <module>foodie-order</module>
         <module>foodie-follow</module>
         <module>foodie-feed</module>

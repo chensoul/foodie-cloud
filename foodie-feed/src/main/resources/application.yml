@@ -3,20 +3,12 @@ server:
 
 spring:
   application:
-<<<<<<< HEAD:foodie-feeds/src/main/resources/application.yml
-    name: foodie-feeds
-  datasource:
-||||||| dbdbe77:foodie-feeds/src/main/resources/application.yml
-    name: foodie-feeds
-    datasource:
-=======
     name: foodie-feed
-    datasource:
->>>>>>> feature/07-points:foodie-feed/src/main/resources/application.yml
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/foodie-cloud?serverTimezone=Asia/Shanghai&characterEncoding=utf8&useUnicode=true&useSSL=false
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: 123456
-    url: jdbc:mysql://127.0.0.1:3306/foodie-cloud?serverTimezone=Asia/Shanghai&characterEncoding=utf8&useUnicode=true&useSSL=false
   redis:
     port: 6379
     host: localhost
@@ -33,9 +25,9 @@ eureka:
 
 service:
   name:
-    foodie-oauth-server: http://foodie-oauth2-server/
-    foodie-diner-server: http://foodie-diner/
-    foodie-follow-server: http://foodie-follow/
+    foodie-auth: http://foodie-auth/
+    foodie-user: http://foodie-user/
+    foodie-follow: http://foodie-follow/
 
 mybatis:
   configuration:

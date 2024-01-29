@@ -1,13 +1,19 @@
 
-E
-java:S3740)"/Provide the parametrized type for this generic.(‚Ê«
-K
-java:S3740µ"/Provide the parametrized type for this generic.(¬Æ´†ÿÿÿÿÿ
-K
-java:S3740Ø"/Provide the parametrized type for this generic.(†—Šİıÿÿÿÿ
-F
-java:S3740Û"/Provide the parametrized type for this generic.(àµğš
-x
-java:S1488w"]Immediately return this expression instead of assigning it to the temporary variable "point".(©ñÏŸşÿÿÿÿ
-d
-java:S2259Ü"HA "NullPointerException" could be thrown; "resultInfo" is nullable here.(ŠÜ¯ùÿÿÿÿ
+L
+java:S3740'"/Provide the parametrized type for this generic.(‚Ê«8ÚŞ¢©Ô1
+R
+java:S3740¾"/Provide the parametrized type for this generic.(†—Šİıÿÿÿÿ8ÚŞ¢©Ô1
+M
+java:S3740Á"/Provide the parametrized type for this generic.(àµğš8ÚŞ¢©Ô1
+
+java:S1488l"]Immediately return this expression instead of assigning it to the temporary variable "point".(Š¥¨ûÿÿÿÿ8ÚŞ¢©Ô1
+g
+java:S2259T"EA "NullPointerException" could be thrown; "execute" is nullable here.(Ÿ¢×İÿÿÿÿÿ8Ë×¤©Ô1
+k
+java:S2259Â"HA "NullPointerException" could be thrown; "resultInfo" is nullable here.(ŠÜ¯ùÿÿÿÿ8ğŞ¢©Ô1
+a
+java:S2259e"DA "NullPointerException" could be thrown; "getBit" is nullable here.(ÚÆı8ğóª©Ô1
+¯
+java:S4449f"ŒAnnotate the parameter with @javax.annotation.Nullable in method 'isTrue' declaration, or make sure that null can not be passed as argument.(Û´€¹üÿÿÿÿ8ğóª©Ô1
+M
+java:S2275"*An 'int' is expected rather than a String.(Îš“Äøÿÿÿÿ8øŞ¢©Ô1

@@ -38,10 +38,10 @@ public class FeedsController {
 	 *
 	 * @return
 	 */
-	@PostMapping("updateFollowingFeed/{followingDinerId}")
-	public R addFollowingFeed(@PathVariable final Long followingDinerId,
+	@PostMapping("updateFollowingFeed/{followingUserId}")
+	public R addFollowingFeed(@PathVariable final Long followingUserId,
 							  final String access_token, @RequestParam final int type) {
-		this.feedService.addFollowingFeed(followingDinerId, access_token, type);
+		this.feedService.addFollowingFeed(followingUserId, access_token, type);
 		return R.ok();
 	}
 

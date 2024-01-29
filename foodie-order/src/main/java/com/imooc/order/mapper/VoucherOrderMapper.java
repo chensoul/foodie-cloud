@@ -10,14 +10,14 @@ import org.apache.ibatis.annotations.Select;
  */
 public interface VoucherOrderMapper {
 
-	@Select("select * from t_voucher_order where diner_id = #{dinerId} " +
+	@Select("select * from t_voucher_order where user_id = #{userId} " +
 			" and voucher_id = #{voucherId} and status between 0 and 1 ")
-	VoucherOrder findDinerOrder(@Param("dinerId") Long dinerId,
-								@Param("voucherId") Long voucherId);
+	VoucherOrder findUserOrder(@Param("userId") Long userId,
+							   @Param("voucherId") Long voucherId);
 
-	@Insert("insert into t_voucher_order (order_no, voucher_id, diner_id, " +
+	@Insert("insert into t_voucher_order (order_no, voucher_id, user_id, " +
 			" status, seckill_id, order_type, create_time, update_time)" +
-			" values (#{orderNo}, #{voucherId}, #{dinerId}, #{status}, #{seckillId}, " +
+			" values (#{orderNo}, #{voucherId}, #{userId}, #{status}, #{seckillId}, " +
 			" #{orderType}, now(), now())")
 	int save(VoucherOrder voucherOrder);
 

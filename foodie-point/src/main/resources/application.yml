@@ -25,8 +25,8 @@ eureka:
 
 service:
   name:
-    foodie-oauth-server: http://foodie-oauth2-server/
-    foodie-diners-server: http://foodie-diners/
+    foodie-auth: http://foodie-auth/
+    foodie-user: http://foodie-user/
 
 mybatis:
   configuration:

@@ -21,41 +21,41 @@ public class FollowController {
 	/**
 	 * 获取粉丝列表
 	 *
-	 * @param dinerId
+	 * @param userId
 	 * @return
 	 */
-	@GetMapping("follower/{dinerId}")
-	public R findFollower(@PathVariable final Long dinerId) {
+	@GetMapping("follower/{userId}")
+	public R findFollower(@PathVariable final Long userId) {
 		return R.ok(
-			this.followService.findFollower(dinerId));
+			this.followService.findFollower(userId));
 	}
 
 	/**
 	 * 共同关注列表
 	 *
-	 * @param dinerId
+	 * @param userId
 	 * @param access_token
 	 * @return
 	 */
-	@GetMapping("common/{dinerId}")
-	public R findCommonFriend(@PathVariable final Integer dinerId,
+	@GetMapping("common/{userId}")
+	public R findCommonFriend(@PathVariable final Integer userId,
 							  final String access_token) {
-		return R.ok(this.followService.findCommonsFriend(dinerId, access_token));
+		return R.ok(this.followService.findCommonsFriend(userId, access_token));
 	}
 
 	/**
 	 * 关注/取关
 	 *
-	 * @param followDinerId 关注的食客ID
-	 * @param isFollowed    是否关注 1=关注 0=取消
-	 * @param access_token  登录用户token
+	 * @param followUserId 关注的食客ID
+	 * @param isFollowed   是否关注 1=关注 0=取消
+	 * @param access_token 登录用户token
 	 * @return
 	 */
-	@PostMapping("/{followDinerId}")
-	public R<Void> follow(@PathVariable final Long followDinerId,
+	@PostMapping("/{followUserId}")
+	public R<Void> follow(@PathVariable final Long followUserId,
 						  @RequestParam final int isFollowed,
 						  final String access_token) {
-		this.followService.follow(followDinerId,
+		this.followService.follow(followUserId,
 			isFollowed, access_token);
 		return R.ok();
 	}

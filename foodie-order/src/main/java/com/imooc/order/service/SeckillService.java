@@ -6,8 +6,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.imooc.commons.constant.ApiConstant;
 import com.imooc.commons.constant.RedisKeyConstant;
 import com.imooc.commons.model.domain.R;
-import com.imooc.commons.model.entity.User;
 import com.imooc.commons.model.entity.SeckillVoucher;
+import com.imooc.commons.model.entity.User;
 import com.imooc.commons.model.entity.VoucherOrder;
 import com.imooc.order.mapper.VoucherOrderMapper;
 import com.imooc.order.model.RedisLock;
@@ -36,7 +36,7 @@ import org.springframework.web.client.RestTemplate;
 public class SeckillService {
 	@Resource
 	private VoucherOrderMapper voucherOrderMapper;
-	@Value("${service.name.foodie-oauth-server}")
+	@Value("${service.name.foodie-auth}")
 	private String oauthServerName;
 	@Resource
 	private RestTemplate restTemplate;
@@ -75,7 +75,7 @@ public class SeckillService {
 			throw new IllegalArgumentException("获取用户信息失败");
 		}
 		final User userInfo = null;
-		final VoucherOrder order = this.voucherOrderMapper.findDinerOrder(userInfo.getId(), seckillVoucher.getVoucherId());
+		final VoucherOrder order = this.voucherOrderMapper.findUserOrder(userInfo.getId(), seckillVoucher.getVoucherId());
 		Assert.isTrue(order != null, "该用户已抢到该代金券，无需再抢");
 
 		// 使用 Redis 锁一个账号只能购买一次
@@ -94,7 +94,7 @@ public class SeckillService {
 			if (isLocked) {
 				// 下单
 				final VoucherOrder voucherOrder = new VoucherOrder();
-				voucherOrder.setDinerId(userInfo.getId());
+				voucherOrder.setUserId(userInfo.getId());
 				// Redis 中不需要维护外键信息
 				// voucherOrders.setseckillId(seckillVouchers.getId());
 				voucherOrder.setVoucherId(seckillVoucher.getVoucherId());

@@ -45,18 +45,18 @@ Spring Cloud每个业务领域都有多个可供选择的组件，这里也列�
 
 ## 默认端口
 
-| 内容                         | 端口  	  | 
-|:---------------------------|:------:| 
-| mysql（单机模式）     	          | 3306 	 |
-| redis（单机模式）     	          | 6379 	 |
-| rabbitmq（单机模式）     	       | 5672 	 |
-| gateway     	              |   80   |
-| eureka  	                  | 8080 	 |
-| foodie-user     	          |  8081  |
-| foodie-oauth2-server     	 |  8082  |
-| foodie-order     	         |  8083  |
-| foodie-follow     	        |  8084  |
-| foodie-feed     	          |  8085  |
-| foodie-point     	         |  8086  |
-| foodie-restaurant     	    |  8087  |
+| 内容                      | 端口  	  | 
+|:------------------------|:------:| 
+| mysql（单机模式）     	       | 3306 	 |
+| redis（单机模式）     	       | 6379 	 |
+| rabbitmq（单机模式）     	    | 5672 	 |
+| gateway     	           |   80   |
+| eureka  	               | 8080 	 |
+| foodie-user     	       |  8081  |
+| foodie-auth     	       |  8082  |
+| foodie-order     	      |  8083  |
+| foodie-follow     	     |  8084  |
+| foodie-feed     	       |  8085  |
+| foodie-point     	      |  8086  |
+| foodie-restaurant     	 |  8087  |
 

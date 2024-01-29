@@ -4,8 +4,8 @@ import com.google.common.collect.Lists;
 import com.imooc.commons.constant.ApiConstant;
 import com.imooc.commons.constant.RedisKeyConstant;
 import com.imooc.commons.model.domain.R;
-import com.imooc.commons.model.entity.User;
 import com.imooc.commons.model.entity.Feed;
+import com.imooc.commons.model.entity.User;
 import com.imooc.commons.model.vo.FeedVO;
 import com.imooc.feed.mapper.FeedMapper;
 import java.time.ZoneOffset;
@@ -27,12 +27,12 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class FeedService {
 
-	@Value("${service.name.foodie-oauth-server}")
+	@Value("${service.name.foodie-auth}")
 	private String oauthServerName;
-	@Value("${service.name.foodie-follow-server}")
+	@Value("${service.name.foodie-follow}")
 	private String followServerName;
-	@Value("${service.name.foodie-diner-server}")
-	private String dinerServerName;
+	@Value("${service.name.foodie-user}")
+	private String userServerName;
 	@Resource
 	private RestTemplate restTemplate;
 	@Resource
@@ -45,7 +45,7 @@ public class FeedService {
 			page = 1;
 		}
 		// 获取登录用户
-		final User userInfo = this.loadSignInDinerInfo(accessToken);
+		final User userInfo = this.loadSignInUserInfo(accessToken);
 		// 我关注的好友的 Feedkey
 		final String key = RedisKeyConstant.following_feed.getKey() + userInfo.getId();
 		// SortedSet 的 ZREVRANGE 命令是闭区间
@@ -56,18 +56,18 @@ public class FeedService {
 			return Lists.newArrayList();
 		}
 		final List<Feed> feeds = this.feedMapper.findByIds(feedIds);
-		final List<Long> followingDinerIds = new ArrayList<>();
+		final List<Long> followingUserIds = new ArrayList<>();
 		// 添加用户 ID 至集合，顺带将 Feeds 转为 Vo 对象
 		final List<FeedVO> feedVOS = feeds.stream().map(feed -> {
 			final FeedVO feedVO = new FeedVO();
 			BeanUtils.copyProperties(feed, feedVO);
 			// 添加用户 ID
-			followingDinerIds.add(feed.getDinerId());
+			followingUserIds.add(feed.getUserId());
 			return feedVO;
 		}).collect(Collectors.toList());
 		// 远程调用获取 Feed 中用户信息
-		final R resultInfo = this.restTemplate.getForObject(this.dinerServerName + "findByIds?access_token=${accessToken}&ids={ids}",
-			R.class, accessToken, followingDinerIds);
+		final R resultInfo = this.restTemplate.getForObject(this.userServerName + "findByIds?access_token=${accessToken}&ids={ids}",
+			R.class, accessToken, followingUserIds);
 		if (resultInfo.getCode() != ApiConstant.SUCCESS_CODE) {
 			throw new IllegalArgumentException(resultInfo.getMessage());
 		}
@@ -77,19 +77,19 @@ public class FeedService {
 	/**
 	 * 变更 Feed
 	 *
-	 * @param followingDinerId 关注的好友 ID
-	 * @param accessToken      登录用户token
-	 * @param type             1 关注 0 取关
+	 * @param followingUserId 关注的好友 ID
+	 * @param accessToken     登录用户token
+	 * @param type            1 关注 0 取关
 	 */
 	@Transactional(rollbackFor = Exception.class)
-	public void addFollowingFeed(final Long followingDinerId, final String accessToken, final int type) {
+	public void addFollowingFeed(final Long followingUserId, final String accessToken, final int type) {
 		// 请选择关注的好友
-		Assert.isTrue(followingDinerId != null && followingDinerId >= 1,
+		Assert.isTrue(followingUserId != null && followingUserId >= 1,
 			"请选择关注的好友");
 		// 获取登录用户信息
-		final User userInfo = this.loadSignInDinerInfo(accessToken);
+		final User userInfo = this.loadSignInUserInfo(accessToken);
 		// 获取关注/取关的食客的所有 Feed
-		final List<Feed> feedList = this.feedMapper.findByDinerId(followingDinerId);
+		final List<Feed> feedList = this.feedMapper.findByUserId(followingUserId);
 		final String key = RedisKeyConstant.following_feed.getKey() + userInfo.getId();
 		if (type == 0) {
 			// 取关
@@ -117,12 +117,12 @@ public class FeedService {
 	@Transactional(rollbackFor = Exception.class)
 	public void delete(final Long id, final String accessToken) {
 		// 获取登录用户
-		final User userInfo = this.loadSignInDinerInfo(accessToken);
+		final User userInfo = this.loadSignInUserInfo(accessToken);
 		// 获取 Feed 内容
 		final Feed feed = this.feedMapper.findById(id);
 		// 判断 Feed 是否已经被删除且只能删除自己的 Feed
 		Assert.isTrue(feed != null, "该Feed已被删除");
-		Assert.isTrue(!feed.getDinerId().equals(userInfo.getId()),
+		Assert.isTrue(!feed.getUserId().equals(userInfo.getId()),
 			"只能删除自己的Feed");
 		// 删除
 		final int count = this.feedMapper.delete(id);
@@ -151,9 +151,9 @@ public class FeedService {
 		Assert.hasLength(feed.getContent(), "请输入内容");
 		Assert.isTrue(feed.getContent().length() <= 255, "输入内容太多，请重新输入");
 		// 获取登录用户信息
-		final User userInfo = this.loadSignInDinerInfo(accessToken);
+		final User userInfo = this.loadSignInUserInfo(accessToken);
 		// Feed 关联用户信息
-		feed.setDinerId(userInfo.getId());
+		feed.setUserId(userInfo.getId());
 		// 添加 Feed
 		final int count = this.feedMapper.save(feed);
 		Assert.isTrue(count != 0, "添加失败");
@@ -171,11 +171,11 @@ public class FeedService {
 	/**
 	 * 获取粉丝 id 集合
 	 *
-	 * @param dinerId
+	 * @param userId
 	 * @return
 	 */
-	private List<Integer> findFollower(final Long dinerId) {
-		final String url = this.followServerName + "follower/" + dinerId;
+	private List<Integer> findFollower(final Long userId) {
+		final String url = this.followServerName + "follower/" + userId;
 		final R resultInfo = this.restTemplate.getForObject(url, R.class);
 		if (resultInfo.getCode() != ApiConstant.SUCCESS_CODE) {
 			throw new IllegalArgumentException(resultInfo.getMessage());
@@ -190,7 +190,7 @@ public class FeedService {
 	 * @param accessToken
 	 * @return
 	 */
-	private User loadSignInDinerInfo(final String accessToken) {
+	private User loadSignInUserInfo(final String accessToken) {
 		// 必须登录
 		final String url = this.oauthServerName + "user/me?access_token={accessToken}";
 		final R resultInfo = this.restTemplate.getForObject(url, R.class, accessToken);

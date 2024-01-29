@@ -3,7 +3,7 @@ package com.imooc.restaurant.service;
 import com.baomidou.mybatisplus.core.toolkit.BeanUtils;
 import com.google.common.collect.Maps;
 import com.imooc.commons.constant.RedisKeyConstant;
-import com.imooc.commons.model.pojo.Restaurant;
+import com.imooc.commons.model.entity.Restaurant;
 import com.imooc.restaurant.mapper.RestaurantMapper;
 import java.util.List;
 import java.util.Map;

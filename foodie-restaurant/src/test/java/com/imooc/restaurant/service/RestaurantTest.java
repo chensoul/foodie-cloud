@@ -30,7 +30,7 @@ public class RestaurantTest {
 		final long start = System.currentTimeMillis();
 		restaurants.forEach(restaurant -> {
 			final Map<String, Object> restaurantMap = BeanUtils.beanToMap(restaurant);
-			final String key = RedisKeyConstant.restaurant.getKey() + restaurant.getId();
+			final String key = RedisKeyConstant.RESTAURANT.getKey() + restaurant.getId();
 			this.redisTemplate.opsForHash().putAll(key, restaurantMap);
 		});
 		final long end = System.currentTimeMillis();
@@ -45,7 +45,7 @@ public class RestaurantTest {
 		final List<Long> list = this.redisTemplate.executePipelined((RedisCallback<Long>) connection -> {
 			for (final Restaurant restaurant : restaurants) {
 				try {
-					final String key = RedisKeyConstant.restaurant.getKey() + restaurant.getId();
+					final String key = RedisKeyConstant.RESTAURANT.getKey() + restaurant.getId();
 					final Map<String, Object> restaurantMap = BeanUtils.beanToMap(restaurant);
 					final StringRedisSerializer stringRedisSerializer = new StringRedisSerializer();
 					final Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);

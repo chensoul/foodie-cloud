@@ -1,19 +1,13 @@
 
 L
-java:S3740'"/Provide the parametrized type for this generic.(‚Ê«8ÚŞ¢©Ô1
-R
-java:S3740¾"/Provide the parametrized type for this generic.(†—Šİıÿÿÿÿ8ÚŞ¢©Ô1
-M
-java:S3740Á"/Provide the parametrized type for this generic.(àµğš8ÚŞ¢©Ô1
+java:S3740"/Provide the parametrized type for this generic.(‚Ê«8Ò¼“ÃÕ1
 
-java:S1488l"]Immediately return this expression instead of assigning it to the temporary variable "point".(Š¥¨ûÿÿÿÿ8ÚŞ¢©Ô1
+java:S1488Y"]Immediately return this expression instead of assigning it to the temporary variable "point".(œìËşÿÿÿÿ8Ó¼“ÃÕ1
 g
-java:S2259T"EA "NullPointerException" could be thrown; "execute" is nullable here.(Ÿ¢×İÿÿÿÿÿ8Ë×¤©Ô1
-k
-java:S2259Â"HA "NullPointerException" could be thrown; "resultInfo" is nullable here.(ŠÜ¯ùÿÿÿÿ8ğŞ¢©Ô1
+java:S2259?"EA "NullPointerException" could be thrown; "execute" is nullable here.(Ÿ¢×İÿÿÿÿÿ8ç¼“ÃÕ1
 a
-java:S2259e"DA "NullPointerException" could be thrown; "getBit" is nullable here.(ÚÆı8ğóª©Ô1
-¯
-java:S4449f"ŒAnnotate the parameter with @javax.annotation.Nullable in method 'isTrue' declaration, or make sure that null can not be passed as argument.(Û´€¹üÿÿÿÿ8ğóª©Ô1
+java:S2259S"DA "NullPointerException" could be thrown; "getBit" is nullable here.(ÚÆı8ç¼“ÃÕ1
 M
-java:S2275"*An 'int' is expected rather than a String.(Îš“Äøÿÿÿÿ8øŞ¢©Ô1
+java:S1172“"/Remove this unused method parameter "username".(ñ’¢í8ï¼“ÃÕ1
+P
+java:S1135"2Complete the task associated to this TODO comment.(ş¾·ü8ğ¼“ÃÕ1

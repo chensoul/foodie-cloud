@@ -1,7 +1,7 @@
 package com.imooc.point.controller;
 
 import com.imooc.commons.model.domain.R;
-import com.imooc.commons.model.vo.UserPointRankVO;
+import com.imooc.point.model.UserPointRankVO;
 import com.imooc.point.service.PointService;
 import java.util.List;
 import javax.annotation.Resource;

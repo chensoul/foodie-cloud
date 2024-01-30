@@ -1,11 +1,11 @@
 package com.imooc.follow.service;
 
+import com.imooc.auth.entity.User;
+import com.imooc.auth.model.SimpleUser;
 import com.imooc.commons.constant.ApiConstant;
 import com.imooc.commons.constant.RedisKeyConstant;
 import com.imooc.commons.model.domain.R;
 import com.imooc.commons.model.entity.Follow;
-import com.imooc.commons.model.entity.User;
-import com.imooc.commons.model.vo.ShortUserInfo;
 import com.imooc.follow.mapper.FollowMapper;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -55,7 +55,7 @@ public class FollowService {
 	public Set<Integer> findFollower(final Long userId) {
 		Assert.isNull(userId, "请选择要查看的用户");
 		final Set<Integer> followers = this.redisTemplate.opsForSet()
-			.members(RedisKeyConstant.follower.getKey() + userId);
+			.members(RedisKeyConstant.FOLLOWER.getKey() + userId);
 		return followers;
 	}
 
@@ -67,16 +67,16 @@ public class FollowService {
 	 * @return
 	 */
 	@Transactional(rollbackFor = Exception.class)
-	public List<ShortUserInfo> findCommonsFriend(final Integer userId, final String accessToken) {
+	public List<SimpleUser> findCommonsFriend(final Integer userId, final String accessToken) {
 		// 是否选择了查看对象
 		Assert.isTrue(userId == null || userId < 1,
 			"请选择要查看的人");
 		// 获取登录用户信息
 		final User userInfo = this.loadSignInUserInfo(accessToken);
 		// 获取登录用户的关注信息
-		final String loginUserKey = RedisKeyConstant.following.getKey() + userInfo.getId();
+		final String loginUserKey = RedisKeyConstant.FOLLOWING.getKey() + userInfo.getId();
 		// 获取登录用户查看对象的关注信息
-		final String userKey = RedisKeyConstant.following.getKey() + userId;
+		final String userKey = RedisKeyConstant.FOLLOWING.getKey() + userId;
 		// 计算交集
 		final Set<Integer> userIds = this.redisTemplate.opsForSet().intersect(loginUserKey, userKey);
 		// 没有
@@ -91,9 +91,9 @@ public class FollowService {
 		}
 		// 处理结果集
 		final List<LinkedHashMap> dinnerInfoMaps = (ArrayList) resultInfo.getData();
-		final List<ShortUserInfo> userInfos = dinnerInfoMaps.stream()
+		final List<SimpleUser> userInfos = dinnerInfoMaps.stream()
 			.map(user -> {
-				final ShortUserInfo shortUserInfo = new ShortUserInfo();
+				final SimpleUser shortUserInfo = new SimpleUser();
 				BeanUtils.copyProperties(user, shortUserInfo);
 				return shortUserInfo;
 			})
@@ -174,8 +174,8 @@ public class FollowService {
 	 * @param followUserId
 	 */
 	private void addToRedisSet(final Long userId, final Long followUserId) {
-		this.redisTemplate.opsForSet().add(RedisKeyConstant.following.getKey() + userId, followUserId);
-		this.redisTemplate.opsForSet().add(RedisKeyConstant.follower.getKey() + followUserId, userId);
+		this.redisTemplate.opsForSet().add(RedisKeyConstant.FOLLOWING.getKey() + userId, followUserId);
+		this.redisTemplate.opsForSet().add(RedisKeyConstant.FOLLOWER.getKey() + followUserId, userId);
 	}
 
 	/**
@@ -185,8 +185,8 @@ public class FollowService {
 	 * @param followUserId
 	 */
 	private void removeFromRedisSet(final Long userId, final Long followUserId) {
-		this.redisTemplate.opsForSet().remove(RedisKeyConstant.following.getKey() + userId, followUserId);
-		this.redisTemplate.opsForSet().remove(RedisKeyConstant.follower.getKey() + followUserId, userId);
+		this.redisTemplate.opsForSet().remove(RedisKeyConstant.FOLLOWING.getKey() + userId, followUserId);
+		this.redisTemplate.opsForSet().remove(RedisKeyConstant.FOLLOWER.getKey() + followUserId, userId);
 	}
 
 	/**
@@ -196,7 +196,7 @@ public class FollowService {
 	 * @return
 	 */
 	private User loadSignInUserInfo(final String accessToken) {
-		final String url = this.oauthServerName + "user/me?access_token={accessToken}";
+		final String url = this.oauthServerName + "diner/me?access_token={accessToken}";
 		final R resultInfo = this.restTemplate.getForObject(url, R.class, accessToken);
 		if (resultInfo.getCode() != ApiConstant.SUCCESS_CODE) {
 			throw new IllegalArgumentException(resultInfo.getMessage());

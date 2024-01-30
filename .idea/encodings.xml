@@ -3,8 +3,16 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/common/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/common/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/foodie-auth/foodie-auth-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/foodie-auth/foodie-auth-api/src/main/kotlin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/foodie-auth/foodie-auth-api/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/kotlin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/foodie-auth/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/foodie-auth/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/foodie-diner/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/foodie-diner/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/foodie-feed/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/foodie-feed/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/foodie-follow/src/main/java" charset="UTF-8" />
@@ -19,8 +27,6 @@
     <file url="file://$PROJECT_DIR$/foodie-registry/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/foodie-restaurant/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/foodie-restaurant/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/foodie-user/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/foodie-user/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
   </component>

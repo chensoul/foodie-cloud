@@ -28,7 +28,7 @@
         <module>foodie-registry</module>
         <module>foodie-gateway</module>
         <module>foodie-auth</module>
-        <module>foodie-user</module>
+        <module>foodie-diner</module>
         <module>foodie-order</module>
         <module>foodie-follow</module>
         <module>foodie-feed</module>
@@ -96,10 +96,17 @@
     </dependencyManagement>
 
     <dependencies>
+
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.30</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

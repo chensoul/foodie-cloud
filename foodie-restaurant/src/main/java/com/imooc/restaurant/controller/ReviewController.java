@@ -1,7 +1,7 @@
 package com.imooc.restaurant.controller;
 
 import com.imooc.commons.model.domain.R;
-import com.imooc.commons.model.vo.ReviewVO;
+import com.imooc.restaurant.ReviewVO;
 import com.imooc.restaurant.service.ReviewService;
 import java.util.List;
 import javax.annotation.Resource;

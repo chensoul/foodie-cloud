@@ -1,7 +1,7 @@
 package com.imooc.point.mapper;
 
 import com.imooc.commons.model.entity.UserPoint;
-import com.imooc.commons.model.vo.UserPointRankVO;
+import com.imooc.point.model.UserPointRankVO;
 import java.util.List;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
@@ -22,7 +22,7 @@ public interface PointMapper {
 			" sum( t1.point ) AS total, " +
 			" rank () over ( ORDER BY sum( t1.point ) DESC ) AS ranks," +
 			" t2.nickname, t2.avatar " +
-			" FROM t_point t1 LEFT JOIN t_users t2 ON t1.user_id = t2.id " +
+			" FROM t_point t1 LEFT JOIN t_user t2 ON t1.user_id = t2.id " +
 			" GROUP BY t1.user_id " +
 			" ORDER BY total DESC LIMIT #{top}")
 	List<UserPointRankVO> findTopN(@Param("top") int top);
@@ -33,7 +33,7 @@ public interface PointMapper {
 			" sum( t1.point ) AS total, " +
 			" rank () over ( ORDER BY sum( t1.point ) DESC ) AS ranks," +
 			" t2.nickname, t2.avatar " +
-			" FROM t_point t1 LEFT JOIN t_users t2 ON t1.user_id = t2.id " +
+			" FROM t_point t1 LEFT JOIN t_user t2 ON t1.user_id = t2.id " +
 			" GROUP BY t1.user_id " +
 			" ORDER BY total DESC ) r " +
 			" WHERE id = #{userId}")

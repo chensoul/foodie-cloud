@@ -5,7 +5,7 @@ spring:
   application:
     name: foodie-feed
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/foodie-cloud?serverTimezone=Asia/Shanghai&characterEncoding=utf8&useUnicode=true&useSSL=false
+    url: jdbc:mysql://127.0.0.1:3306/foodie-cloud?connectTimeout=2000&socketTimeout=150000&allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: 123456
@@ -25,7 +25,6 @@ eureka:
 
 service:
   name:
-    foodie-auth: http://foodie-auth/
     foodie-user: http://foodie-user/
     foodie-follow: http://foodie-follow/
 

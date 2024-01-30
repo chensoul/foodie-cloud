@@ -5,7 +5,7 @@ spring:
   application:
     name: foodie-restaurant
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/foodie-cloud?serverTimezone=Asia/Shanghai&characterEncoding=utf8&useUnicode=true&useSSL=false
+    url: jdbc:mysql://127.0.0.1:3306/foodie-cloud?connectTimeout=2000&socketTimeout=150000&allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: 123456
@@ -14,6 +14,18 @@ spring:
     host: localhost
     timeout: 3000
     password: 123456
+    lettuce:
+      pool:
+        max-active: 8 # 最大连接数，默认 8
+        max-idle: 8 # 最大空闲连接，默认 8
+        min-idle: 0 # 最小空闲连接，默认 0
+        max-wait: 1000 # 最大连接阻塞等待时间，单位毫秒，默认 -1
+#    sentinel:
+#      master: mymaster
+#      nodes: 192.168.10.101:26379,192.168.10.102:26379,192.168.10.103:26379
+#    cluster:
+#      nodes: 192.168.10.101:6371,192.168.10.101:6372,192.168.10.102:6373,192.168.10.102:6374,192.168.10.103:6375,192.168.10.103:6376
+#      max-redirects: 5
 
 eureka:
   instance:

@@ -1,17 +1,0 @@
-
-^
-java:S1874"ARemove this use of "EnableAuthorizationServer"; it is deprecated.(Àİ„ë8ôó¾¢Ô1
-i
-java:S1874"LRemove this use of "AuthorizationServerConfigurerAdapter"; it is deprecated.(¡õÅı8ôó¾¢Ô1
-Y
-java:S1874"7Remove this use of "RedisTokenStore"; it is deprecated.(Ü¼ùÿÿÿÿ8õó¾¢Ô1
-o
-java:S1874*"MRemove this use of "AuthorizationServerSecurityConfigurer"; it is deprecated.(ø²¯öúÿÿÿÿ8öó¾¢Ô1
-h
-java:S18746"FRemove this use of "ClientDetailsServiceConfigurer"; it is deprecated.(¹Ã˜Îûÿÿÿÿ8öó¾¢Ô1
-k
-java:S1874F"NRemove this use of "AuthorizationServerEndpointsConfigurer"; it is deprecated.(–Úº–8øó¾¢Ô1
-b
-java:S1874O"@Remove this use of "DefaultOAuth2AccessToken"; it is deprecated.(ê÷¼êùÿÿÿÿ8ùó¾¢Ô1
-b
-java:S1874O"@Remove this use of "DefaultOAuth2AccessToken"; it is deprecated.(ê÷¼êùÿÿÿÿ8ùó¾¢Ô1

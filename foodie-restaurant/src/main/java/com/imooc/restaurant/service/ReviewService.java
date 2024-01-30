@@ -1,13 +1,13 @@
 package com.imooc.restaurant.service;
 
 import com.google.common.collect.Lists;
+import com.imooc.auth.entity.User;
 import com.imooc.commons.constant.ApiConstant;
 import com.imooc.commons.constant.RedisKeyConstant;
 import com.imooc.commons.model.domain.R;
 import com.imooc.commons.model.entity.Restaurant;
 import com.imooc.commons.model.entity.Review;
-import com.imooc.commons.model.entity.User;
-import com.imooc.commons.model.vo.ReviewVO;
+import com.imooc.restaurant.ReviewVO;
 import com.imooc.restaurant.mapper.ReviewMapper;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -67,7 +67,7 @@ public class ReviewService {
 			return;
 		}
 		// 写入餐厅最新评论
-		final String key = RedisKeyConstant.restaurant_new_review.getKey() + restaurantId;
+		final String key = RedisKeyConstant.RESTAURANT_NEW_REVIEW.getKey() + restaurantId;
 		this.redisTemplate.opsForList().leftPush(key, reviews);
 		// 保证队列中只需要十条 作业
 	}
@@ -87,7 +87,7 @@ public class ReviewService {
 		// 参数校验
 		Assert.isTrue(restaurantId == null || restaurantId < 1, "请选择餐厅进行查看");
 		// 获取 Key
-		final String key = RedisKeyConstant.restaurant_new_review.getKey() + restaurantId;
+		final String key = RedisKeyConstant.RESTAURANT_NEW_REVIEW.getKey() + restaurantId;
 		// 取前十条
 		final List<LinkedHashMap> reviews = this.redisTemplate.opsForList().range(key, 0, NINE);
 		// 初始化 VO 集合
@@ -115,7 +115,7 @@ public class ReviewService {
 	 */
 	private User loadSignInUserInfo(final String accessToken) {
 		// 获取登录用户信息
-		final String url = this.oauthServerName + "user/me?access_token={accessToken}";
+		final String url = this.oauthServerName + "diner/me?access_token={accessToken}";
 		final R resultInfo = this.restTemplate.getForObject(url, R.class, accessToken);
 		if (resultInfo.getCode() != ApiConstant.SUCCESS_CODE) {
 			throw new IllegalArgumentException(resultInfo.getMessage());

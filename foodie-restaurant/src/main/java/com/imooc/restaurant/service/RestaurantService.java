@@ -30,7 +30,7 @@ public class RestaurantService {
 		// 请选择餐厅
 		Assert.isTrue(restaurantId != null, "请选择餐厅查看");
 		// 获取 Key
-		final String key = RedisKeyConstant.restaurant.getKey() + restaurantId;
+		final String key = RedisKeyConstant.RESTAURANT.getKey() + restaurantId;
 		// 获取餐厅缓存
 		final LinkedHashMap restaurantMap = (LinkedHashMap) this.redisTemplate.opsForHash().entries(key);
 		// 如果缓存不存在，查询数据库

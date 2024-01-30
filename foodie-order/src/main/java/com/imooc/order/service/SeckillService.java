@@ -3,11 +3,11 @@ package com.imooc.order.service;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.imooc.auth.entity.User;
 import com.imooc.commons.constant.ApiConstant;
 import com.imooc.commons.constant.RedisKeyConstant;
 import com.imooc.commons.model.domain.R;
 import com.imooc.commons.model.entity.SeckillVoucher;
-import com.imooc.commons.model.entity.User;
 import com.imooc.commons.model.entity.VoucherOrder;
 import com.imooc.order.mapper.VoucherOrderMapper;
 import com.imooc.order.model.RedisLock;
@@ -61,7 +61,7 @@ public class SeckillService {
 	 */
 	@Transactional(rollbackFor = Exception.class)
 	public void doSeckill(final Integer voucherId, final String accessToken) throws JsonProcessingException {
-		final String key = RedisKeyConstant.seckill_voucher.getKey() + voucherId;
+		final String key = RedisKeyConstant.SECKILL_VOUCHER.getKey() + voucherId;
 		final SeckillVoucher seckillVoucher = this.objectMapper.readValue((String) this.redisTemplate.opsForValue().get(key), SeckillVoucher.class);
 
 		final Date now = new Date();
@@ -69,7 +69,7 @@ public class SeckillService {
 		Assert.isTrue(now.before(seckillVoucher.getEndTime()), "该抢购已结束");
 		Assert.isTrue(seckillVoucher.getAmount() < 1, "该券已经卖完了");
 
-		final String url = this.oauthServerName + "user/me?access_token={accessToken}";
+		final String url = this.oauthServerName + "diner/me?access_token={accessToken}";
 		final R resultInfo = this.restTemplate.getForObject(url, R.class, accessToken);
 		if (resultInfo.getCode() != ApiConstant.SUCCESS_CODE) {
 			throw new IllegalArgumentException("获取用户信息失败");
@@ -79,7 +79,7 @@ public class SeckillService {
 		Assert.isTrue(order != null, "该用户已抢到该代金券，无需再抢");
 
 		// 使用 Redis 锁一个账号只能购买一次
-		final String lockName = RedisKeyConstant.lock_key.getKey() + userInfo.getId() + ":" + voucherId;
+		final String lockName = RedisKeyConstant.LOCK_KEY.getKey() + userInfo.getId() + ":" + voucherId;
 		final long expireTime = seckillVoucher.getEndTime().getTime() - now.getTime();
 
 		// 自定义 Redis 分布式锁
@@ -138,7 +138,7 @@ public class SeckillService {
 		Assert.isTrue(seckillVoucher.getStartTime().before(seckillVoucher.getEndTime()), "开始时间不能晚于结束时间");
 
 		// 采用 Redis 实现
-		final String key = RedisKeyConstant.seckill_voucher.getKey() +
+		final String key = RedisKeyConstant.SECKILL_VOUCHER.getKey() +
 						   seckillVoucher.getVoucherId();
 		// 验证 Redis 中是否已经存在该券的秒杀活动
 		final Map<String, Object> map = this.redisTemplate.opsForHash().entries(key);

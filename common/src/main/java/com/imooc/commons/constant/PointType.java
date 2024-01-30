@@ -8,10 +8,10 @@ import lombok.Getter;
 @Getter
 public enum PointType {
 
-	sign(0),
-	follow(1),
-	feed(2),
-	review(3);
+	SIGN(0),
+	FOLLOW(1),
+	FEED(2),
+	REVIEW(3);
 
 	private final int type;
 

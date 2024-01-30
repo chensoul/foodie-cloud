@@ -1,14 +1,14 @@
 package com.imooc.point.service;
 
 import com.google.common.collect.Lists;
+import com.imooc.auth.entity.User;
+import com.imooc.auth.model.SimpleUser;
 import com.imooc.commons.constant.ApiConstant;
 import com.imooc.commons.constant.RedisKeyConstant;
 import com.imooc.commons.model.domain.R;
-import com.imooc.commons.model.entity.User;
 import com.imooc.commons.model.entity.UserPoint;
-import com.imooc.commons.model.vo.ShortUserInfo;
-import com.imooc.commons.model.vo.UserPointRankVO;
 import com.imooc.point.mapper.PointMapper;
+import com.imooc.point.model.UserPointRankVO;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -66,7 +66,7 @@ public class PointService {
 
 		// 将积分保存到 Redis
 		this.redisTemplate.opsForZSet().incrementScore(
-			RedisKeyConstant.point.getKey(), userId, point);
+			RedisKeyConstant.POINT.getKey(), userId, point);
 	}
 
 	/**
@@ -80,7 +80,7 @@ public class PointService {
 		final User signInUserInfo = this.loadSignInUserInfo(accessToken);
 		// 统计积分排行榜
 		final Set<ZSetOperations.TypedTuple<Long>> rangeWithScores = this.redisTemplate.opsForZSet().reverseRangeWithScores(
-			RedisKeyConstant.point.getKey(), 0, 19);
+			RedisKeyConstant.POINT.getKey(), 0, 19);
 		if (rangeWithScores == null || rangeWithScores.isEmpty()) {
 			return Lists.newArrayList();
 		}
@@ -108,7 +108,7 @@ public class PointService {
 		}
 		final List<LinkedHashMap> userInfoMaps = (List<LinkedHashMap>) resultInfo.getData();
 		for (final LinkedHashMap userInfoMap : userInfoMaps) {
-			final ShortUserInfo shortUserInfo = new ShortUserInfo();
+			final SimpleUser shortUserInfo = new SimpleUser();
 			BeanUtils.copyProperties(userInfoMap, shortUserInfo); //FXIME
 			final UserPointRankVO rankVO = ranksMap.get(shortUserInfo.getId());
 			rankVO.setNickname(shortUserInfo.getNickname());
@@ -124,14 +124,14 @@ public class PointService {
 
 		// 如果不在 ranks 中，获取个人排名追加在最后
 		final Long myRank = this.redisTemplate.opsForZSet().reverseRank(
-			RedisKeyConstant.point.getKey(), signInUserInfo.getId());
+			RedisKeyConstant.POINT.getKey(), signInUserInfo.getId());
 		if (myRank != null) {
 			final UserPointRankVO me = new UserPointRankVO();
 			BeanUtils.copyProperties(signInUserInfo, me);
 			me.setRanks(myRank.intValue() + 1);// 排名从 0 开始
 			me.setIsMe(1);
 			// 获取积分
-			final Double point = this.redisTemplate.opsForZSet().score(RedisKeyConstant.point.getKey(),
+			final Double point = this.redisTemplate.opsForZSet().score(RedisKeyConstant.POINT.getKey(),
 				signInUserInfo.getId());
 			me.setTotal(point.intValue());
 			ranksMap.put(signInUserInfo.getId(), me);
@@ -178,7 +178,7 @@ public class PointService {
 	 * @return
 	 */
 	private User loadSignInUserInfo(final String accessToken) {
-		final String url = this.oauthServerName + "user/me?access_token={accessToken}";
+		final String url = this.oauthServerName + "diner/me?access_token={accessToken}";
 		final R resultInfo = this.restTemplate.getForObject(url, R.class, accessToken);
 		if (resultInfo.getCode() != ApiConstant.SUCCESS_CODE) {
 			throw new IllegalArgumentException(resultInfo.getMessage());

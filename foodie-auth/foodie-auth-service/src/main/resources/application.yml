@@ -27,11 +27,23 @@ eureka:
     service-url:
       defaultZone: http://localhost:8761/eureka/
 
-mybatis:
+mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-    map-underscore-to-camel-case: true
+  global-config:
+    db-config:
+      id-type: ASSIGN_ID
 
+springdoc:
+  version: '@springdoc.version@'
+  swagger-ui:
+    display-request-duration: true
+    groups-order: DESC
+    operations-sorter: method
+    disable-swagger-default-url: true
+    use-root-path: true
+  show-actuator: true
+  
 feign:
   client:
     config:

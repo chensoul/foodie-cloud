@@ -1,6 +1,5 @@
 package com.chensoul.commons.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,10 +12,10 @@ public class SeckillVoucher extends BaseEntity {
 	private Long voucherId;
 	private int amount;
 
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+
 	private LocalDateTime startTime;
 
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+
 	private LocalDateTime endTime;
 
 }

@@ -1,6 +1,7 @@
 package com.chensoul.restaurant.service;
 
 import com.baomidou.mybatisplus.core.toolkit.BeanUtils;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.chensoul.commons.constant.RedisKeyConstant;
 import com.chensoul.commons.model.entity.Restaurant;
 import com.chensoul.restaurant.domain.mapper.RestaurantMapper;
@@ -28,7 +29,7 @@ public class RestaurantTest {
 	// 逐行插入
 	@Test
 	void testSyncForHash() {
-		final List<Restaurant> restaurants = restaurantMapper.findAll();
+		final List<Restaurant> restaurants = restaurantMapper.selectList(Wrappers.lambdaQuery());
 		final long start = System.currentTimeMillis();
 		restaurants.forEach(restaurant -> {
 			final Map<String, Object> restaurantMap = BeanUtils.beanToMap(restaurant);
@@ -42,7 +43,7 @@ public class RestaurantTest {
 	// Pipeline 管道插入
 	@Test
 	void testSyncForHashPipeline() {
-		final List<Restaurant> restaurants = restaurantMapper.findAll();
+		final List<Restaurant> restaurants = restaurantMapper.selectList(Wrappers.lambdaQuery());
 		final long start = System.currentTimeMillis();
 		final List<Long> list = redisTemplate.executePipelined((RedisCallback<Long>) connection -> {
 			for (final Restaurant restaurant : restaurants) {

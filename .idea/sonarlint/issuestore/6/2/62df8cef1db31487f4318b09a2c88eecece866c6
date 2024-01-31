@@ -2,11 +2,11 @@
 L
 java:S3740"/Provide the parametrized type for this generic.(‚Ê«8Ò¼“ÃÕ1
 
-java:S1488Y"]Immediately return this expression instead of assigning it to the temporary variable "point".(œìËşÿÿÿÿ8Ó¼“ÃÕ1
-g
-java:S2259?"EA "NullPointerException" could be thrown; "execute" is nullable here.(Ÿ¢×İÿÿÿÿÿ8ç¼“ÃÕ1
+java:S1488Y"]Immediately return this expression instead of assigning it to the temporary variable "point".(·¹½ğıÿÿÿÿ8Ó¼“ÃÕ1
 a
 java:S2259S"DA "NullPointerException" could be thrown; "getBit" is nullable here.(ÚÆı8ç¼“ÃÕ1
+g
+java:S2259?"EA "NullPointerException" could be thrown; "execute" is nullable here.(Ÿ¢×İÿÿÿÿÿ8ç¼“ÃÕ1
 M
 java:S1172“"/Remove this unused method parameter "username".(ñ’¢í8ï¼“ÃÕ1
 P

@@ -1,10 +1,9 @@
 package com.chensoul.restaurant.controller;
 
 import com.chensoul.commons.model.domain.R;
-import com.chensoul.restaurant.ReviewVO;
-import com.chensoul.restaurant.service.ReviewService;
+import com.chensoul.restaurant.domain.model.ReviewVO;
+import com.chensoul.restaurant.domain.service.ReviewService;
 import java.util.List;
-import javax.annotation.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("reviews")
 public class ReviewController {
 
-	@Resource
+
 	private ReviewService reviewService;
 
 	/**
@@ -33,7 +32,7 @@ public class ReviewController {
 							   final String access_token,
 							   @RequestParam("content") final String content,
 							   @RequestParam("likeIt") final int likeIt) {
-		this.reviewService.addReview(restaurantId, access_token, content, likeIt);
+		reviewService.addReview(restaurantId, access_token, content, likeIt);
 		return R.ok();
 	}
 
@@ -47,7 +46,7 @@ public class ReviewController {
 	@GetMapping("{restaurantId}/new")
 	public R<List<ReviewVO>> findNewReview(@PathVariable final Long restaurantId,
 										   final String access_token) {
-		final List<ReviewVO> reviewsList = this.reviewService.findNewReviews(restaurantId, access_token);
+		final List<ReviewVO> reviewsList = reviewService.findNewReviews(restaurantId, access_token);
 		return R.ok(reviewsList);
 	}
 

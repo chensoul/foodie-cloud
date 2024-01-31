@@ -1,11 +1,13 @@
 package com.chensoul.auth.controller;
 
+import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.chensoul.auth.client.UserApi;
-import com.chensoul.auth.entity.User;
-import com.chensoul.auth.model.LoggedUser;
-import com.chensoul.auth.model.dto.UserAddRequest;
-import com.chensoul.auth.service.UserService;
+import com.chensoul.auth.domain.entity.User;
+import com.chensoul.auth.domain.model.LoggedUser;
+import com.chensoul.auth.domain.model.UserAddRequest;
+import com.chensoul.auth.domain.service.UserService;
 import com.chensoul.commons.model.domain.R;
 import java.util.List;
 import java.util.Set;
@@ -36,7 +38,7 @@ public class UserController implements UserApi {
 	 */
 	@Override
 	public R<Void> register(final UserAddRequest userAddRequest) {
-		this.userService.register(userAddRequest);
+		userService.register(userAddRequest);
 		return R.ok();
 	}
 
@@ -48,18 +50,19 @@ public class UserController implements UserApi {
 	 */
 	@Override
 	public R<Void> checkPhone(final String phone) {
-		this.userService.checkPhoneIsRegistered(phone);
+		userService.checkPhoneIsRegistered(phone);
 		return R.ok();
 	}
 
 	@Override
 	public R<Page<User>> page(final Page<User> page) {
-		return R.ok(this.userService.page(page));
+		return R.ok(userService.page(page));
 	}
 
 	@Override
-	public R<List<User>> findByIds(final Set<Long> userIds) {
-		return R.ok(this.userService.findByIds(userIds));
+	public R<List<User>> list(final Set<Long> userIds) {
+		return R.ok(userService.list(Wrappers.<User>lambdaQuery()
+			.in(CollectionUtils.isNotEmpty(userIds), User::getId, userIds)));
 	}
 
 	@Override
@@ -84,11 +87,11 @@ public class UserController implements UserApi {
 		if (token.toLowerCase().contains("bearer ".toLowerCase())) {
 			token = token.toLowerCase().replace("bearer ", "");
 		}
-		final OAuth2AccessToken oAuth2AccessToken = this.redisTokenStore.readAccessToken(token);
+		final OAuth2AccessToken oAuth2AccessToken = redisTokenStore.readAccessToken(token);
 		if (oAuth2AccessToken != null) {
-			this.redisTokenStore.removeAccessToken(oAuth2AccessToken);
+			redisTokenStore.removeAccessToken(oAuth2AccessToken);
 			final OAuth2RefreshToken refreshToken = oAuth2AccessToken.getRefreshToken();
-			this.redisTokenStore.removeRefreshToken(refreshToken);
+			redisTokenStore.removeRefreshToken(refreshToken);
 		}
 		return R.ok();
 	}

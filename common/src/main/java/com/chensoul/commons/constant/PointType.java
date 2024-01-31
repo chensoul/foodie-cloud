@@ -16,7 +16,7 @@ public enum PointType {
 	private final int type;
 
 	PointType(final int key) {
-		this.type = key;
+		type = key;
 	}
 
 }

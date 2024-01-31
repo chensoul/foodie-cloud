@@ -1,8 +1,8 @@
 package com.chensoul.auth.client;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.chensoul.auth.entity.User;
-import com.chensoul.auth.model.dto.UserAddRequest;
+import com.chensoul.auth.domain.entity.User;
+import com.chensoul.auth.domain.model.UserAddRequest;
 import com.chensoul.commons.model.domain.R;
 import java.util.List;
 import java.util.Set;
@@ -28,8 +28,8 @@ public interface UserApi {
 	@GetMapping("/user/page")
 	R<Page<User>> page(final Page<User> page);
 
-	@GetMapping("/user/findByIds")
-	R<List<User>> findByIds(@RequestParam("ids") final Set<Long> userIds);
+	@GetMapping("/user/list")
+	R<List<User>> list(@RequestParam("ids") final Set<Long> userIds);
 
 	@GetMapping("/user/info")
 	R<User> getCurrentUser();

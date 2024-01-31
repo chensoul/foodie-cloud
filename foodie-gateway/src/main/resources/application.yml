@@ -65,10 +65,10 @@ secure:
     urls:
       - /actuator/**
       - /auth/oauth/**
-      - /diner/signin
-      - /diner/send
-      - /diner/checkPhone
-      - /diner/register
+      - /sign/signin
+      - /sign/send
+      - /sign/checkPhone
+      - /sign/register
       - /seckill/add
       - /restaurant/**
 

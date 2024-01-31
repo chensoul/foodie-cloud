@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS `t_user`;
-CREATE TABLE `t_user` (
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) DEFAULT NULL,
   `nickname` varchar(255) DEFAULT NULL COMMENT '昵称',
@@ -13,22 +13,22 @@ CREATE TABLE `t_user` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB;
 
-INSERT INTO `t_user` VALUES ('1', 'abc', 'test', '13888888888', 'abc@chensoul.com', '{noop}123456', null, 'USER',  '2020-11-06 16:17:52', '2020-11-06 16:17:55');
-INSERT INTO `t_user` VALUES ('2', 'test', 'test', '13666666666', null, '{noop}123456', null, 'USER', '2020-11-12 12:01:13', '2020-11-12 12:01:13');
+INSERT INTO `user` VALUES ('1', 'abc', 'test', '13888888888', 'abc@chensoul.com', '{noop}123456', null, 'USER',  '2020-11-06 16:17:52', '2020-11-06 16:17:55');
+INSERT INTO `user` VALUES ('2', 'test', 'test', '13666666666', null, '{noop}123456', null, 'USER', '2020-11-12 12:01:13', '2020-11-12 12:01:13');
 
-DROP TABLE IF EXISTS `t_point`;
-CREATE TABLE `t_point`  (
+DROP TABLE IF EXISTS `point`;
+CREATE TABLE `point`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NULL DEFAULT NULL,
-  `point` int(11) NULL DEFAULT NULL COMMENT '积分',
+  `score` int(11) NULL DEFAULT NULL COMMENT '积分',
   `type` tinyint(1) NULL DEFAULT NULL COMMENT '类型',
   `create_time` datetime(0) NULL DEFAULT NULL,
   `update_time` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB ROW_FORMAT = DYNAMIC;
 
-DROP TABLE IF EXISTS `t_follow`;
-CREATE TABLE `t_follow`  (
+DROP TABLE IF EXISTS `follow`;
+CREATE TABLE `follow`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NULL DEFAULT NULL,
   `follow_user_id` int(11) NULL DEFAULT NULL,
@@ -39,8 +39,8 @@ CREATE TABLE `t_follow`  (
 ) ENGINE = InnoDB ROW_FORMAT = DYNAMIC;
 
 
-DROP TABLE IF EXISTS `t_feed`;
-CREATE TABLE `t_feed`  (
+DROP TABLE IF EXISTS `feed`;
+CREATE TABLE `feed`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `content` varchar(255)  NULL DEFAULT NULL COMMENT '内容',
   `user_id` int(11) NULL DEFAULT NULL,
@@ -53,8 +53,8 @@ CREATE TABLE `t_feed`  (
 ) ENGINE = InnoDB ROW_FORMAT = DYNAMIC;
 
 
-DROP TABLE IF EXISTS `t_seckill_voucher`;
-CREATE TABLE `t_seckill_voucher`  (
+DROP TABLE IF EXISTS `seckill_voucher`;
+CREATE TABLE `seckill_voucher`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `voucher_id` int(11) NULL DEFAULT NULL,
   `amount` int(11) NULL DEFAULT NULL,
@@ -65,8 +65,8 @@ CREATE TABLE `t_seckill_voucher`  (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB ROW_FORMAT = DYNAMIC;
 
-DROP TABLE IF EXISTS `t_voucher`;
-CREATE TABLE `t_voucher`  (
+DROP TABLE IF EXISTS `voucher`;
+CREATE TABLE `voucher`  (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) CHARACTER SET utf8 NULL DEFAULT NULL COMMENT '代金券标题',
   `thumbnail` varchar(255) CHARACTER SET utf8 NULL DEFAULT NULL COMMENT '缩略图',
@@ -84,8 +84,8 @@ CREATE TABLE `t_voucher`  (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB ROW_FORMAT = DYNAMIC;
 
-DROP TABLE IF EXISTS `t_voucher_order`;
-CREATE TABLE `t_voucher_order`  (
+DROP TABLE IF EXISTS `voucher_order`;
+CREATE TABLE `voucher_order`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `order_no` int(11) NULL DEFAULT NULL,
   `voucher_id` int(11) NULL DEFAULT NULL,
@@ -101,7 +101,7 @@ CREATE TABLE `t_voucher_order`  (
 ) ENGINE = InnoDB ROW_FORMAT = DYNAMIC;
 
 
-CREATE TABLE `t_restaurant` (
+CREATE TABLE `restaurant` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) DEFAULT NULL ,
   `cnname` varchar(100) DEFAULT NULL,
@@ -125,7 +125,7 @@ CREATE TABLE `t_restaurant` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB ROW_FORMAT=DYNAMIC;
 
-INSERT INTO `t_restaurant` (`id`, `name`, `cnname`, `x`, `y`, `location`, `cnlocation`, `area`, `telephone`, `email`, `website`, `cuisine`, `average_price`, `introduction`, `thumbnail`, `like_votes`, `dislike_votes`, `city_id`, `create_time`, `update_time`) VALUES
+INSERT INTO `restaurant` (`id`, `name`, `cnname`, `x`, `y`, `location`, `cnlocation`, `area`, `telephone`, `email`, `website`, `cuisine`, `average_price`, `introduction`, `thumbnail`, `like_votes`, `dislike_votes`, `city_id`, `create_time`, `update_time`) VALUES
 (1, 'aaO Cafe', 'ef44d7e409b1900d06d534eb5f76ddea', 0, 0, NULL, NULL, 'Delivery Only', '1d62cc07fcf38cc95b79f23f6e69daa5', NULL, 'http://www.millenniumhongqiao.com/', '3b261136e3c33f35e0a58611b1f344cb', '¥¥¥¥', 'only by ask', 'restaurant/1/restaurant/160_160/14007358490915826.JPG', 10, 3, 21, '2014-05-04 19:26:28', NULL),
 (2, '1 Oz 3', 'eec00cf85502a9c9ea438e5d06e76801', 31.19063, 121.38893, 'd7baf5ca725f83be9f850dfd850b9715', 'b69a4453dab0bfa395f7296ff585e007', 'Changning.Gubei/Hongqiao', '0d4733fec502609ac9437c8fce61f593', NULL, 'http://www.1oz3.com', '604f00b2a37ed296dc0ac7772133f910', '¥', '', 'restaurant/2/restaurant/160_160/13978952798502774.jpg', 1, 2, 21, '2014-05-04 19:26:28', NULL),
 (3, '1% Free', '4150072cfb00c81dfb428b5dbe93b5cb', 31.20411, 121.42981, '6da1cc934037650c4a27b377086ca423', 'dabf19fcb4dd9494a750f6589af7ca46', 'Changning', '43294c2e4a694d9ee1bd2f49d5c1f584', NULL, 'http://www.onepercentchina.com', 'adc69293e8fd256b2609664f1e11cb53', '¥¥', '', 'restaurant/3/restaurant/160_160/14158771596727247.PNG', 1, 0, 21, '2014-05-04 19:26:28', NULL),

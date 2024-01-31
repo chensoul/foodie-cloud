@@ -1,7 +1,7 @@
 package com.chensoul.diner.controller;
 
 import com.chensoul.auth.client.UserClient;
-import com.chensoul.auth.entity.User;
+import com.chensoul.auth.domain.entity.User;
 import java.security.Principal;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

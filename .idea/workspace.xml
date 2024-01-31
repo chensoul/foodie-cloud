@@ -5,138 +5,125 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="278cd47f-fc71-454c-b820-4fb7129f5715" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/test/java/com/chensoul/auth/client/UserClientTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/foodie-feed/foodie-feed-api/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/foodie-feed/foodie-feed-api/src/main/java/com/chensoul/feed/entity/Feed.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/foodie-feed/foodie-feed-service/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/foodie-feed/foodie-feed-service/src/main/resources/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/foodie-follow/foodie-follow-api/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/foodie-follow/foodie-follow-service/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/foodie-follow/foodie-follow-service/src/main/java/com/chensoul/follow/service/FollowService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/foodie-follow/foodie-follow-service/src/main/resources/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/foodie-point/foodie-point-api/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/foodie-point/foodie-point-api/src/main/java/com/chensoul/point/client/PointApi.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/foodie-point/foodie-point-api/src/main/java/com/chensoul/point/client/PointClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/foodie-point/foodie-point-api/src/main/java/com/chensoul/point/entity/UserPoint.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/foodie-point/foodie-point-service/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/foodie-point/foodie-point-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/chensoul/auth/domain/mapper/UserMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/chensoul/auth/infrastructure/persistence/CustomMetaObjecthandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/chensoul/auth/infrastructure/persistence/MybatisPlusConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/foodie-diner/src/main/java/com/chensoul/diner/infrastructure/persistence/CustomMetaObjecthandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/foodie-diner/src/main/java/com/chensoul/diner/infrastructure/persistence/MybatisPlusConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/foodie-diner/src/main/java/com/chensoul/diner/infrastructure/webmvc/GlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/foodie-feed/foodie-feed-service/src/main/java/com/chensoul/feed/domain/mapper/FeedMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/foodie-feed/foodie-feed-service/src/main/java/com/chensoul/feed/infrastructure/persistence/CustomMetaObjecthandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/foodie-feed/foodie-feed-service/src/main/java/com/chensoul/feed/infrastructure/persistence/MybatisPlusConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/foodie-feed/foodie-feed-service/src/main/java/com/chensoul/feed/infrastructure/webmvc/GlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/foodie-follow/foodie-follow-service/src/main/java/com/chensoul/follow/domain/mapper/FollowMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/foodie-follow/foodie-follow-service/src/main/java/com/chensoul/follow/infrastructure/persistence/CustomMetaObjecthandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/foodie-follow/foodie-follow-service/src/main/java/com/chensoul/follow/infrastructure/persistence/MybatisPlusConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/foodie-follow/foodie-follow-service/src/main/java/com/chensoul/follow/infrastructure/webmvc/GlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/foodie-order/src/main/java/com/chensoul/order/infrastructure/persistence/CustomMetaObjecthandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/foodie-order/src/main/java/com/chensoul/order/infrastructure/persistence/MybatisPlusConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/foodie-order/src/main/java/com/chensoul/order/infrastructure/webmvc/GlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/foodie-point/foodie-point-api/src/main/java/com/chensoul/point/domain/entity/Point.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/foodie-point/foodie-point-api/src/main/java/com/chensoul/point/domain/model/PointAddRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/foodie-point/foodie-point-service/src/main/java/com/chensoul/point/infrastructure/cache/RedisTemplateConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/foodie-point/foodie-point-service/src/main/java/com/chensoul/point/infrastructure/persistence/CustomMetaObjecthandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/foodie-point/foodie-point-service/src/main/java/com/chensoul/point/infrastructure/persistence/MybatisPlusConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/foodie-point/foodie-point-service/src/main/java/com/chensoul/point/infrastructure/webmvc/GlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/foodie-restaurant/src/main/java/com/chensoul/restaurant/domain/mapper/RestaurantMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/foodie-restaurant/src/main/java/com/chensoul/restaurant/domain/mapper/ReviewMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/foodie-restaurant/src/main/java/com/chensoul/restaurant/infrastructure/cache/RedisTemplateConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/foodie-restaurant/src/main/java/com/chensoul/restaurant/infrastructure/persistence/CustomMetaObjecthandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/foodie-restaurant/src/main/java/com/chensoul/restaurant/infrastructure/persistence/MybatisPlusConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/foodie-restaurant/src/main/java/com/chensoul/restaurant/infrastructure/webmvc/GlobalExceptionHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/imooc/commons/constant/ApiConstant.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/chensoul/commons/constant/ApiConstant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/imooc/commons/constant/PointType.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/chensoul/commons/constant/PointType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/imooc/commons/constant/RedisKeyConstant.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/chensoul/commons/constant/RedisKeyConstant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/imooc/commons/model/domain/R.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/chensoul/commons/model/domain/R.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/imooc/commons/model/entity/BaseEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/chensoul/commons/model/entity/BaseEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/imooc/commons/model/entity/Feed.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/imooc/commons/model/entity/Follow.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-follow/foodie-follow-api/src/main/java/com/chensoul/follow/entity/Follow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/imooc/commons/model/entity/Restaurant.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/chensoul/commons/model/entity/Restaurant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/imooc/commons/model/entity/Review.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/chensoul/commons/model/entity/Review.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/imooc/commons/model/entity/SeckillVoucher.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/chensoul/commons/model/entity/SeckillVoucher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/imooc/commons/model/entity/UserPoint.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/imooc/commons/model/entity/VoucherOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/chensoul/commons/model/entity/VoucherOrder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/chensoul/commons/constant/ApiConstant.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/chensoul/commons/constant/Constant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/chensoul/commons/constant/PointType.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/chensoul/commons/constant/PointType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/chensoul/commons/constant/RedisKeyConstant.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/chensoul/commons/constant/RedisKeyConstant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/chensoul/commons/model/domain/R.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/chensoul/commons/model/domain/R.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/chensoul/commons/model/entity/BaseEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/chensoul/commons/model/entity/BaseEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/chensoul/commons/model/entity/SeckillVoucher.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/chensoul/commons/model/entity/SeckillVoucher.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-auth/foodie-auth-api/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-auth/foodie-auth-api/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-auth/foodie-auth-api/src/main/java/com/imooc/auth/client/UserApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-auth/foodie-auth-api/src/main/java/com/chensoul/auth/client/UserApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-auth/foodie-auth-api/src/main/java/com/imooc/auth/client/UserClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-auth/foodie-auth-api/src/main/java/com/chensoul/auth/client/UserClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-auth/foodie-auth-api/src/main/java/com/imooc/auth/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-auth/foodie-auth-api/src/main/java/com/chensoul/auth/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-auth/foodie-auth-api/src/main/java/com/imooc/auth/model/LoggedUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-auth/foodie-auth-api/src/main/java/com/chensoul/auth/model/LoggedUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-auth/foodie-auth-api/src/main/java/com/imooc/auth/model/SimpleUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-auth/foodie-auth-api/src/main/java/com/chensoul/auth/model/SimpleUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-auth/foodie-auth-api/src/main/java/com/imooc/auth/model/dto/UserAddRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-auth/foodie-auth-api/src/main/java/com/chensoul/auth/model/dto/UserAddRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/imooc/auth/AuthApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/chensoul/auth/AuthApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/imooc/auth/component/CustomOAuth2Exception.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/chensoul/auth/component/CustomOAuth2Exception.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/imooc/auth/component/CustomOAuth2ExceptionJackson2Serializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/chensoul/auth/component/CustomOAuth2ExceptionJackson2Serializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/imooc/auth/component/CustomWebResponseExceptionTranslator.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/chensoul/auth/component/CustomWebResponseExceptionTranslator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/imooc/auth/config/AuthorizationServerConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/chensoul/auth/config/AuthorizationServerConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/imooc/auth/config/ClientOAuth2Properties.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/chensoul/auth/config/ClientOAuth2Properties.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/imooc/auth/config/ResourceServerConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/chensoul/auth/config/ResourceServerConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/imooc/auth/config/WebSecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/chensoul/auth/config/WebSecurityConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/imooc/auth/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/chensoul/auth/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/imooc/auth/controller/VerifyCodeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/chensoul/auth/controller/VerifyCodeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/imooc/auth/handler/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/chensoul/auth/handler/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/imooc/auth/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/chensoul/auth/mapper/UserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/imooc/auth/service/CustomUserDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/chensoul/auth/service/CustomUserDetailsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/imooc/auth/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/chensoul/auth/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/imooc/auth/service/VerifyCodeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/chensoul/auth/service/VerifyCodeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-auth/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-auth/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-diner/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-diner/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-diner/src/main/java/com/imooc/diner/DinerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-diner/src/main/java/com/chensoul/diner/DinerApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-diner/src/main/java/com/imooc/diner/config/RedisTemplateConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-diner/src/main/java/com/chensoul/diner/config/RedisTemplateConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-diner/src/main/java/com/imooc/diner/controller/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-diner/src/main/java/com/chensoul/diner/controller/HelloController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-diner/src/main/java/com/imooc/diner/controller/NearMeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-diner/src/main/java/com/chensoul/diner/controller/NearMeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-diner/src/main/java/com/imooc/diner/controller/SignController.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-diner/src/main/java/com/chensoul/diner/controller/SignController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-diner/src/main/java/com/imooc/diner/handler/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-diner/src/main/java/com/chensoul/diner/handler/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-diner/src/main/java/com/imooc/diner/service/NearMeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-diner/src/main/java/com/chensoul/diner/service/NearMeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-diner/src/main/java/com/imooc/diner/service/SignService.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-diner/src/main/java/com/chensoul/diner/service/SignService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-diner/src/main/java/com/imooc/diner/vo/NearMeUserVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-diner/src/main/java/com/chensoul/diner/vo/NearMeUserVO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-diner/src/main/java/com/imooc/diner/vo/UserLoginVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-diner/src/main/java/com/chensoul/diner/vo/UserLoginVO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-diner/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-diner/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-feed/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-feed/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-feed/src/main/java/com/imooc/feed/FeedApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-feed/foodie-feed-service/src/main/java/com/chensoul/feed/FeedApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-feed/src/main/java/com/imooc/feed/FeedVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-feed/foodie-feed-api/src/main/java/com/chensoul/feed/model/FeedVO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-feed/src/main/java/com/imooc/feed/config/RedisTemplateConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-feed/foodie-feed-service/src/main/java/com/chensoul/feed/config/RedisTemplateConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-feed/src/main/java/com/imooc/feed/config/RestTemplateConfiguration.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-feed/src/main/java/com/imooc/feed/controller/FeedsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-feed/foodie-feed-service/src/main/java/com/chensoul/feed/controller/FeedsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-feed/src/main/java/com/imooc/feed/handler/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-feed/foodie-feed-service/src/main/java/com/chensoul/feed/handler/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-feed/src/main/java/com/imooc/feed/mapper/FeedMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-feed/foodie-feed-service/src/main/java/com/chensoul/feed/mapper/FeedMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-feed/src/main/java/com/imooc/feed/service/FeedService.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-feed/foodie-feed-service/src/main/java/com/chensoul/feed/service/FeedService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-feed/src/main/resources/application.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-follow/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-follow/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-follow/src/main/java/com/imooc/follow/FollowApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-follow/foodie-follow-service/src/main/java/com/chensoul/follow/FollowApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-follow/src/main/java/com/imooc/follow/config/RedisTemplateConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-follow/foodie-follow-service/src/main/java/com/chensoul/follow/config/RedisTemplateConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-follow/src/main/java/com/imooc/follow/config/RestTemplateConfiguration.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-follow/src/main/java/com/imooc/follow/controller/FollowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-follow/foodie-follow-service/src/main/java/com/chensoul/follow/controller/FollowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-follow/src/main/java/com/imooc/follow/handler/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-follow/foodie-follow-service/src/main/java/com/chensoul/follow/handler/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-follow/src/main/java/com/imooc/follow/mapper/FollowMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-follow/foodie-follow-service/src/main/java/com/chensoul/follow/mapper/FollowMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-follow/src/main/java/com/imooc/follow/service/FollowService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-follow/src/main/resources/application.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-gateway/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-gateway/src/main/java/com/imooc/gateway/GatewayApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-gateway/src/main/java/com/chensoul/gateway/GatewayApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-auth/foodie-auth-api/src/main/java/com/chensoul/auth/client/UserApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-auth/foodie-auth-api/src/main/java/com/chensoul/auth/client/UserApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-auth/foodie-auth-api/src/main/java/com/chensoul/auth/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-auth/foodie-auth-api/src/main/java/com/chensoul/auth/domain/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-auth/foodie-auth-api/src/main/java/com/chensoul/auth/model/LoggedUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-auth/foodie-auth-api/src/main/java/com/chensoul/auth/domain/model/LoggedUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-auth/foodie-auth-api/src/main/java/com/chensoul/auth/model/SimpleUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-auth/foodie-auth-api/src/main/java/com/chensoul/auth/domain/model/SimpleUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-auth/foodie-auth-api/src/main/java/com/chensoul/auth/model/dto/UserAddRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-auth/foodie-auth-api/src/main/java/com/chensoul/auth/domain/model/UserAddRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/chensoul/auth/AuthApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/chensoul/auth/AuthApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/chensoul/auth/component/CustomOAuth2Exception.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/chensoul/auth/infrastructure/security/support/CustomOAuth2Exception.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/chensoul/auth/component/CustomOAuth2ExceptionJackson2Serializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/chensoul/auth/infrastructure/security/support/CustomOAuth2ExceptionJackson2Serializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/chensoul/auth/component/CustomWebResponseExceptionTranslator.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/chensoul/auth/infrastructure/security/support/CustomWebResponseExceptionTranslator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/chensoul/auth/config/AuthorizationServerConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/chensoul/auth/infrastructure/security/AuthorizationServerConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/chensoul/auth/config/ClientOAuth2Properties.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/chensoul/auth/infrastructure/security/ClientOAuth2Properties.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/chensoul/auth/config/ResourceServerConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/chensoul/auth/infrastructure/security/ResourceServerConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/chensoul/auth/config/WebSecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/chensoul/auth/infrastructure/security/WebSecurityConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/chensoul/auth/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/chensoul/auth/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/chensoul/auth/controller/VerifyCodeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/chensoul/auth/controller/VerifyCodeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/chensoul/auth/handler/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/chensoul/auth/infrastructure/webmvc/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/chensoul/auth/mapper/UserMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/chensoul/auth/service/CustomUserDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/chensoul/auth/domain/service/CustomUserDetailsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/chensoul/auth/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/chensoul/auth/domain/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/chensoul/auth/service/VerifyCodeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/chensoul/auth/domain/service/VerifyCodeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/test/java/com/chensoul/auth/client/UserClientTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/test/java/com/chensoul/auth/client/UserClientTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-diner/src/main/java/com/chensoul/diner/config/RedisTemplateConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-diner/src/main/java/com/chensoul/diner/infrastructure/cache/RedisTemplateConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-diner/src/main/java/com/chensoul/diner/controller/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-diner/src/main/java/com/chensoul/diner/controller/HelloController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-diner/src/main/java/com/chensoul/diner/controller/NearMeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-diner/src/main/java/com/chensoul/diner/controller/NearMeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-diner/src/main/java/com/chensoul/diner/controller/SignController.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-diner/src/main/java/com/chensoul/diner/controller/SignController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-diner/src/main/java/com/chensoul/diner/handler/GlobalExceptionHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-diner/src/main/java/com/chensoul/diner/service/NearMeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-diner/src/main/java/com/chensoul/diner/domain/service/NearMeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-diner/src/main/java/com/chensoul/diner/service/SignService.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-diner/src/main/java/com/chensoul/diner/domain/service/SignService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-diner/src/main/java/com/chensoul/diner/vo/NearMeUserVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-diner/src/main/java/com/chensoul/diner/domain/model/NearMeUserVO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-diner/src/main/java/com/chensoul/diner/vo/UserLoginVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-diner/src/main/java/com/chensoul/diner/domain/model/UserLoginVO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-feed/foodie-feed-api/src/main/java/com/chensoul/feed/entity/Feed.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-feed/foodie-feed-api/src/main/java/com/chensoul/feed/domain/entity/Feed.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-feed/foodie-feed-api/src/main/java/com/chensoul/feed/model/FeedVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-feed/foodie-feed-api/src/main/java/com/chensoul/feed/domain/model/FeedVO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-feed/foodie-feed-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-feed/foodie-feed-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-feed/foodie-feed-service/src/main/java/com/chensoul/feed/FeedApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-feed/foodie-feed-service/src/main/java/com/chensoul/feed/FeedApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-feed/foodie-feed-service/src/main/java/com/chensoul/feed/config/RedisTemplateConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-order/src/main/java/com/chensoul/order/infrastructure/cache/RedisTemplateConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-feed/foodie-feed-service/src/main/java/com/chensoul/feed/controller/FeedsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-feed/foodie-feed-service/src/main/java/com/chensoul/feed/controller/FeedsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-feed/foodie-feed-service/src/main/java/com/chensoul/feed/handler/GlobalExceptionHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-feed/foodie-feed-service/src/main/java/com/chensoul/feed/mapper/FeedMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-feed/foodie-feed-service/src/main/java/com/chensoul/feed/service/FeedService.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-feed/foodie-feed-service/src/main/java/com/chensoul/feed/domain/service/FeedService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-follow/foodie-follow-api/src/main/java/com/chensoul/follow/entity/Follow.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-follow/foodie-follow-api/src/main/java/com/chensoul/follow/domain/entity/Follow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-follow/foodie-follow-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-follow/foodie-follow-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-follow/foodie-follow-service/src/main/java/com/chensoul/follow/FollowApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-follow/foodie-follow-service/src/main/java/com/chensoul/follow/FollowApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-follow/foodie-follow-service/src/main/java/com/chensoul/follow/config/RedisTemplateConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-follow/foodie-follow-service/src/main/java/com/chensoul/follow/controller/FollowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-follow/foodie-follow-service/src/main/java/com/chensoul/follow/controller/FollowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-follow/foodie-follow-service/src/main/java/com/chensoul/follow/handler/GlobalExceptionHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-follow/foodie-follow-service/src/main/java/com/chensoul/follow/mapper/FollowMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-follow/foodie-follow-service/src/main/java/com/chensoul/follow/service/FollowService.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-follow/foodie-follow-service/src/main/java/com/chensoul/follow/domain/service/FollowService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/foodie-gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-gateway/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/foodie-order/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-order/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-order/src/main/java/com/imooc/order/OrderApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-order/src/main/java/com/chensoul/order/OrderApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-order/src/main/java/com/imooc/order/config/RedisLockConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-order/src/main/java/com/chensoul/order/config/RedisLockConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-order/src/main/java/com/imooc/order/config/RedisTemplateConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-order/src/main/java/com/chensoul/order/config/RedisTemplateConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-order/src/main/java/com/imooc/order/config/RestTemplateConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-order/src/main/java/com/chensoul/order/config/RestTemplateConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-order/src/main/java/com/imooc/order/controller/SeckillController.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-order/src/main/java/com/chensoul/order/controller/SeckillController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-order/src/main/java/com/imooc/order/handler/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-order/src/main/java/com/chensoul/order/handler/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-order/src/main/java/com/imooc/order/mapper/SeckillVoucherMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-order/src/main/java/com/chensoul/order/mapper/SeckillVoucherMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-order/src/main/java/com/imooc/order/mapper/VoucherOrderMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-order/src/main/java/com/chensoul/order/mapper/VoucherOrderMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-order/src/main/java/com/imooc/order/model/RedisLock.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-order/src/main/java/com/chensoul/order/model/RedisLock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-order/src/main/java/com/imooc/order/service/SeckillService.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-order/src/main/java/com/chensoul/order/service/SeckillService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-order/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-order/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-point/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-point/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-point/src/main/java/com/imooc/point/PointApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-point/foodie-point-service/src/main/java/com/chensoul/point/PointApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-point/src/main/java/com/imooc/point/config/RedisTemplateConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-point/foodie-point-service/src/main/java/com/chensoul/point/config/RedisTemplateConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-point/src/main/java/com/imooc/point/config/RestTemplateConfiguration.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-point/src/main/java/com/imooc/point/controller/PointController.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-point/foodie-point-service/src/main/java/com/chensoul/point/controller/PointController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-point/src/main/java/com/imooc/point/handler/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-point/foodie-point-service/src/main/java/com/chensoul/point/handler/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-point/src/main/java/com/imooc/point/mapper/PointMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-point/foodie-point-service/src/main/java/com/chensoul/point/mapper/PointMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-point/src/main/java/com/imooc/point/model/UserPointRankVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-point/foodie-point-api/src/main/java/com/chensoul/point/model/UserPointRankVO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-point/src/main/java/com/imooc/point/service/PointService.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-point/foodie-point-service/src/main/java/com/chensoul/point/service/PointService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-point/src/main/resources/application.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-point/src/test/java/com/imooc/point/PointApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-point/foodie-point-service/src/test/java/com/chensoul/point/PointApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-point/src/test/java/com/imooc/point/controller/PointControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-point/foodie-point-service/src/test/java/com/chensoul/point/controller/PointControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-registry/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-registry/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-registry/src/main/java/com/imooc/registry/RegistryApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-registry/src/main/java/com/chensoul/registry/RegistryApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-registry/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-registry/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-order/src/main/java/com/chensoul/order/OrderApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-order/src/main/java/com/chensoul/order/OrderApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-order/src/main/java/com/chensoul/order/config/RedisLockConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-order/src/main/java/com/chensoul/order/infrastructure/lock/RedisLockConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-order/src/main/java/com/chensoul/order/config/RedisTemplateConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-feed/foodie-feed-service/src/main/java/com/chensoul/feed/infrastructure/cache/RedisTemplateConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-order/src/main/java/com/chensoul/order/config/RestTemplateConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-order/src/main/java/com/chensoul/order/controller/SeckillController.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-order/src/main/java/com/chensoul/order/controller/SeckillController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-order/src/main/java/com/chensoul/order/handler/GlobalExceptionHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-order/src/main/java/com/chensoul/order/mapper/SeckillVoucherMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-order/src/main/java/com/chensoul/order/domain/mapper/SeckillVoucherMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-order/src/main/java/com/chensoul/order/mapper/VoucherOrderMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-order/src/main/java/com/chensoul/order/domain/mapper/VoucherOrderMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-order/src/main/java/com/chensoul/order/model/RedisLock.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-order/src/main/java/com/chensoul/order/infrastructure/lock/RedisLock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-order/src/main/java/com/chensoul/order/service/SeckillService.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-order/src/main/java/com/chensoul/order/domain/service/SeckillService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-point/foodie-point-api/src/main/java/com/chensoul/point/client/PointApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-point/foodie-point-api/src/main/java/com/chensoul/point/client/PointApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-point/foodie-point-api/src/main/java/com/chensoul/point/entity/UserPoint.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-point/foodie-point-api/src/main/java/com/chensoul/point/model/UserPointRankVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-point/foodie-point-api/src/main/java/com/chensoul/point/domain/model/UserPointRankVO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-point/foodie-point-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-point/foodie-point-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-point/foodie-point-service/src/main/java/com/chensoul/point/PointApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-point/foodie-point-service/src/main/java/com/chensoul/point/PointApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-point/foodie-point-service/src/main/java/com/chensoul/point/config/RedisTemplateConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-follow/foodie-follow-service/src/main/java/com/chensoul/follow/infrastructure/cache/RedisTemplateConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-point/foodie-point-service/src/main/java/com/chensoul/point/controller/PointController.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-point/foodie-point-service/src/main/java/com/chensoul/point/controller/PointController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-point/foodie-point-service/src/main/java/com/chensoul/point/handler/GlobalExceptionHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-point/foodie-point-service/src/main/java/com/chensoul/point/mapper/PointMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-point/foodie-point-service/src/main/java/com/chensoul/point/domain/mapper/PointMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-point/foodie-point-service/src/main/java/com/chensoul/point/service/PointService.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-point/foodie-point-service/src/main/java/com/chensoul/point/domain/service/PointService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-point/foodie-point-service/src/test/java/com/chensoul/point/PointApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-point/foodie-point-service/src/test/java/com/chensoul/point/PointApplicationTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/foodie-restaurant/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-restaurant/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-restaurant/src/main/java/com/imooc/restaurant/RestaurantApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-restaurant/src/main/java/com/chensoul/restaurant/RestaurantApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-restaurant/src/main/java/com/imooc/restaurant/ReviewVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-restaurant/src/main/java/com/chensoul/restaurant/ReviewVO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-restaurant/src/main/java/com/imooc/restaurant/config/RedisTemplateConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-restaurant/src/main/java/com/chensoul/restaurant/config/RedisTemplateConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-restaurant/src/main/java/com/imooc/restaurant/config/RestTemplateConfiguration.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-restaurant/src/main/java/com/imooc/restaurant/controller/RestaurantController.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-restaurant/src/main/java/com/chensoul/restaurant/controller/RestaurantController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-restaurant/src/main/java/com/imooc/restaurant/controller/ReviewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-restaurant/src/main/java/com/chensoul/restaurant/controller/ReviewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-restaurant/src/main/java/com/imooc/restaurant/handler/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-restaurant/src/main/java/com/chensoul/restaurant/handler/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-restaurant/src/main/java/com/imooc/restaurant/mapper/RestaurantMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-restaurant/src/main/java/com/chensoul/restaurant/mapper/RestaurantMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-restaurant/src/main/java/com/imooc/restaurant/mapper/ReviewMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-restaurant/src/main/java/com/chensoul/restaurant/mapper/ReviewMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-restaurant/src/main/java/com/imooc/restaurant/service/RestaurantService.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-restaurant/src/main/java/com/chensoul/restaurant/service/RestaurantService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-restaurant/src/main/java/com/imooc/restaurant/service/ReviewService.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-restaurant/src/main/java/com/chensoul/restaurant/service/ReviewService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-restaurant/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-restaurant/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-restaurant/src/test/java/com/imooc/restaurant/service/RestaurantTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-restaurant/src/test/java/com/chensoul/restaurant/service/RestaurantTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/测试计划.jmx" beforeDir="false" afterPath="$PROJECT_DIR$/测试计划.jmx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-restaurant/src/main/java/com/chensoul/restaurant/RestaurantApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-restaurant/src/main/java/com/chensoul/restaurant/RestaurantApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-restaurant/src/main/java/com/chensoul/restaurant/ReviewVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-restaurant/src/main/java/com/chensoul/restaurant/domain/model/ReviewVO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-restaurant/src/main/java/com/chensoul/restaurant/config/RedisTemplateConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-restaurant/src/main/java/com/chensoul/restaurant/controller/RestaurantController.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-restaurant/src/main/java/com/chensoul/restaurant/controller/RestaurantController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-restaurant/src/main/java/com/chensoul/restaurant/controller/ReviewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-restaurant/src/main/java/com/chensoul/restaurant/controller/ReviewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-restaurant/src/main/java/com/chensoul/restaurant/handler/GlobalExceptionHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-restaurant/src/main/java/com/chensoul/restaurant/mapper/RestaurantMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-restaurant/src/main/java/com/chensoul/restaurant/mapper/ReviewMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-restaurant/src/main/java/com/chensoul/restaurant/service/RestaurantService.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-restaurant/src/main/java/com/chensoul/restaurant/domain/service/RestaurantService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-restaurant/src/main/java/com/chensoul/restaurant/service/ReviewService.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-restaurant/src/main/java/com/chensoul/restaurant/domain/service/ReviewService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-restaurant/src/test/java/com/chensoul/restaurant/service/RestaurantTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-restaurant/src/test/java/com/chensoul/restaurant/service/RestaurantTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -192,24 +179,28 @@
     "Spring Boot.AuthApplication.executor": "Debug",
     "Spring Boot.DinerApplication.executor": "Debug",
     "Spring Boot.Oauth2ServerApplication.executor": "Debug",
-    "Spring Boot.RegistryApplication.executor": "Run",
+    "Spring Boot.PointApplication.executor": "Debug",
+    "Spring Boot.RegistryApplication.executor": "Debug",
     "Spring Boot.UserApplication.executor": "Debug",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "git-widget-placeholder": "main",
     "jdk.selected.JAVA_MODULE": "1.8",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/chensoul/workspace/IdeaProjects/foodie-cloud/foodie-follow/foodie-follow-service/src/main",
+    "last_opened_file_path": "/Users/chensoul/workspace/IdeaProjects/foodie-cloud/foodie-restaurant/src/main/java/com/chensoul/restaurant",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.17261219",
     "settings.editor.selected.configurable": "settings.saveactions"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/foodie-follow/foodie-follow-service/src/main" />
-      <recent name="$PROJECT_DIR$/foodie-feed/foodie-feed-service/src/main" />
-      <recent name="$PROJECT_DIR$/foodie-point/foodie-point-service/src/test" />
-      <recent name="$PROJECT_DIR$/foodie-point/foodie-point-service/src/main/resources" />
-      <recent name="$PROJECT_DIR$/foodie-point/foodie-point-service/src/main" />
+      <recent name="$PROJECT_DIR$/foodie-restaurant/src/main/java/com/chensoul/restaurant" />
+      <recent name="$PROJECT_DIR$/foodie-point/foodie-point-service/src/main/java/com/chensoul/point" />
+      <recent name="$PROJECT_DIR$/foodie-order/src/main/java/com/chensoul/order" />
+      <recent name="$PROJECT_DIR$/foodie-follow/foodie-follow-service/src/main/java/com/chensoul/follow" />
+      <recent name="$PROJECT_DIR$/foodie-feed/foodie-feed-service/src/main/java/com/chensoul/feed" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/foodie-follow" />
@@ -230,12 +221,14 @@
       <recent name="com.imooc.auth.client" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.imooc.point.client" />
-      <recent name="com.imooc.diner.config" />
-      <recent name="com.imooc.auth.service" />
+      <recent name="com.chensoul.commons.model.domain" />
+      <recent name="com.chensoul.restaurant.handler" />
+      <recent name="com.chensoul.point.handler" />
+      <recent name="com.chensoul.order.handler" />
+      <recent name="com.chensoul.follow.handler" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.UserClientTest">
+  <component name="RunManager" selected="Spring Boot.PointApplication">
     <configuration name="UserClientTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="foodie-auth-service" />
       <extension name="coverage">
@@ -255,7 +248,7 @@
       <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <module name="foodie-auth-service" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.imooc.auth.AuthApplication" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.chensoul.auth.AuthApplication" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.imooc.auth.*" />
@@ -268,7 +261,7 @@
     </configuration>
     <configuration name="DinerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="foodie-diner" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.imooc.diner.DinerApplication" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.chensoul.diner.DinerApplication" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.imooc.diner.*" />
@@ -279,9 +272,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="PointApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="foodie-point-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.chensoul.point.PointApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.chensoul.point.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="RegistryApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="foodie-registry" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.imooc.registry.RegistryApplication" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.chensoul.registry.RegistryApplication" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.imooc.registry.*" />
@@ -294,15 +300,17 @@
     </configuration>
     <list>
       <item itemvalue="JUnit.UserClientTest" />
+      <item itemvalue="Spring Boot.PointApplication" />
       <item itemvalue="Spring Boot.AuthApplication" />
       <item itemvalue="Spring Boot.DinerApplication" />
       <item itemvalue="Spring Boot.RegistryApplication" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.RegistryApplication" />
         <item itemvalue="Spring Boot.AuthApplication" />
+        <item itemvalue="Spring Boot.PointApplication" />
         <item itemvalue="Spring Boot.DinerApplication" />
+        <item itemvalue="Spring Boot.RegistryApplication" />
         <item itemvalue="JUnit.UserClientTest" />
       </list>
     </recent_temporary>

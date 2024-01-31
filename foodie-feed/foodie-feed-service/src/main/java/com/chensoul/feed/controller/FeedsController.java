@@ -1,11 +1,11 @@
 package com.chensoul.feed.controller;
 
 import com.chensoul.commons.model.domain.R;
-import com.chensoul.feed.model.FeedVO;
-import com.chensoul.feed.entity.Feed;
-import com.chensoul.feed.service.FeedService;
+import com.chensoul.feed.domain.entity.Feed;
+import com.chensoul.feed.domain.model.FeedVO;
+import com.chensoul.feed.domain.service.FeedService;
 import java.util.List;
-import javax.annotation.Resource;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,9 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@AllArgsConstructor
 public class FeedsController {
-
-	@Resource
 	private FeedService feedService;
 
 	/**
@@ -28,7 +27,7 @@ public class FeedsController {
 	 */
 	@GetMapping("{page}")
 	public R selectForPage(@PathVariable final Integer page) {
-		final List<FeedVO> feedVOS = this.feedService.selectForPage(page);
+		final List<FeedVO> feedVOS = feedService.selectForPage(page);
 		return R.ok(feedVOS);
 	}
 
@@ -39,7 +38,7 @@ public class FeedsController {
 	 */
 	@PostMapping("updateFollowingFeed/{followingUserId}")
 	public R addFollowingFeed(@PathVariable final Long followingUserId, @RequestParam final int type) {
-		this.feedService.addFollowingFeed(followingUserId, type);
+		feedService.addFollowingFeed(followingUserId, type);
 		return R.ok();
 	}
 
@@ -51,7 +50,7 @@ public class FeedsController {
 	 */
 	@DeleteMapping("{id}")
 	public R delete(@PathVariable final Long id) {
-		this.feedService.delete(id);
+		feedService.delete(id);
 		return R.ok();
 	}
 
@@ -63,7 +62,7 @@ public class FeedsController {
 	 */
 	@PostMapping
 	public R<String> create(@RequestBody final Feed feed) {
-		this.feedService.create(feed);
+		feedService.create(feed);
 		return R.ok("添加成功");
 	}
 

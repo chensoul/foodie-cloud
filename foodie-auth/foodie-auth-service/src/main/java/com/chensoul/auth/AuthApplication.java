@@ -4,7 +4,7 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@MapperScan("com.chensoul.auth.mapper")
+@MapperScan("com.chensoul.auth.**.mapper")
 @SpringBootApplication
 public class AuthApplication {
 

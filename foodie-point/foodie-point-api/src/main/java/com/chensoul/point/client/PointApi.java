@@ -1,8 +1,9 @@
 package com.chensoul.point.client;
 
 import com.chensoul.commons.model.domain.R;
+import com.chensoul.point.domain.entity.Point;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
 
 /**
  * TODO Comment
@@ -12,7 +13,5 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 public interface PointApi {
 	@PostMapping("/point")
-	R<Void> addPoint(@RequestParam(required = false) final Long userId,
-					 @RequestParam(required = false) final Integer point,
-					 @RequestParam(required = false) final Integer type);
+	R<Point> addPoint(@RequestBody Point point);
 }

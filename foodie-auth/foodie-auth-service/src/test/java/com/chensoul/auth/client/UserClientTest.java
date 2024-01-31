@@ -1,6 +1,6 @@
 package com.chensoul.auth.client;
 
-import com.chensoul.auth.entity.User;
+import com.chensoul.auth.domain.entity.User;
 import com.chensoul.commons.model.domain.R;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

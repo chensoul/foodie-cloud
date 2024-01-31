@@ -8,11 +8,11 @@ public enum RedisKeyConstant {
 	FOLLOWING("following:", "关注集合Key"),
 	FOLLOWING_FEED("following_feed:", "我关注的好友的FeedsKey"),
 	LOCK_KEY("lockby:", "分布式锁的key"),
-	POINT("diner:point", "user用户的积分Key"),
+	POINT("sign:point", "user用户的积分Key"),
 	RESTAURANT("restaurant:", "餐厅的Key"),
 	RESTAURANT_NEW_REVIEW("restaurant:new:reviews:", "餐厅评论Key"),
 	SECKILL_VOUCHER("seckill_voucher:", "秒杀券的key"),
-	USER_LOCATION("diner:location", "user地理位置Key"),
+	USER_LOCATION("sign:location", "user地理位置Key"),
 	VERIFY_CODE("verify_code:", "验证码"),
 	;
 

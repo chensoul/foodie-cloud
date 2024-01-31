@@ -1,8 +1,8 @@
 package com.chensoul.follow.controller;
 
 import com.chensoul.commons.model.domain.R;
-import com.chensoul.follow.service.FollowService;
-import javax.annotation.Resource;
+import com.chensoul.follow.domain.service.FollowService;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,9 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
  * 关注/取关控制层
  */
 @RestController
+@AllArgsConstructor
+
 public class FollowController {
 
-	@Resource
 	private FollowService followService;
 
 	/**
@@ -27,7 +28,7 @@ public class FollowController {
 	@GetMapping("follower/{userId}")
 	public R findFollower(@PathVariable final Long userId) {
 		return R.ok(
-			this.followService.findFollower(userId));
+			followService.findFollower(userId));
 	}
 
 	/**
@@ -38,7 +39,7 @@ public class FollowController {
 	 */
 	@GetMapping("common/{userId}")
 	public R findCommonFriend(@PathVariable final Integer userId) {
-		return R.ok(this.followService.findCommonsFriend(userId));
+		return R.ok(followService.findCommonsFriend(userId));
 	}
 
 	/**
@@ -51,7 +52,7 @@ public class FollowController {
 	@PostMapping("/{followUserId}")
 	public R<Void> follow(@PathVariable final Long followUserId,
 						  @RequestParam final int isFollowed) {
-		this.followService.follow(followUserId,
+		followService.follow(followUserId,
 			isFollowed);
 		return R.ok();
 	}

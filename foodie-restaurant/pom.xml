@@ -15,11 +15,6 @@
     <dependencies>
         <dependency>
             <groupId>com.chensoul</groupId>
-            <artifactId>common</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.chensoul</groupId>
             <artifactId>foodie-auth-api</artifactId>
             <version>${project.version}</version>
         </dependency>
@@ -56,5 +51,21 @@
             <artifactId>mysql-connector-j</artifactId>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

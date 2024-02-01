@@ -5,39 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="278cd47f-fc71-454c-b820-4fb7129f5715" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/chensoul/auth/infrastructure/serializer/JacksonConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/java/com/chensoul/auth/infrastructure/serializer/JacksonObjectMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/foodie-diner/src/main/java/com/chensoul/diner/infrastructure/serializer/JacksonConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/foodie-diner/src/main/java/com/chensoul/diner/infrastructure/serializer/JacksonObjectMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/foodie-feed/foodie-feed-service/src/main/java/com/chensoul/feed/infrastructure/serializer/JacksonConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/foodie-feed/foodie-feed-service/src/main/java/com/chensoul/feed/infrastructure/serializer/JacksonObjectMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/foodie-follow/foodie-follow-service/src/main/java/com/chensoul/follow/infrastructure/serializer/JacksonConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/foodie-follow/foodie-follow-service/src/main/java/com/chensoul/follow/infrastructure/serializer/JacksonObjectMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/foodie-order/src/main/java/com/chensoul/order/infrastructure/serializer/JacksonConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/foodie-order/src/main/java/com/chensoul/order/infrastructure/serializer/JacksonObjectMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/foodie-point/foodie-point-service/src/main/java/com/chensoul/point/infrastructure/serializer/JacksonConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/foodie-point/foodie-point-service/src/main/java/com/chensoul/point/infrastructure/serializer/JacksonObjectMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/foodie-restaurant/src/main/java/com/chensoul/restaurant/infrastructure/serializer/JacksonConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/foodie-restaurant/src/main/java/com/chensoul/restaurant/infrastructure/serializer/JacksonObjectMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/chensoul/commons/model/entity/BaseEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/chensoul/commons/model/entity/BaseEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/chensoul/commons/model/entity/SeckillVoucher.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/chensoul/commons/model/entity/SeckillVoucher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-auth/foodie-auth-api/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-auth/foodie-auth-api/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-auth/foodie-auth-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-auth/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-auth/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-diner/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-diner/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-feed/foodie-feed-api/src/main/java/com/chensoul/feed/domain/model/FeedVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-feed/foodie-feed-api/src/main/java/com/chensoul/feed/domain/model/FeedVO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-feed/foodie-feed-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-feed/foodie-feed-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-follow/foodie-follow-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-follow/foodie-follow-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-order/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-order/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-point/foodie-point-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-point/foodie-point-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-point/foodie-point-service/src/test/java/com/chensoul/point/PointApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-point/foodie-point-service/src/test/java/com/chensoul/point/PointApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-point/foodie-point-service/src/test/java/com/chensoul/point/controller/PointControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-point/foodie-point-service/src/test/java/com/chensoul/point/controller/PointControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-point/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-point/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-diner/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-diner/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-feed/foodie-feed-api/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-feed/foodie-feed-api/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-feed/foodie-feed-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-feed/foodie-feed-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-follow/foodie-follow-api/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-follow/foodie-follow-api/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-follow/foodie-follow-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-follow/foodie-follow-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-gateway/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-order/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-order/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-point/foodie-point-api/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-point/foodie-point-api/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-point/foodie-point-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-point/foodie-point-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-registry/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-registry/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/foodie-restaurant/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-restaurant/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-restaurant/src/main/java/com/chensoul/restaurant/domain/model/ReviewVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-restaurant/src/main/java/com/chensoul/restaurant/domain/model/ReviewVO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-restaurant/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-restaurant/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-restaurant/src/test/java/com/chensoul/restaurant/service/RestaurantTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-restaurant/src/test/java/com/chensoul/restaurant/service/RestaurantTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -79,37 +59,37 @@
     <option name="showVisibilityIcons" value="true" />
     <option name="sortKey" value="BY_TIME_DESCENDING" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "JUnit.UserClientTest (1).executor": "Run",
-    "JUnit.UserClientTest.executor": "Run",
-    "Maven.common [compile].executor": "Run",
-    "Maven.common [deploy].executor": "Run",
-    "Maven.foodie-cloud [clean].executor": "Run",
-    "Maven.foodie-cloud [compile].executor": "Run",
-    "Maven.foodie-cloud [deploy].executor": "Run",
-    "Maven.foodie-cloud [package].executor": "Run",
-    "Maven.foodie-cloud [validate].executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "Spring Boot.AuthApplication.executor": "Debug",
-    "Spring Boot.DinerApplication.executor": "Debug",
-    "Spring Boot.Oauth2ServerApplication.executor": "Debug",
-    "Spring Boot.PointApplication.executor": "Debug",
-    "Spring Boot.RegistryApplication.executor": "Debug",
-    "Spring Boot.UserApplication.executor": "Debug",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "main",
-    "jdk.selected.JAVA_MODULE": "1.8",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/chensoul/workspace/IdeaProjects/foodie-cloud/foodie-restaurant/src/main/java/com/chensoul/restaurant/infrastructure",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.17261219",
-    "settings.editor.selected.configurable": "settings.saveactions"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JUnit.UserClientTest (1).executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserClientTest.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.common [compile].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.common [deploy].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.foodie-cloud [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.foodie-cloud [compile].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.foodie-cloud [deploy].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.foodie-cloud [package].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.foodie-cloud [validate].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;Spring Boot.AuthApplication.executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.DinerApplication.executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.Oauth2ServerApplication.executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.PointApplication.executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.RegistryApplication.executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.UserApplication.executor&quot;: &quot;Debug&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;1.8&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/chensoul/workspace/IdeaProjects/foodie-cloud/foodie-restaurant/src/main/java/com/chensoul/restaurant/infrastructure&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.17261219&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.saveactions&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/foodie-restaurant/src/main/java/com/chensoul/restaurant/infrastructure" />
@@ -188,6 +168,34 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="FeedApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="foodie-feed-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.chensoul.feed.FeedApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FollowApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="foodie-follow-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.chensoul.follow.FollowApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="foodie-gateway" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.chensoul.gateway.GatewayApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="OrderApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="foodie-order" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.chensoul.order.OrderApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="PointApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="foodie-point-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.chensoul.point.PointApplication" />
@@ -214,8 +222,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="RestaurantApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="foodie-restaurant" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.chensoul.restaurant.RestaurantApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="JUnit.UserClientTest" />
+      <item itemvalue="Spring Boot.FeedApplication" />
+      <item itemvalue="Spring Boot.FollowApplication" />
+      <item itemvalue="Spring Boot.GatewayApplication" />
+      <item itemvalue="Spring Boot.OrderApplication" />
+      <item itemvalue="Spring Boot.RestaurantApplication" />
       <item itemvalue="Spring Boot.PointApplication" />
       <item itemvalue="Spring Boot.AuthApplication" />
       <item itemvalue="Spring Boot.DinerApplication" />

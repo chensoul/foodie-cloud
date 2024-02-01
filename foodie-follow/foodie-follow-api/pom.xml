@@ -15,11 +15,6 @@
     <dependencies>
         <dependency>
             <groupId>com.chensoul</groupId>
-            <artifactId>common</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.chensoul</groupId>
             <artifactId>foodie-auth-api</artifactId>
             <version>${project.version}</version>
         </dependency>

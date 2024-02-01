@@ -128,15 +128,15 @@ L
 foodie-restaurant/Dockerfile,5/3/534d28753f7056967f5ffe871f77a2f0af531006
 B
 gateway/Dockerfile,5/a/5a39717901490093530d8f039ae4bb7d57680f50
-C
-registry/Dockerfile,0/3/03db7f2cf2f8283b125dcb9b60ba92d60a2ab092
 =
 .dockerignore,0/5/05a721ebe3ba0754116825ed1359ff1785f4bbac
-s
-Cregistry/src/main/java/com/chensoul/foodie/RegistryApplication.java,7/8/78ec407c6ba3820c59489d12782fce9c7d891c6b
 >
 sql/foodie.sql,7/7/778c93751531eb8ab2a003d1ca15747dc07dddb3
 s
 Cregister/src/main/java/com/chensoul/foodie/RegisterApplication.java,0/7/0759cfdbf6d12a9798ba5e80e9c2c37639464663
 C
 register/Dockerfile,6/d/6d98de5c6b5dddff561f71fb8bc7837604608535
+o
+?eureka/src/main/java/com/chensoul/foodie/EurekaApplication.java,f/b/fb1a518948169e6fc01e8bdea15693febdb6f6c6
+I
+foodie-gateway/Dockerfile,b/f/bf21a631f8102f3341b2a74fdde1c52201e924d7

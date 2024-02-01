@@ -27,8 +27,8 @@
 
     <modules>
         <module>core</module>
-        <module>register</module>
-        <module>gateway</module>
+        <module>eureka</module>
+        <module>foodie-gateway</module>
         <module>foodie-auth</module>
         <module>foodie-diner</module>
         <module>foodie-order</module>

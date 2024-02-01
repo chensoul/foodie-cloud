@@ -25,7 +25,7 @@ eureka:
     lease-expiration-duration-in-seconds: 2
   client:
     service-url:
-      defaultZone: http://${register:register}:8761/eureka/
+      defaultZone: http://${eureka:eureka}:8761/eureka/
 
 mybatis-plus:
   configuration:

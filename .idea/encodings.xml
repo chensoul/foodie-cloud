@@ -3,6 +3,8 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/core/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/core/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eureka/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eureka/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/foodie-auth/foodie-auth-api/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/foodie-auth/foodie-auth-api/src/main/kotlin" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/foodie-auth/foodie-auth-api/src/main/resources" charset="UTF-8" />
@@ -27,6 +29,8 @@
     <file url="file://$PROJECT_DIR$/foodie-follow/foodie-follow-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/foodie-follow/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/foodie-follow/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/foodie-gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/foodie-gateway/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/foodie-order/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/foodie-order/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/foodie-point/foodie-point-api/src/main/java" charset="UTF-8" />
@@ -37,10 +41,6 @@
     <file url="file://$PROJECT_DIR$/foodie-point/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/foodie-restaurant/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/foodie-restaurant/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/gateway/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/gateway/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/register/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/register/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
   </component>

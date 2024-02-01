@@ -50,8 +50,8 @@ Spring Cloud每个业务领域都有多个可供选择的组件，这里也列�
 | mysql     	             | 3306 	 |
 | redis   	               | 6379 	 |
 | rabbitmq    	           | 5672 	 |
-| gateway     	           |   80   |
 | eureka  	               | 8761 	 |
+| foodie-gateway     	    |  8443  |
 | foodie-auth     	       |  6000  |
 | foodie-diner     	      |  8081  |
 | foodie-point     	      |  8082  |
@@ -60,3 +60,10 @@ Spring Cloud每个业务领域都有多个可供选择的组件，这里也列�
 | foodie-feed     	       |  8085  |
 | foodie-restaurant     	 |  8086  |
 
+## 运行
+
+docker环境允许：
+``bash
+mvn package -DskipTest && docker-compose build && docker-compose up -d
+docker ps --format {{.Names}}
+``

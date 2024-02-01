@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.chensoul</groupId>
+    <groupId>com.chensoul.foodie</groupId>
     <artifactId>foodie-cloud</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
@@ -26,9 +26,9 @@
     </properties>
 
     <modules>
-        <module>common</module>
-        <module>foodie-registry</module>
-        <module>foodie-gateway</module>
+        <module>core</module>
+        <module>register</module>
+        <module>gateway</module>
         <module>foodie-auth</module>
         <module>foodie-diner</module>
         <module>foodie-order</module>
@@ -36,6 +36,7 @@
         <module>foodie-feed</module>
         <module>foodie-point</module>
         <module>foodie-restaurant</module>
+        <module>foodie-common</module>
     </modules>
 
     <dependencyManagement>

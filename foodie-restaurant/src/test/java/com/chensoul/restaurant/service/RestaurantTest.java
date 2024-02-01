@@ -2,9 +2,9 @@ package com.chensoul.restaurant.service;
 
 import com.baomidou.mybatisplus.core.toolkit.BeanUtils;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.chensoul.commons.constant.RedisKeyConstant;
-import com.chensoul.commons.model.entity.Restaurant;
-import com.chensoul.restaurant.domain.mapper.RestaurantMapper;
+import com.chensoul.foodie.constant.RedisKeyConstant;
+import com.chensoul.foodie.domain.restaurant.entity.Restaurant;
+import com.chensoul.foodie.domain.restaurant.mapper.RestaurantMapper;
 import com.google.common.collect.Maps;
 import java.util.List;
 import java.util.Map;

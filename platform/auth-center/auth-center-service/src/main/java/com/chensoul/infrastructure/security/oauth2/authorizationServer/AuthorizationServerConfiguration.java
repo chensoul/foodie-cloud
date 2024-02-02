@@ -1,13 +1,13 @@
-package com.chensoul.infrastructure.security;
+package com.chensoul.infrastructure.security.oauth2.authorizationServer;
 
 import com.chensoul.domain.user.model.LoggedUser;
 import com.chensoul.domain.user.service.CustomUserDetailsService;
-import com.chensoul.infrastructure.security.support.CustomWebResponseExceptionTranslator;
 import java.util.LinkedHashMap;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
@@ -16,6 +16,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.error.WebResponseExceptionTranslator;
 import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 
 /**
@@ -26,11 +27,19 @@ import org.springframework.security.oauth2.provider.token.store.redis.RedisToken
 @EnableAuthorizationServer
 @EnableConfigurationProperties(ClientOAuth2Properties.class)
 public class AuthorizationServerConfiguration extends AuthorizationServerConfigurerAdapter {
-	private RedisTokenStore redisTokenStore;
 	private AuthenticationManager authenticationManager;
 	private PasswordEncoder passwordEncoder;
 	private ClientOAuth2Properties clientOAuth2Properties;
 	private CustomUserDetailsService customUserDetailsService;
+	private WebResponseExceptionTranslator webResponseExceptionTranslator;
+	private RedisConnectionFactory redisConnectionFactory;
+
+	@Bean
+	public RedisTokenStore redisTokenStore() {
+		final RedisTokenStore redisTokenStore = new RedisTokenStore(this.redisConnectionFactory);
+		redisTokenStore.setPrefix("foodie:oauth:"); // 设置key的层级前缀，方便查询
+		return redisTokenStore;
+	}
 
 	/**
 	 * 配置令牌端点安全约束
@@ -70,7 +79,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 	public void configure(final AuthorizationServerEndpointsConfigurer endpoint) throws Exception {
 		endpoint.authenticationManager(this.authenticationManager)
 			.userDetailsService(this.customUserDetailsService)
-			.tokenStore(this.redisTokenStore)
+			.tokenStore(this.redisTokenStore())
 			.tokenEnhancer((accessToken, authentication) -> {
 				final LoggedUser loggedUser = (LoggedUser) authentication.getPrincipal();
 				final LinkedHashMap<String, Object> map = new LinkedHashMap<>();
@@ -79,12 +88,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 				final DefaultOAuth2AccessToken token = (DefaultOAuth2AccessToken) accessToken;
 				token.setAdditionalInformation(map);
 				return token;
-			}).exceptionTranslator(this.customWebResponseExceptionTranslator());
-	}
-
-	@Bean
-	public CustomWebResponseExceptionTranslator customWebResponseExceptionTranslator() {
-		return new CustomWebResponseExceptionTranslator();
+			}).exceptionTranslator(this.webResponseExceptionTranslator);
 	}
 
 }

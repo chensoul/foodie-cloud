@@ -1,19 +1,15 @@
 package com.chensoul.infrastructure.security;
 
+import com.chensoul.infrastructure.security.oauth2.support.CustomWebResponseExceptionTranslator;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.redis.connection.RedisConnectionFactory;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.provider.error.OAuth2AccessDeniedHandler;
 import org.springframework.security.oauth2.provider.error.OAuth2AuthenticationEntryPoint;
 import org.springframework.security.oauth2.provider.error.WebResponseExceptionTranslator;
-import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.access.AccessDeniedHandler;
 
@@ -23,36 +19,8 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 @AllArgsConstructor
 @Configuration
 @EnableWebSecurity
+@Order(10)
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
-	private RedisConnectionFactory redisConnectionFactory;
-
-	@Bean
-	public RedisTokenStore redisTokenStore() {
-		final RedisTokenStore redisTokenStore = new RedisTokenStore(this.redisConnectionFactory);
-		redisTokenStore.setPrefix("foodie:oauth:"); // 设置key的层级前缀，方便查询
-		return redisTokenStore;
-	}
-
-	@Bean
-	@Override
-	public AuthenticationManager authenticationManagerBean() throws Exception {
-		return super.authenticationManagerBean();
-	}
-
-	@Override
-	protected void configure(final HttpSecurity http) throws Exception {
-		http.csrf().disable()
-			.authorizeRequests()
-			.antMatchers("/oauth/**", "/actuator/**").permitAll()
-			.and()
-			.authorizeRequests().anyRequest().authenticated();
-	}
-
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return PasswordEncoderFactories.createDelegatingPasswordEncoder();
-	}
-
 	/**
 	 * OAuth2 AccessDeniedHandler
 	 */
@@ -73,4 +41,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		return authenticationEntryPoint;
 	}
 
+	@Bean
+	public WebResponseExceptionTranslator webResponseExceptionTranslator() {
+		return new CustomWebResponseExceptionTranslator();
+	}
 }

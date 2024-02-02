@@ -1,4 +1,4 @@
-package com.chensoul.infrastructure.security.support;
+package com.chensoul.infrastructure.security.oauth2.support;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import java.util.Map;

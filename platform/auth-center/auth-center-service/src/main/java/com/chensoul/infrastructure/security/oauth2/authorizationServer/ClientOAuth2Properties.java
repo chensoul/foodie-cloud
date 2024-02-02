@@ -1,4 +1,4 @@
-package com.chensoul.infrastructure.security;
+package com.chensoul.infrastructure.security.oauth2.authorizationServer;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

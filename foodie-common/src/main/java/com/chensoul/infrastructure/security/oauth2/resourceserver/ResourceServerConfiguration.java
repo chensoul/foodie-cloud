@@ -1,4 +1,4 @@
-package com.chensoul.infrastructure.security;
+package com.chensoul.infrastructure.security.oauth2.resourceserver;
 
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Configuration;
@@ -21,10 +21,8 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 
 	@Override
 	public void configure(final HttpSecurity http) throws Exception {
-		// 配置放行的资源
-		http.authorizeRequests().anyRequest().authenticated()
-			.and()
-			.requestMatchers().antMatchers("/user/**");
+		http.authorizeRequests().antMatchers("/actuator/**", "/v3/api-docs/**", "/swagger-ui/**").permitAll()
+			.anyRequest().authenticated();
 	}
 
 	@Override
@@ -32,5 +30,4 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 		resources.authenticationEntryPoint(this.authenticationEntryPoint)
 			.accessDeniedHandler(this.accessDeniedHandler);
 	}
-
 }

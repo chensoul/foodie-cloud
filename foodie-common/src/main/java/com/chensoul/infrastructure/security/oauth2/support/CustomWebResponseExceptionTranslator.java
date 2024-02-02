@@ -1,4 +1,4 @@
-package com.chensoul.infrastructure.security.support;
+package com.chensoul.infrastructure.security.oauth2.support;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;

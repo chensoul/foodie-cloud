@@ -15,17 +15,17 @@ spring:
     timeout: 3000
     password: 123456
 
-  eureka:
-    instance:
-      prefer-ip-address: true
-      instance-id: ${spring.cloud.client.ip-address}:${server.port}
-      # 客户端向注册中心发送心跳的时间间隔，默认30秒
-      lease-renewal-interval-in-seconds: 1
-      #注册中心在收到客户端心跳之后，等待下一次心跳的超时时间，如果在这个时间内没有收到下次心跳，则移除该客户端。默认90秒
-      lease-expiration-duration-in-seconds: 2
-    client:
-      service-url:
-        defaultZone: http://${eureka:eureka}:8761/eureka/
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    # 客户端向注册中心发送心跳的时间间隔，默认30秒
+    lease-renewal-interval-in-seconds: 1
+    #注册中心在收到客户端心跳之后，等待下一次心跳的超时时间，如果在这个时间内没有收到下次心跳，则移除该客户端。默认90秒
+    lease-expiration-duration-in-seconds: 2
+  client:
+    service-url:
+      defaultZone: http://${eureka:eureka}:8761/eureka/
 
 mybatis-plus:
   configuration:

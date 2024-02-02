@@ -1,4 +1,4 @@
-package com.chensoul.infrastructure.security.support;
+package com.chensoul.infrastructure.security.oauth2.support;
 
 import com.chensoul.core.model.R;
 import com.fasterxml.jackson.core.JsonGenerator;

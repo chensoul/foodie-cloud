@@ -117,7 +117,7 @@ services:
     env_file:
       - .env
     ports:
-      - "6000:6000"
+      - "6666:6666"
 
   foodie-diner:
     build:

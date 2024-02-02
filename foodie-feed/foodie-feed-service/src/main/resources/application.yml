@@ -34,6 +34,25 @@ mybatis-plus:
     db-config:
       id-type: ASSIGN_ID
 
+springdoc:
+  version: '@springdoc.version@'
+  swagger-ui:
+    display-request-duration: true
+    groups-order: DESC
+    operations-sorter: method
+    disable-swagger-default-url: true
+    use-root-path: true
+  show-actuator: true
+
+security:
+  oauth2:
+    client:
+      client-id: appId
+      client-secret: 123456
+    resource:
+      token-info-uri: http://${auth-center:auth-center}:6666/oauth/check_token
+      prefer-token-info: true
+
 feign:
   client:
     config:
@@ -50,13 +69,3 @@ feign:
     enabled: true
     loadbalancer:
       enabled: true
-
-security:
-  oauth2:
-    client:
-      client-id: appId
-      client-secret: 123456
-    resource:
-      token-info-uri: http://${auth-center:auth-center}:6000/oauth/check_token
-      prefer-token-info: true
-

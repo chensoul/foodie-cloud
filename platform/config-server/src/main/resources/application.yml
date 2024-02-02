@@ -5,19 +5,6 @@ spring.profiles.active: native
 
 spring.cloud.config.server.native.searchLocations: file:${PWD}/config-repo
 
-spring.security.user.name: root
-spring.security.user.password: 123456
+spring.security.user.name: ${SPRING_SECURITY_USER_NAME:root}
+spring.security.user.password: ${SPRING_SECURITY_USER_PASSWORD:123456}
 
-eureka:
-  instance:
-    prefer-ip-address: true
-    instance-id: ${spring.cloud.client.ip-address}:${server.port}
-    # 客户端向注册中心发送心跳的时间间隔，默认30秒
-    leaseRenewalIntervalInSeconds: 5
-    #注册中心在收到客户端心跳之后，等待下一次心跳的超时时间，如果在这个时间内没有收到下次心跳，则移除该客户端。默认90秒
-    leaseExpirationDurationInSeconds: 2
-  client:
-    service-url:
-      defaultZone: http://${eureka:eureka}:8761/eureka/
-    initialInstanceInfoReplicationIntervalSeconds: 5
-    registryFetchIntervalSeconds: 5

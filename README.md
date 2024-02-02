@@ -51,8 +51,8 @@ Spring Cloud每个业务领域都有多个可供选择的组件，这里也列�
 | redis   	               | 6379 	 |
 | rabbitmq    	           | 5672 	 |
 | eureka  	               | 8761 	 |
-| foodie-gateway     	    |  8443  |
-| foodie-auth     	       |  6000  |
+| gateway     	           |  8443  |
+| auth-center     	       |  6000  |
 | foodie-diner     	      |  8081  |
 | foodie-point     	      |  8082  |
 | foodie-order     	      |  8083  |

@@ -1,0 +1,75 @@
+server:
+  port: 6000
+
+spring:
+  application:
+    name: auth-center
+  datasource:
+    url: jdbc:mysql://${mysql:mysql}:3306/foodie-cloud?connectTimeout=2000&socketTimeout=150000&allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+  redis:
+    port: 6379
+    host: ${redis:redis}
+    timeout: 3000
+    password: 123456
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    # 客户端向注册中心发送心跳的时间间隔，默认30秒
+    lease-renewal-interval-in-seconds: 1
+    #注册中心在收到客户端心跳之后，等待下一次心跳的超时时间，如果在这个时间内没有收到下次心跳，则移除该客户端。默认90秒
+    lease-expiration-duration-in-seconds: 2
+  client:
+    service-url:
+      defaultZone: http://${eureka:eureka}:8761/eureka/
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: ASSIGN_ID
+
+springdoc:
+  version: '@springdoc.version@'
+  swagger-ui:
+    display-request-duration: true
+    groups-order: DESC
+    operations-sorter: method
+    disable-swagger-default-url: true
+    use-root-path: true
+  show-actuator: true
+
+feign:
+  client:
+    config:
+      default:
+        loggerLevel: HEADERS
+        connectTimeout: 5000
+        readTimeout: 5000
+  httpclient:
+    max-connections: 200 # 最大的连接数
+    max-connections-per-route: 50 # 每个路径的最大连接数
+    ok-http:
+      read-timeout: 5s
+  okhttp:
+    enabled: true
+    loadbalancer:
+      enabled: true
+
+client:
+  oauth2:
+    client-id: appId
+    secret: 123456
+    grant_types:
+      - password
+      - refresh_token
+    token-validity-time: 3600
+    refresh-token-validity-time: 3600
+    scopes:
+      - api
+      - all

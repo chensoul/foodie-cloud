@@ -85,6 +85,6 @@ security:
       client-id: appId
       client-secret: 123456
     resource:
-      token-info-uri: http://${foodie-auth:foodie-auth}:6000/oauth/check_token
+      token-info-uri: http://${auth-center:auth-center}:6000/oauth/check_token
       prefer-token-info: true
 

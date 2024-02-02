@@ -13,7 +13,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.chensoul</groupId>            <artifactId>auth-center-api</artifactId>
+            <groupId>com.chensoul</groupId>            <artifactId>auth-api</artifactId>
             <version>${project.version}</version>
         </dependency>
 

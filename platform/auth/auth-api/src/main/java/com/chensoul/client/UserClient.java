@@ -9,6 +9,6 @@ package com.chensoul.client;
 
 import org.springframework.cloud.openfeign.FeignClient;
 
-@FeignClient(value = "auth-center-service")
+@FeignClient(value = "auth-service")
 public interface UserClient extends UserApi {
 }

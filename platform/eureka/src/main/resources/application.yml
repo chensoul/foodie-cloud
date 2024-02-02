@@ -9,12 +9,15 @@ eureka:
   instance:
     hostname: ${spring.cloud.client.ip-address}
   client:
-    register-with-eureka: false
-    fetch-registry: false
-    service-url:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
   server:
     #服务端是否开启自我保护机制 （默认true）
-    enable-self-preservation: false
+    enableSelfPreservation: false
     #扫描失效服务的间隔时间（单位毫秒，默认是60*1000)
-    eviction-interval-timer-in-ms: 2000
+    evictionIntervalTimerInMs: 2000
+    # from: https://github.com/spring-cloud-samples/eureka/blob/master/src/main/resources/application.yml
+    waitTimeInMsWhenSyncEmpty: 0
+    responseCacheUpdateIntervalMs: 5000

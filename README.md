@@ -52,7 +52,7 @@ Spring Cloud每个业务领域都有多个可供选择的组件，这里也列�
 | rabbitmq    	           | 5672 	 |
 | eureka  	               | 8761 	 |
 | gateway     	           |  8443  |
-| auth-center     	       |  6666  |
+| auth     	       |  6666  |
 | foodie-diner     	      |  8081  |
 | foodie-point     	      |  8082  |
 | foodie-order     	      |  8083  |

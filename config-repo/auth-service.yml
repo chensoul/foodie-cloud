@@ -1,0 +1,14 @@
+server.port: 6666
+
+client:
+  oauth2:
+    client-id: appId
+    secret: 123456
+    grant_types:
+      - password
+      - refresh_token
+    token-validity-time: 3600
+    refresh-token-validity-time: 3600
+    scopes:
+      - api
+      - all

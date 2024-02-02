@@ -11,11 +11,11 @@
     </parent>
 
     <groupId>com.chensoul</groupId>
-    <artifactId>auth-center</artifactId>
+    <artifactId>auth</artifactId>
     <packaging>pom</packaging>
 
     <modules>
-        <module>auth-center-api</module>
-        <module>auth-center-service</module>
+        <module>auth-api</module>
+        <module>auth-service</module>
     </modules>
 </project>

@@ -46,7 +46,7 @@
         </HTTPSamplerProxy>
         <hashTree/>
         <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="登录用户token" enabled="true">
-          <stringProp name="filename">D:/IdeaProjects/example/food-social-contact-parent/auth-center/tokens.txt</stringProp>
+          <stringProp name="filename">D:/IdeaProjects/example/food-social-contact-parent/auth/tokens.txt</stringProp>
           <stringProp name="fileEncoding"></stringProp>
           <stringProp name="variableNames">access_token</stringProp>
           <boolProp name="ignoreFirstLine">false</boolProp>

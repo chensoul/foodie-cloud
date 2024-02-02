@@ -1,0 +1,68 @@
+server.port: 8443
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: eureka-api
+          uri: http://${eureka:eureka}:8761
+          predicates:
+            - Path=/eureka/**
+
+        - id: auth
+          uri: lb://auth
+          predicates:
+            - Path=/auth/**
+          filters:
+            - StripPrefix=1
+
+        - id: config-server
+          uri: lb://config-server
+          predicates:
+            - Path=/config/**
+          filters:
+            - RewritePath=/config/(?<segment>.*), /$\{segment}
+
+        - id: foodie-diner
+          uri: lb://foodie-diner
+          predicates:
+            - Path=/diner/**
+          filters:
+            - StripPrefix=1
+
+        - id: foodie-order
+          uri: lb://foodie-order
+          predicates:
+            - Path=/order/**
+          filters:
+            - StripPrefix=1
+
+        - id: foodie-follow
+          uri: lb://foodie-follow
+          predicates:
+            - Path=/follow/**
+          filters:
+            - StripPrefix=1
+
+        - id: foodie-feed
+          uri: lb://foodie-feed
+          predicates:
+            - Path=/feed/**
+          filters:
+            - StripPrefix=1
+
+        - id: foodie-point
+          uri: lb://foodie-point
+          predicates:
+            - Path=/point/**
+          filters:
+            - StripPrefix=1
+
+        - id: foodie-restaurant
+          uri: lb://foodie-restaurant
+          predicates:
+            - Path=/restaurant/**
+          filters:
+            - StripPrefix=1
+
+management.endpoint.gateway.enabled: true

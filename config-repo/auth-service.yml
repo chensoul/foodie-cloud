@@ -2,11 +2,12 @@ server.port: 6666
 
 client:
   oauth2:
-    client-id: appId
-    secret: 123456
+    client-id: client
+    secret: secret
     grant_types:
       - password
       - refresh_token
+      - client_credentials
     token-validity-time: 3600
     refresh-token-validity-time: 3600
     scopes:

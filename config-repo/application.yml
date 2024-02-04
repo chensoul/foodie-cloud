@@ -1,9 +1,7 @@
-#server:
-#  port: 6666
+#server.port: 6666
 
 spring:
-  #  application:
-  #    name: auth
+  #  application.name: @artifactId@
   datasource:
     url: jdbc:mysql://${mysql:mysql}:3306/foodie-cloud?connectTimeout=2000&socketTimeout=150000&allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -22,7 +20,7 @@ eureka:
     # 客户端向注册中心发送心跳的时间间隔，默认30秒
     leaseRenewalIntervalInSeconds: 5
     #注册中心在收到客户端心跳之后，等待下一次心跳的超时时间，如果在这个时间内没有收到下次心跳，则移除该客户端。默认90秒
-    leaseExpirationDurationInSeconds: 2
+    leaseExpirationDurationInSeconds: 30
   client:
     service-url:
       defaultZone: http://${eureka:eureka}:8761/eureka/
@@ -46,6 +44,16 @@ springdoc:
     use-root-path: true
   show-actuator: true
 
+resilience4j:
+  circuitbreaker:
+    instances:
+      auth-service:
+        registerHealthIndicator: true
+        slidingWindowSize: 7
+        slidingWindowType: COUNT_BASED
+        waitDurationInOpenState: 5000
+        permittedNumberOfCallsInHalfOpenState: 6
+
 feign:
   client:
     config:
@@ -62,13 +70,15 @@ feign:
     enabled: true
     loadbalancer:
       enabled: true
+  circuitbreaker:
+    enabled: true
 
 security:
   oauth2:
     client:
-      client-id: appId
-      client-secret: 123456
+      client-id: client
+      client-secret: secret
     resource:
-      token-info-uri: http://${auth:auth}:6666/oauth/check_token
+      token-info-uri: http://${auth-service:auth-service}:6666/oauth/check_token
       prefer-token-info: true
 

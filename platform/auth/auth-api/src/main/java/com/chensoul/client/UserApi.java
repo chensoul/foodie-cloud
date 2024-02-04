@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.chensoul.core.model.R;
 import com.chensoul.domain.user.entity.User;
 import com.chensoul.domain.user.model.UserAddRequest;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import java.util.List;
 import java.util.Set;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,8 +33,13 @@ public interface UserApi {
 	R<List<User>> list(@RequestParam("ids") final Set<Long> userIds);
 
 	@GetMapping("/user/info")
+	@CircuitBreaker(name = "auth-service", fallbackMethod = "getUserFallback")
 	R<User> getCurrentUser();
 
 	@GetMapping("/user/logout")
 	R<Void> logout(String token);
+
+	default R<User> getUserFallback(Exception e) {
+		return R.ok();
+	}
 }

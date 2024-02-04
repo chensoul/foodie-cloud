@@ -1,4 +1,4 @@
-spring.application.name: foodie-diner
+spring.application.name: @artifactId@
 
 spring.config.import: "configserver:"
 

@@ -1,4 +1,4 @@
-spring.application.name: eureka
+spring.application.name: @artifactId@
 
 spring.config.import: "configserver:"
 

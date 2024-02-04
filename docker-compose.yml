@@ -109,10 +109,10 @@ services:
     ports:
       - "8443:8443"
 
-  auth:
+  auth-service:
     build:
       context: platform/auth/auth-service
-    image: chensoul/auth
+    image: chensoul/auth-service
     restart: always
     env_file:
       - .env
@@ -135,7 +135,7 @@ services:
 
   foodie-diner:
     build:
-      context: foodie-diner
+      context: foodie-diner/foodie-diner-service
     image: chensoul/foodie-diner
     restart: always
     env_file:
@@ -155,7 +155,7 @@ services:
 
   foodie-order:
     build:
-      context: foodie-order
+      context: foodie-order/foodie-order-service
     image: chensoul/foodie-order
     restart: always
     env_file:
@@ -185,7 +185,7 @@ services:
 
   foodie-restaurant:
     build:
-      context: foodie-restaurant
+      context: foodie-restaurant/foodie-restaurant-service
     image: chensoul/foodie-restaurant
     restart: always
     env_file:

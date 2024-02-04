@@ -23,43 +23,43 @@ spring:
           filters:
             - RewritePath=/config/(?<segment>.*), /$\{segment}
 
-        - id: foodie-diner
-          uri: lb://foodie-diner
+        - id: foodie-diner-service
+          uri: lb://foodie-diner-service
           predicates:
             - Path=/diner/**
           filters:
             - StripPrefix=1
 
-        - id: foodie-order
-          uri: lb://foodie-order
+        - id: foodie-order-service
+          uri: lb://foodie-order-service
           predicates:
             - Path=/order/**
           filters:
             - StripPrefix=1
 
-        - id: foodie-follow
-          uri: lb://foodie-follow
+        - id: foodie-follow-service
+          uri: lb://foodie-follow-service
           predicates:
             - Path=/follow/**
           filters:
             - StripPrefix=1
 
-        - id: foodie-feed
-          uri: lb://foodie-feed
+        - id: foodie-feed-service
+          uri: lb://foodie-feed-service
           predicates:
             - Path=/feed/**
           filters:
             - StripPrefix=1
 
-        - id: foodie-point
-          uri: lb://foodie-point
+        - id: foodie-point-service
+          uri: lb://foodie-point-service
           predicates:
             - Path=/point/**
           filters:
             - StripPrefix=1
 
-        - id: foodie-restaurant
-          uri: lb://foodie-restaurant
+        - id: foodie-restaurant-service
+          uri: lb://foodie-restaurant-service
           predicates:
             - Path=/restaurant/**
           filters:

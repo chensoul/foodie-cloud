@@ -8,6 +8,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
@@ -50,7 +51,8 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 	@Override
 	public void configure(final AuthorizationServerSecurityConfigurer security) throws Exception {
 		security.tokenKeyAccess("permitAll()")
-			.checkTokenAccess("permitAll()");
+			.checkTokenAccess("permitAll()")
+			.allowFormAuthenticationForClients();
 	}
 
 	/**
@@ -81,14 +83,20 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 			.userDetailsService(this.customUserDetailsService)
 			.tokenStore(this.redisTokenStore())
 			.tokenEnhancer((accessToken, authentication) -> {
-				final LoggedUser loggedUser = (LoggedUser) authentication.getPrincipal();
-				final LinkedHashMap<String, Object> map = new LinkedHashMap<>();
-				map.put("nickname", loggedUser.getNickname());
-				map.put("avatar", loggedUser.getAvatar());
 				final DefaultOAuth2AccessToken token = (DefaultOAuth2AccessToken) accessToken;
-				token.setAdditionalInformation(map);
+
+				//兼容客户端模式
+				if(authentication.getPrincipal() instanceof LoggedUser){
+					final LoggedUser loggedUser = (LoggedUser) authentication.getPrincipal();
+					final LinkedHashMap<String, Object> map = new LinkedHashMap<>();
+					map.put("nickname", loggedUser.getNickname());
+					map.put("avatar", loggedUser.getAvatar());
+					token.setAdditionalInformation(map);
+				}
+
 				return token;
-			}).exceptionTranslator(this.webResponseExceptionTranslator);
+			}).exceptionTranslator(this.webResponseExceptionTranslator)
+			.allowedTokenEndpointRequestMethods(HttpMethod.POST, HttpMethod.GET);
 	}
 
 }

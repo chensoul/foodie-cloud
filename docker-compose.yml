@@ -1,6 +1,66 @@
 version: '3.8'
 
 services:
+  foodie-diner:
+    build:
+      context: foodie-diner/foodie-diner-service
+    image: chensoul/foodie-diner
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "8081:8081"
+
+  foodie-point:
+    build:
+      context: foodie-point/foodie-point-service
+    image: chensoul/foodie-point
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "8082:8082"
+
+  foodie-order:
+    build:
+      context: foodie-order/foodie-order-service
+    image: chensoul/foodie-order
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "8083:8083"
+
+  foodie-follow:
+    build:
+      context: foodie-follow/foodie-follow-service
+    image: chensoul/foodie-follow
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "8084:8084"
+
+  foodie-feed:
+    build:
+      context: foodie-feed/foodie-feed-service
+    image: chensoul/foodie-feed
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "8085:8085"
+
+  foodie-restaurant:
+    build:
+      context: foodie-restaurant/foodie-restaurant-service
+    image: chensoul/foodie-restaurant
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "8086:8086"
+
   mysql:
     image: mysql:8
     restart: always
@@ -89,6 +149,35 @@ services:
   #    ports:
   #      - "5300:5300"
 
+  kafka:
+    image: confluentinc/cp-kafka:7.3.1
+    restart: always
+    ports:
+      - "9092:9092"
+    environment:
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
+      - KAFKA_BROKER_ID=1
+      - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
+    depends_on:
+      - zookeeper
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.3.1
+    restart: always
+    ports:
+      - "2181:2181"
+    environment:
+      - ZOOKEEPER_CLIENT_PORT=2181
+
+  zipkin:
+    image: openzipkin/zipkin:2.24.0
+    restart: always
+    environment:
+      - STORAGE_TYPE=mem
+    ports:
+      - "9411:9411"
+
   eureka:
     build:
       context: platform/eureka
@@ -119,76 +208,19 @@ services:
     ports:
       - "6666:6666"
     healthcheck:
-      test: ["CMD", "curl", "-fs", "http://localhost:6666/actuator/health"]
+      test: [ "CMD", "curl", "-fs", "http://localhost:6666/actuator/health" ]
       interval: 5s
       timeout: 2s
       retries: 10
 
-  config-server:
-    build: platform/config-server
+  config-file:
+    build: platform/config-file
+    image: chensoul/config-file
     env_file:
       - .env
+    environment:
+      - SPRING_PROFILES_ACTIVE=default,native
     ports:
       - "8888:8888"
     volumes:
       - $PWD/config-repo:/config-repo
-
-  foodie-diner:
-    build:
-      context: foodie-diner/foodie-diner-service
-    image: chensoul/foodie-diner
-    restart: always
-    env_file:
-      - .env
-    ports:
-      - "8081:8081"
-
-  foodie-point:
-    build:
-      context: foodie-point/foodie-point-service
-    image: chensoul/foodie-point
-    restart: always
-    env_file:
-      - .env
-    ports:
-      - "8082:8082"
-
-  foodie-order:
-    build:
-      context: foodie-order/foodie-order-service
-    image: chensoul/foodie-order
-    restart: always
-    env_file:
-      - .env
-    ports:
-      - "8083:8083"
-
-  foodie-follow:
-    build:
-      context: foodie-follow/foodie-follow-service
-    image: chensoul/foodie-follow
-    restart: always
-    env_file:
-      - .env
-    ports:
-      - "8084:8084"
-
-  foodie-feed:
-    build:
-      context: foodie-feed/foodie-feed-service
-    image: chensoul/foodie-feed
-    restart: always
-    env_file:
-      - .env
-    ports:
-      - "8085:8085"
-
-  foodie-restaurant:
-    build:
-      context: foodie-restaurant/foodie-restaurant-service
-    image: chensoul/foodie-restaurant
-    restart: always
-    env_file:
-      - .env
-    ports:
-      - "8086:8086"

@@ -7,6 +7,20 @@ spring:
         - id: eureka-api
           uri: http://${eureka:eureka}:8761
           predicates:
+            - Path=/eureka/api/{segment}
+          filters:
+            - SetPath=/eureka/{segment}
+
+        - id: eureka-web-start
+          uri: http://${eureka:eureka}:8761
+          predicates:
+            - Path=/eureka/web
+          filters:
+            - SetPath=/
+
+        - id: eureka-web-other
+          uri: http://${eureka:eureka}:8761
+          predicates:
             - Path=/eureka/**
 
         - id: auth-service
@@ -16,7 +30,7 @@ spring:
           filters:
             - StripPrefix=1
 
-        - id: config-server
+        - id: config-file
           uri: ${spring.cloud.config.uri}
           predicates:
             - Path=/config/**

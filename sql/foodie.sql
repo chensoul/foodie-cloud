@@ -14,7 +14,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB;
 
 INSERT INTO `user` VALUES ('1', 'abc', 'test', '13888888888', 'abc@chensoul.com', '{noop}123456', null, 'USER',  '2020-11-06 16:17:52', '2020-11-06 16:17:55');
-INSERT INTO `user` VALUES ('2', 'test', 'test', '13666666666', null, '{noop}123456', null, 'USER', '2020-11-12 12:01:13', '2020-11-12 12:01:13');
+INSERT INTO `user` VALUES ('2', 'user', 'test', '13666666666', null, '{noop}123456', null, 'USER', '2020-11-12 12:01:13', '2020-11-12 12:01:13');
 
 DROP TABLE IF EXISTS `point`;
 CREATE TABLE `point`  (

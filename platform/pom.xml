@@ -18,6 +18,6 @@
         <module>eureka</module>
         <module>auth</module>
         <module>gateway</module>
-        <module>config-server</module>
+        <module>config-file</module>
     </modules>
 </project>

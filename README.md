@@ -52,6 +52,7 @@ Spring Cloud每个业务领域都有多个可供选择的组件，这里也列�
 | rabbitmq    	           | 5672 	 |
 | eureka  	               | 8761 	 |
 | gateway     	           |  8443  |
+| config-file     	       |  8888  |
 | auth-service     	      |  6666  |
 | foodie-diner     	      |  8081  |
 | foodie-point     	      |  8082  |
@@ -111,7 +112,7 @@ istioctl version --remote=false
 #### Docker 运行
 
 ```bash
-mvn package -DskipTest && docker-compose build && docker-compose up -d
+mvn clean package -DskipTests=true && docker-compose build && docker-compose up -d
 
 docker ps --format {{.Names}}
 ```
@@ -120,4 +121,4 @@ docker ps --format {{.Names}}
 
 ## 参考资料
 
-- 《Microservices with Spring Boot 3 and Spring Cloud》
+- [Microservices with Spring Boot 3 and Spring Cloud](https://github.com/PacktPublishing/Microservices-with-Spring-Boot-and-Spring-Cloud-Third-Edition)

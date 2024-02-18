@@ -44,16 +44,6 @@ springdoc:
     use-root-path: true
   show-actuator: true
 
-resilience4j:
-  circuitbreaker:
-    instances:
-      auth-service:
-        registerHealthIndicator: true
-        slidingWindowSize: 7
-        slidingWindowType: COUNT_BASED
-        waitDurationInOpenState: 5000
-        permittedNumberOfCallsInHalfOpenState: 6
-
 feign:
   client:
     config:
@@ -73,6 +63,33 @@ feign:
   circuitbreaker:
     enabled: true
 
+resilience4j:
+  circuitbreaker:
+    instances:
+      authservice:
+        allowHealthIndicatorToFail: false
+        registerHealthIndicator: true
+        slidingWindowType: COUNT_BASED
+        slidingWindowSize: 5
+        failureRateThreshold: 50
+        waitDurationInOpenState: 10000
+        permittedNumberOfCallsInHalfOpenState: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+  ratelimiter:
+    instances:
+      authservice:
+        limitForPeriod: 10
+        limitRefreshPeriod: 5s
+        timeoutDuration: 0
+  retry:
+    instances:
+      authservice:
+        maxAttempts: 3
+        waitDuration: 1000
+        retryExceptions:
+          - java.io.IOException
+          - java.util.concurrent.TimeoutException
+
 security:
   oauth2:
     client:
@@ -82,3 +99,6 @@ security:
       token-info-uri: http://${auth-service:auth-service}:6666/oauth/check_token
       prefer-token-info: true
 
+management.endpoint.health.show-details: "ALWAYS"
+management.endpoints.web.exposure.include: "*"
+management.health.circuitbreakers.enabled: true

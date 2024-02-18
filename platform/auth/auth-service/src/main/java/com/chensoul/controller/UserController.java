@@ -9,12 +9,16 @@ import com.chensoul.domain.user.entity.User;
 import com.chensoul.domain.user.model.LoggedUser;
 import com.chensoul.domain.user.model.UserAddRequest;
 import com.chensoul.domain.user.service.UserService;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
+import io.github.resilience4j.retry.annotation.Retry;
 import java.util.List;
 import java.util.Set;
 import lombok.AllArgsConstructor;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.common.OAuth2RefreshToken;
 import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
@@ -28,6 +32,7 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 public class UserController implements UserApi {
 	private UserService userService;
+	private UserDetailsService userDetailsService;
 	private RedisTokenStore redisTokenStore;
 
 	/**
@@ -38,7 +43,7 @@ public class UserController implements UserApi {
 	 */
 	@Override
 	public R<Void> register(final UserAddRequest userAddRequest) {
-        this.userService.register(userAddRequest);
+		this.userService.register(userAddRequest);
 		return R.ok();
 	}
 
@@ -50,7 +55,7 @@ public class UserController implements UserApi {
 	 */
 	@Override
 	public R<Void> checkPhone(final String phone) {
-        this.userService.checkPhoneIsRegistered(phone);
+		this.userService.checkPhoneIsRegistered(phone);
 		return R.ok();
 	}
 
@@ -66,13 +71,21 @@ public class UserController implements UserApi {
 	}
 
 	@Override
+	@Retry(name = "authservice")
+	@RateLimiter(name = "authservice")
 	public R<User> getCurrentUser() {
 		final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		Assert.notNull(authentication.getPrincipal(), "获取当前用户信息失败");
 
-		final LoggedUser loggedUser = (LoggedUser) authentication.getPrincipal();
-		return R.ok(loggedUser);
+		if (authentication.getPrincipal() instanceof LoggedUser) {
+			final LoggedUser loggedUser = (LoggedUser) authentication.getPrincipal();
+			return R.ok(loggedUser);
+		} else {
+			return R.ok((LoggedUser) this.userDetailsService.loadUserByUsername(authentication.getPrincipal().toString()));
+		}
 	}
+
+
 
 	/**
 	 * 安全退出
@@ -85,9 +98,9 @@ public class UserController implements UserApi {
 		if (token.toLowerCase().contains("bearer ".toLowerCase())) token = token.toLowerCase().replace("bearer ", "");
 		final OAuth2AccessToken oAuth2AccessToken = this.redisTokenStore.readAccessToken(token);
 		if (oAuth2AccessToken != null) {
-            this.redisTokenStore.removeAccessToken(oAuth2AccessToken);
+			this.redisTokenStore.removeAccessToken(oAuth2AccessToken);
 			final OAuth2RefreshToken refreshToken = oAuth2AccessToken.getRefreshToken();
-            this.redisTokenStore.removeRefreshToken(refreshToken);
+			this.redisTokenStore.removeRefreshToken(refreshToken);
 		}
 		return R.ok();
 	}

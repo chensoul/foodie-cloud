@@ -1,10 +1,12 @@
 server.port: 8888
 
-spring.application.name: config-server
+spring.application.name: config-file
 spring.profiles.active: native
 
-spring.cloud.config.server.native.searchLocations: file:${PWD}/config-repo
+spring.cloud.config.server.native.searchLocations: file:${PWD:}/config-repo
 
 spring.security.user.name: ${SPRING_SECURITY_USER_NAME:root}
 spring.security.user.password: ${SPRING_SECURITY_USER_PASSWORD:123456}
+
+encrypt.key: ${ENCRYPT_KEY:my-very-secure-encrypt-key}
 

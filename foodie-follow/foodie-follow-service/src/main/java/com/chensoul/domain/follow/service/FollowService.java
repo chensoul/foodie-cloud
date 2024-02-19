@@ -39,8 +39,7 @@ public class FollowService extends ServiceImpl<FollowMapper, Follow> implements 
 	 */
 	public Set<Integer> findFollower(final Long userId) {
 		Assert.isNull(userId, "请选择要查看的用户");
-		final Set<Integer> followers = this.redisTemplate.opsForSet()
-			.members(RedisKeyConstant.FOLLOWER.getKey() + userId);
+		final Set<Integer> followers = this.redisTemplate.opsForSet().members(RedisKeyConstant.FOLLOWER.getKey() + userId);
 		return followers;
 	}
 
@@ -52,16 +51,19 @@ public class FollowService extends ServiceImpl<FollowMapper, Follow> implements 
 	 */
 	@Transactional(rollbackFor = Exception.class)
 	public List<SimpleUser> findCommonsFriend(final Integer userId) {
-		// 是否选择了查看对象
-		Assert.isTrue(userId == null || userId < 1,
-			"请选择要查看的人");
+		Assert.isTrue(userId == null || userId < 1, "请选择要查看的人");
+
 		final User userInfo = this.loadSignInUserInfo();
 		final String loginUserKey = RedisKeyConstant.FOLLOWING.getKey() + userInfo.getId();
 		final String userKey = RedisKeyConstant.FOLLOWING.getKey() + userId;
 		final Set<Long> userIds = this.redisTemplate.opsForSet().intersect(loginUserKey, userKey);
-		if (userIds == null || userIds.isEmpty()) return new ArrayList<>();
+		if (userIds == null || userIds.isEmpty()) {
+			return new ArrayList<>();
+		}
 		final R<List<User>> resultInfo = this.userClient.list(userIds);
-		if (resultInfo.getCode() != Constant.SUCCESS_CODE) throw new IllegalArgumentException(resultInfo.getMessage());
+		if (resultInfo.getCode() != Constant.SUCCESS_CODE) {
+			throw new IllegalArgumentException(resultInfo.getMessage());
+		}
 		final List<User> users = resultInfo.getData();
 		return users.stream()
 			.map(user -> {
@@ -73,8 +75,7 @@ public class FollowService extends ServiceImpl<FollowMapper, Follow> implements 
 	}
 
 	public void follow(final Long followUserId, final int isFollowed) {
-		Assert.isTrue(followUserId == null || followUserId < 1,
-			"请选择要关注的人");
+		Assert.isTrue(followUserId == null || followUserId < 1, "请选择要关注的人");
 		final User userInfo = this.loadSignInUserInfo();
 		Follow follow = this.baseMapper.selectOne(Wrappers.<Follow>lambdaQuery().eq(Follow::getUserId, userInfo.getId())
 			.eq(Follow::getFollowUserId, followUserId));
@@ -85,20 +86,20 @@ public class FollowService extends ServiceImpl<FollowMapper, Follow> implements 
 			follow.setFollowUserId(followUserId);
 			final int count = this.baseMapper.insert(follow);
 			if (count == 1) {
-                this.addToRedisSet(userInfo.getId(), followUserId);
-                this.sendSaveOrRemoveFeed(followUserId, 1);
+				this.addToRedisSet(userInfo.getId(), followUserId);
+				this.sendSaveOrRemoveFeed(followUserId, 1);
 			}
 		}
 
 		if (follow != null && isFollowed == 0) {
 //			final int count = followMapper.update(follow.getId(), isFollowed);
-            this.removeFromRedisSet(userInfo.getId(), followUserId);
-            this.sendSaveOrRemoveFeed(followUserId, 0);
+			this.removeFromRedisSet(userInfo.getId(), followUserId);
+			this.sendSaveOrRemoveFeed(followUserId, 0);
 		}
 		if (follow != null && isFollowed == 1) {
 //			final int count = followMapper.update(follow.getId(), isFollowed);
-            this.addToRedisSet(userInfo.getId(), followUserId);
-            this.sendSaveOrRemoveFeed(followUserId, 1);
+			this.addToRedisSet(userInfo.getId(), followUserId);
+			this.sendSaveOrRemoveFeed(followUserId, 1);
 		}
 	}
 
@@ -119,8 +120,8 @@ public class FollowService extends ServiceImpl<FollowMapper, Follow> implements 
 	 * @param followUserId
 	 */
 	private void addToRedisSet(final Long userId, final Long followUserId) {
-        this.redisTemplate.opsForSet().add(RedisKeyConstant.FOLLOWING.getKey() + userId, followUserId);
-        this.redisTemplate.opsForSet().add(RedisKeyConstant.FOLLOWER.getKey() + followUserId, userId);
+		this.redisTemplate.opsForSet().add(RedisKeyConstant.FOLLOWING.getKey() + userId, followUserId);
+		this.redisTemplate.opsForSet().add(RedisKeyConstant.FOLLOWER.getKey() + followUserId, userId);
 	}
 
 	/**
@@ -130,8 +131,8 @@ public class FollowService extends ServiceImpl<FollowMapper, Follow> implements 
 	 * @param followUserId
 	 */
 	private void removeFromRedisSet(final Long userId, final Long followUserId) {
-        this.redisTemplate.opsForSet().remove(RedisKeyConstant.FOLLOWING.getKey() + userId, followUserId);
-        this.redisTemplate.opsForSet().remove(RedisKeyConstant.FOLLOWER.getKey() + followUserId, userId);
+		this.redisTemplate.opsForSet().remove(RedisKeyConstant.FOLLOWING.getKey() + userId, followUserId);
+		this.redisTemplate.opsForSet().remove(RedisKeyConstant.FOLLOWER.getKey() + followUserId, userId);
 	}
 
 	/**

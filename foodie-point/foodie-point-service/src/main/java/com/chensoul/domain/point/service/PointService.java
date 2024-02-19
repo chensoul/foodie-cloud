@@ -39,9 +39,9 @@ public class PointService extends ServiceImpl<PointMapper, Point> implements ISe
 	 */
 	@Transactional(rollbackFor = Exception.class)
 	public Point addPoint(final Point point) {
-        this.baseMapper.insert(point);
+		this.baseMapper.insert(point);
 
-        this.redisTemplate.opsForZSet()
+		this.redisTemplate.opsForZSet()
 			.incrementScore(RedisKeyConstant.POINT.getKey(), point.getUserId(), point.getScore());
 
 		return point;
@@ -57,7 +57,9 @@ public class PointService extends ServiceImpl<PointMapper, Point> implements ISe
 		final User loggedUser = this.userClient.getCurrentUser().getData();
 		final Set<ZSetOperations.TypedTuple<Long>> rangeWithScores = this.redisTemplate.opsForZSet()
 			.reverseRangeWithScores(RedisKeyConstant.POINT.getKey(), 0, 19);
-		if (rangeWithScores == null || rangeWithScores.isEmpty()) return Lists.newArrayList();
+		if (rangeWithScores == null || rangeWithScores.isEmpty()) {
+			return Lists.newArrayList();
+		}
 
 		final Set<Long> rankUserIds = Sets.newHashSet();
 		final Map<Long, UserPointRankVO> ranksMap = new LinkedHashMap<>();
@@ -75,7 +77,9 @@ public class PointService extends ServiceImpl<PointMapper, Point> implements ISe
 		}
 
 		final R<List<User>> resultInfo = this.userClient.list(rankUserIds);
-		if (resultInfo.getCode() != Constant.SUCCESS_CODE) throw new IllegalArgumentException(resultInfo.getMessage());
+		if (resultInfo.getCode() != Constant.SUCCESS_CODE) {
+			throw new IllegalArgumentException(resultInfo.getMessage());
+		}
 		final List<User> users = resultInfo.getData();
 		for (final User user : users) {
 			final SimpleUser shortUserInfo = new SimpleUser();
@@ -112,7 +116,9 @@ public class PointService extends ServiceImpl<PointMapper, Point> implements ISe
 	public List<UserPointRankVO> listPointRank() {
 		final User loggedUser = this.userClient.getCurrentUser().getData();
 		final List<UserPointRankVO> ranks = this.baseMapper.findTopN(TOPN);
-		if (ranks == null || ranks.isEmpty()) return Lists.newArrayList();
+		if (ranks == null || ranks.isEmpty()){
+			return Lists.newArrayList();
+		}
 		final Map<Long, UserPointRankVO> ranksMap = new LinkedHashMap<>();
 		for (int i = 0; i < ranks.size(); i++) ranksMap.put(ranks.get(i).getId(), ranks.get(i));
 		// 判断个人是否在 ranks 中，如果在，添加标记直接返回

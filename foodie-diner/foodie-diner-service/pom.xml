@@ -19,6 +19,7 @@
             <artifactId>foodie-common</artifactId>
             <version>${project.version}</version>
         </dependency>
+        
         <dependency>
             <groupId>com.chensoul</groupId>
             <artifactId>foodie-diner-api</artifactId>

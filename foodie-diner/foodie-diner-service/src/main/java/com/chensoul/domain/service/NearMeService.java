@@ -51,7 +51,9 @@ public class NearMeService {
 	 * @return
 	 */
 	public List<NearMeUserVO> findNearMe(Integer radius, final Float lon, final Float lat) {
-		if (radius == null) radius = 1000;
+		if (radius == null) {
+			radius = 1000;
+		}
 
 		final String key = RedisKeyConstant.USER_LOCATION.getKey();
 		Point point = null;
@@ -66,7 +68,9 @@ public class NearMeService {
 		final Circle circle = new Circle(point, distance);
 		final GeoResults<RedisGeoCommands.GeoLocation> geoResult =
                 this.redisTemplate.opsForGeo().radius(key, circle, args);
-		if (geoResult == null) return new ArrayList<>();
+		if (geoResult == null) {
+			return new ArrayList<>();
+		}
 
 		final Map<Long, NearMeUserVO> nearMeUserVOMap = Maps.newLinkedHashMap();
 		geoResult.forEach(result -> {
@@ -79,15 +83,19 @@ public class NearMeService {
 			nearMeUserVOMap.put(geoLocation.getName(), nearMeUserVO);
 		});
 
-		if (nearMeUserVOMap.size() == 0) return new ArrayList<>();
+		if (nearMeUserVOMap.size() == 0) {
+			return new ArrayList<>();
+		}
 
 		final R<List<User>> users = this.userClient.list(nearMeUserVOMap.keySet());
 
-		if (users.getData() != null) users.getData().forEach(shortUserInfo -> {
-            final NearMeUserVO nearMeUserVO = nearMeUserVOMap.get(shortUserInfo.getId());
-            nearMeUserVO.setNickname(shortUserInfo.getNickname());
-            nearMeUserVO.setAvatar(shortUserInfo.getAvatar());
-        });
+		if (users.getData() != null) {
+			users.getData().forEach(shortUserInfo -> {
+				final NearMeUserVO nearMeUserVO = nearMeUserVOMap.get(shortUserInfo.getId());
+				nearMeUserVO.setNickname(shortUserInfo.getNickname());
+				nearMeUserVO.setAvatar(shortUserInfo.getAvatar());
+			});
+		}
 		return Lists.newArrayList(nearMeUserVOMap.values());
 	}
 

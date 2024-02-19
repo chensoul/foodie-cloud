@@ -9,7 +9,6 @@ import com.chensoul.domain.user.entity.User;
 import com.chensoul.domain.user.model.LoggedUser;
 import com.chensoul.domain.user.model.UserAddRequest;
 import com.chensoul.domain.user.service.UserService;
-import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import io.github.resilience4j.retry.annotation.Retry;
 import java.util.List;
@@ -86,7 +85,6 @@ public class UserController implements UserApi {
 	}
 
 
-
 	/**
 	 * 安全退出
 	 *
@@ -94,8 +92,12 @@ public class UserController implements UserApi {
 	 */
 	@Override
 	public R<Void> logout(String token) {
-		if (StringUtils.isBlank(token)) return R.ok();
-		if (token.toLowerCase().contains("bearer ".toLowerCase())) token = token.toLowerCase().replace("bearer ", "");
+		if (StringUtils.isBlank(token)) {
+			return R.ok();
+		}
+		if (token.toLowerCase().contains("bearer ".toLowerCase())) {
+			token = token.toLowerCase().replace("bearer ", "");
+		}
 		final OAuth2AccessToken oAuth2AccessToken = this.redisTokenStore.readAccessToken(token);
 		if (oAuth2AccessToken != null) {
 			this.redisTokenStore.removeAccessToken(oAuth2AccessToken);

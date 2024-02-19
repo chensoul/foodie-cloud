@@ -16,6 +16,6 @@ public class JacksonConfig {
 	@Bean
 	@Primary
 	public static ObjectMapper objectMapper() {
-		return new JacksonObjectMapper();
+		return new CustomObjectMapper();
 	}
 }

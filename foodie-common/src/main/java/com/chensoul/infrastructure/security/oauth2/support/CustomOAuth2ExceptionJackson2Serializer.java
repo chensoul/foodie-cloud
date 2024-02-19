@@ -1,6 +1,7 @@
 package com.chensoul.infrastructure.security.oauth2.support;
 
 import com.chensoul.core.model.R;
+import com.chensoul.infrastructure.serializer.CustomObjectMapper;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
@@ -18,9 +19,9 @@ public class CustomOAuth2ExceptionJackson2Serializer extends StdSerializer<Custo
 
 	@Override
 	public void serialize(final CustomOAuth2Exception e, final JsonGenerator jgen, final SerializerProvider serializerProvider) throws IOException {
-		final R<String> errorResult = R.error(e.getMessage());
-		log.error("{}", errorResult, e);
+		final R<String> r = R.error(e.getMessage());
+		log.error("{}", new CustomObjectMapper().writeValueAsString(r));
 
-		jgen.writeObject(errorResult);
+		jgen.writeObject(r);
 	}
 }

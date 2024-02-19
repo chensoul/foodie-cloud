@@ -80,3 +80,5 @@ spring:
             - StripPrefix=1
 
 management.endpoint.gateway.enabled: true
+
+

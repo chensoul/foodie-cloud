@@ -25,9 +25,11 @@ public class LoggedUser extends User implements UserDetails, CredentialsContaine
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		if (StringUtils.isNotBlank(this.getRoles()))
-            this.authorities = Stream.of(this.getRoles().split(",")).map(role -> new SimpleGrantedAuthority("ROLE_" + role)).collect(Collectors.toList());
-        else this.authorities = AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_USER");
+		if (StringUtils.isNotBlank(this.getRoles())) {
+			this.authorities = Stream.of(this.getRoles().split(",")).map(role -> new SimpleGrantedAuthority("ROLE_" + role)).collect(Collectors.toList());
+		} else {
+			this.authorities = AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_USER");
+		}
 		return this.authorities;
 	}
 
@@ -53,6 +55,6 @@ public class LoggedUser extends User implements UserDetails, CredentialsContaine
 
 	@Override
 	public void eraseCredentials() {
-        this.setPassword(null);
+		this.setPassword(null);
 	}
 }

@@ -19,11 +19,11 @@ public class RedisLock {
 
 	public RedisLock(final RedisTemplate redisTemplate) {
 		this.redisTemplate = redisTemplate;
-        this.lockScript = new DefaultRedisScript<>();
-        this.lockScript.setScriptSource(new ResourceScriptSource(new ClassPathResource("lock.lua")));
-        this.lockScript.setResultType(Long.class);
-        this.unlockScript = new DefaultRedisScript<>();
-        this.unlockScript.setScriptSource(new ResourceScriptSource(new ClassPathResource("unlock.lua")));
+		this.lockScript = new DefaultRedisScript<>();
+		this.lockScript.setScriptSource(new ResourceScriptSource(new ClassPathResource("lock.lua")));
+		this.lockScript.setResultType(Long.class);
+		this.unlockScript = new DefaultRedisScript<>();
+		this.unlockScript.setScriptSource(new ResourceScriptSource(new ClassPathResource("unlock.lua")));
 	}
 
 	/**
@@ -39,13 +39,16 @@ public class RedisLock {
 
 		// 执行脚本
 		final Long result = (Long) this.redisTemplate.execute(
-                this.lockScript,
+			this.lockScript,
 			Collections.singletonList(lockName),
 			key + Thread.currentThread().getId(), releaseTime);
 
 		// 判断结果
-		if (result != null && result.intValue() == 1) return key;
-        else return null;
+		if (result != null && result.intValue() == 1) {
+			return key;
+		} else {
+			return null;
+		}
 	}
 
 	/**
@@ -56,8 +59,8 @@ public class RedisLock {
 	 */
 	public void unlock(final String lockName, final String key) {
 		// 执行脚本
-        this.redisTemplate.execute(
-                this.unlockScript,
+		this.redisTemplate.execute(
+			this.unlockScript,
 			Collections.singletonList(lockName),
 			key + Thread.currentThread().getId(), null);
 	}

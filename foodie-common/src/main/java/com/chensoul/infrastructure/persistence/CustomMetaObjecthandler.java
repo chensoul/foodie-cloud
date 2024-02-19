@@ -20,12 +20,18 @@ public class CustomMetaObjecthandler implements MetaObjectHandler {
 	protected static void fillValIfNullByName(final String fieldName, final Object fieldVal, final MetaObject metaObject,
 											  final boolean isCover) {
 		// 1. 没有 set 方法
-		if (!metaObject.hasSetter(fieldName)) return;
+		if (!metaObject.hasSetter(fieldName)) {
+			return;
+		}
 		// 2. 如果用户有手动设置的值
-		if (metaObject.getValue(fieldName) != null && !isCover) return;
+		if (metaObject.getValue(fieldName) != null && !isCover) {
+			return;
+		}
 		// 3. field 类型相同时设置
 		final Class<?> getterType = metaObject.getGetterType(fieldName);
-		if (ClassUtils.isAssignableValue(getterType, fieldVal)) metaObject.setValue(fieldName, fieldVal);
+		if (ClassUtils.isAssignableValue(getterType, fieldVal)) {
+			metaObject.setValue(fieldName, fieldVal);
+		}
 	}
 
 	/**

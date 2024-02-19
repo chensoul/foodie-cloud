@@ -49,7 +49,9 @@ public class ReviewService extends ServiceImpl<ReviewMapper, Review> implements 
 		reviews.setRestaurantId(restaurantId);
 		reviews.setLikeIt(likeIt);
 		final int count = this.baseMapper.insert(reviews);
-		if (count == 0) return;
+		if (count == 0){
+			return;
+		}
 		final String key = RedisKeyConstant.RESTAURANT_NEW_REVIEW.getKey() + restaurantId;
         this.redisTemplate.opsForList().leftPush(key, reviews);
 	}

@@ -33,12 +33,13 @@ public class RestaurantService extends ServiceImpl<RestaurantMapper, Restaurant>
 		if (restaurantMap == null || restaurantMap.isEmpty()) {
 			log.info("缓存失效了，查询数据库：{}", restaurantId);
 			restaurant = this.baseMapper.selectById(restaurantId);
-			if (restaurant != null) this.redisTemplate.opsForHash().putAll(key, BeanUtils.beanToMap(restaurant));
-            else {
+			if (restaurant != null) {
+				this.redisTemplate.opsForHash().putAll(key, BeanUtils.beanToMap(restaurant));
+			} else {
 				// 写入缓存一个空数据，设置一个失效时间，60s
 			}
 		} else restaurant = BeanUtils.mapToBean(restaurantMap,
-                Restaurant.class);
+			Restaurant.class);
 		return restaurant;
 	}
 

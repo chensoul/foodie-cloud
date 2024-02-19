@@ -22,7 +22,9 @@ public class VerifyCodeService {
 	 * @param phone
 	 */
 	public void send(final String phone) {
-		if (!this.checkCodeIsExpired(phone)) return;
+		if (!this.checkCodeIsExpired(phone)) {
+			return;
+		}
 		final String code = RandomStringUtils.randomNumeric(6);
 		final String key = RedisKeyConstant.VERIFY_CODE.getKey() + phone;
         this.redisTemplate.opsForValue().set(key, code, 60, TimeUnit.SECONDS);

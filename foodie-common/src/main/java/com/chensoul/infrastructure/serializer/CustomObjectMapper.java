@@ -22,13 +22,13 @@ import java.time.format.DateTimeFormatter;
  * @author <a href="mailto:ichensoul@gmail.com">chensoul</a>
  * @since 1.0.0
  */
-public class JacksonObjectMapper extends ObjectMapper {
+public class CustomObjectMapper extends ObjectMapper {
 	public static final String DEFAULT_DATE_FORMAT = "yyyy-MM-dd";
 	public static final String DEFAULT_DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
 	public static final String DEFAULT_TIME_FORMAT = "HH:mm:ss";
 	private static final long serialVersionUID = 7826011921354309380L;
 
-	public JacksonObjectMapper() {
+	public CustomObjectMapper() {
 		//收到未知属性时不报异常
 		this.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 

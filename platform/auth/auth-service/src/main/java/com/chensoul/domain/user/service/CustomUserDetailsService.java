@@ -21,10 +21,14 @@ public class CustomUserDetailsService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
-		if (StringUtils.isBlank(username)) throw new UsernameNotFoundException("请输入用户名");
+		if (StringUtils.isBlank(username)) {
+			throw new UsernameNotFoundException("请输入用户名");
+		}
 
 		final User user = this.userMapper.loadUserByUsername(username);
-		if (user == null) throw new UsernameNotFoundException("用户名或密码错误");
+		if (user == null) {
+			throw new UsernameNotFoundException("用户名或密码错误");
+		}
 		final LoggedUser loggedUser = new LoggedUser();
 		BeanUtils.copyProperties(user, loggedUser);
 		return loggedUser;

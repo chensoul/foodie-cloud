@@ -32,13 +32,17 @@ public class FeedService extends ServiceImpl<FeedMapper, Feed> implements IServi
 	private UserClient userClient;
 
 	public List<FeedVO> selectForPage(Integer page) {
-		if (page == null) page = 1;
+		if (page == null){
+			page = 1;
+		}
 		final User userInfo = this.loadSignInUserInfo();
 		final String key = RedisKeyConstant.FOLLOWING_FEED.getKey() + userInfo.getId();
 		final long start = (page - 1) * Constant.PAGE_SIZE;
 		final long end = page * Constant.PAGE_SIZE - 1;
 		final Set<Long> feedIds = this.redisTemplate.opsForZSet().reverseRange(key, start, end);
-		if (feedIds == null || feedIds.isEmpty()) return Lists.newArrayList();
+		if (feedIds == null || feedIds.isEmpty()) {
+			return Lists.newArrayList();
+		}
 
 		final List<Feed> feeds = this.baseMapper.selectBatchIds(feedIds);
 		final List<Long> followingUserIds = new ArrayList<>();
@@ -71,14 +75,14 @@ public class FeedService extends ServiceImpl<FeedMapper, Feed> implements IServi
 			final List<Long> feedIds = feedList.stream()
 				.map(feed -> feed.getId())
 				.collect(Collectors.toList());
-            this.redisTemplate.opsForZSet().remove(key, feedIds.toArray(new Integer[]{}));
+			this.redisTemplate.opsForZSet().remove(key, feedIds.toArray(new Integer[]{}));
 		} else {
 			final Set<ZSetOperations.TypedTuple> typedTuples =
 				feedList.stream()
 					.map(feed -> new DefaultTypedTuple<>(feed.getId(), (double)
 						feed.getUpdateTime().toEpochSecond(ZoneOffset.of(ZoneOffset.systemDefault().getId()))))
 					.collect(Collectors.toSet());
-            this.redisTemplate.opsForZSet().add(key, typedTuples);
+			this.redisTemplate.opsForZSet().add(key, typedTuples);
 		}
 	}
 
@@ -92,14 +96,15 @@ public class FeedService extends ServiceImpl<FeedMapper, Feed> implements IServi
 		final User userInfo = this.loadSignInUserInfo();
 		final Feed feed = this.baseMapper.selectById(id);
 		Assert.isTrue(feed != null, "该Feed已被删除");
-		Assert.isTrue(!feed.getUserId().equals(userInfo.getId()),
-			"只能删除自己的Feed");
+		Assert.isTrue(!feed.getUserId().equals(userInfo.getId()), "只能删除自己的Feed");
 		final int count = this.baseMapper.deleteById(id);
-		if (count == 0) return;
+		if (count == 0) {
+			return;
+		}
 		final List<Integer> followers = FeedService.findFollower(userInfo.getId());
 		followers.forEach(follower -> {
 			final String key = RedisKeyConstant.FOLLOWING_FEED.getKey() + follower;
-            this.redisTemplate.opsForZSet().remove(key, feed.getId());
+			this.redisTemplate.opsForZSet().remove(key, feed.getId());
 		});
 	}
 
@@ -120,7 +125,7 @@ public class FeedService extends ServiceImpl<FeedMapper, Feed> implements IServi
 		final long now = System.currentTimeMillis();
 		followers.forEach(follower -> {
 			final String key = RedisKeyConstant.FOLLOWING_FEED.getKey() + follower;
-            this.redisTemplate.opsForZSet().add(key, feed.getId(), now);
+			this.redisTemplate.opsForZSet().add(key, feed.getId(), now);
 		});
 	}
 

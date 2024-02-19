@@ -35,7 +35,9 @@ public class SignService {
 			.get(BitFieldSubCommands.BitFieldType.unsigned(dayOfMonth))
 			.valueAt(0);
 		final List<Long> list = this.redisTemplate.opsForValue().bitField(signKey, bitFieldSubCommands);
-		if (list == null || list.isEmpty()) return signInfo;
+		if (list == null || list.isEmpty()) {
+			return signInfo;
+		}
 		long v = list.get(0) == null ? 0 : list.get(0);
 		// 从低位到高位进行遍历，为 0 表示未签到，为 1 表示已签到
 		for (int i = dayOfMonth; i > 0; i--) {
@@ -70,7 +72,9 @@ public class SignService {
 	 * @return
 	 */
 	public int doSign(LocalDateTime date) {
-		if (date == null) date = LocalDateTime.now();
+		if (date == null) {
+			date = LocalDateTime.now();
+		}
 
 		final String username = SecurityContextHolder.getContext().getAuthentication().getName();
 		final String signKey = buildSignKey(username, date);
@@ -79,7 +83,7 @@ public class SignService {
 		final boolean isSigned = this.redisTemplate.opsForValue().getBit(signKey, offset);
 		Assert.isTrue(!isSigned, "当前日期已完成签到，无需再签");
 
-        this.redisTemplate.opsForValue().setBit(signKey, offset, true);
+		this.redisTemplate.opsForValue().setBit(signKey, offset, true);
 
 		final int count = this.getContinuousSignCount(username, date);
 		final int point = addPoint(count, username);
@@ -100,14 +104,18 @@ public class SignService {
 			.get(BitFieldSubCommands.BitFieldType.unsigned(dayOfMonth))
 			.valueAt(0);
 		final List<Long> list = this.redisTemplate.opsForValue().bitField(signKey, bitFieldSubCommands);
-		if (list == null || list.isEmpty()) return 0;
+		if (list == null || list.isEmpty()) {
+			return 0;
+		}
 		int signCount = 0;
 		long v = list.get(0) == null ? 0 : list.get(0);
 		for (int i = dayOfMonth; i > 0; i--) {// i 表示位移操作次数
 			// 右移再左移，如果等于自己说明最低位是 0，表示未签到
 			if (v >> 1 << 1 == v) {
 				// 低位 0 且非当天说明连续签到中断了
-				if (i != dayOfMonth) break;
+				if (i != dayOfMonth) {
+					break;
+				}
 			} else signCount++;
 			// 右移一位并重新赋值，相当于把最低位丢弃一位
 			v >>= 1;
@@ -137,9 +145,13 @@ public class SignService {
 	private static int addPoint(final int count, final String username) {
 		// 签到1天送10积分，连续签到2天送20积分，3天送30积分，4天以上均送50积分
 		int point = 10;
-		if (count == 2) point = 20;
-        else if (count == 3) point = 30;
-        else if (count >= 4) point = 50;
+		if (count == 2) {
+			point = 20;
+		} else if (count == 3) {
+			point = 30;
+		} else if (count >= 4) {
+			point = 50;
+		}
 		//TODO 调用积分服务
 		return point;
 	}
